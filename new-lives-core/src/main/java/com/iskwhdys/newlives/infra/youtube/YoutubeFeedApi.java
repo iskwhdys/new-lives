@@ -11,13 +11,13 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.springframework.web.client.RestTemplate;
 
-public class YoutubeFeed {
+public class YoutubeFeedApi {
     private static final String URL_FEED = "https://www.youtube.com/feeds/videos.xml?channel_id=";
 
     private RestTemplate restTemplate = new RestTemplate();
-    private SAXBuilder builder = new SAXBuilder();;
+    private SAXBuilder builder = new SAXBuilder();
 
-    public YoutubeFeed() {
+    public YoutubeFeedApi() {
         builder.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
         builder.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
     }

@@ -21,7 +21,9 @@ public class StartupController {
     @PostConstruct
     public void run() {
         log.info("run");
-        youtubeService.getVideo();
+        youtubeService.feed();
+
+        // youtubeService.getVideo();
         // youtubeService.searchLive();
 
         // youtubeService.getLiveId();

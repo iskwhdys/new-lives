@@ -1,8 +1,12 @@
 package com.iskwhdys.newlives.infra.youtube;
 
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 
 import com.iskwhdys.newlives.infra.config.AppConfig;
+
+import org.jdom2.JDOMException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +20,8 @@ public class YoutubeService {
 
     YoutubeDataApi channelApi;
     YoutubeDataApi videoApi;
+
+    YoutubeFeedApi feedApi = new YoutubeFeedApi();
 
     YoutubeLivePage youtubeLivePage = new YoutubeLivePage();
 
@@ -34,9 +40,22 @@ public class YoutubeService {
                 "id,snippet,contentDetails,liveStreamingDetails,player,recordingDetails,statistics,status,topicDetails");
     }
 
+    public void downloadFeed() {
+
+    }
+
     public void searchLive() {
         var map = videoApi.search("UCIG9rDtgR45VCZmYnd-4DUw", "id");
         log.info(map.toString());
+    }
+
+    public void feed() {
+        try {
+            var feed = feedApi.download("UC0g1AE0DOjBYnLhkgoRWN1w");
+            log.info(feed.toString());
+        } catch (JDOMException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void getLiveId() {

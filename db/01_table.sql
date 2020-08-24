@@ -14,9 +14,9 @@ CREATE TABLE broadcaster (
 );
 
 
-CREATE TABLE channel (
+CREATE TABLE youtube_channel (
     id text NOT NULL,
-    name text,
+    title text,
     description text,
     subscriber_count integer,
     thumbnail_url text,
