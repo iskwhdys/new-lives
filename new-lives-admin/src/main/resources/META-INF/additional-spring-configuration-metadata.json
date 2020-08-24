@@ -1,0 +1,19 @@
+{
+    "properties": [
+        {
+            "name": "newlives.**",
+            "type": "java.lang.String",
+            "description": "A description for 'newlives.youtube.apikey.channel'"
+        },
+        {
+            "name": "newlives.youtube.apikey.channel",
+            "type": "java.lang.String",
+            "description": "A description for 'newlives.youtube.apikey.channel'"
+        },
+        {
+            "name": "newlives.youtube.apikey.video",
+            "type": "java.lang.String",
+            "description": "A description for 'newlives.youtube.apikey.video'"
+        }
+    ]
+}

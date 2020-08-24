@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      TZ: Asia/Tokyo
+      POSTGRES_PASSWORD: postgres_new_lives
+    ports:
+      - 34441:5432
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
