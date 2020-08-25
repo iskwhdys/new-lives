@@ -21,12 +21,12 @@ public class StartupController {
     @PostConstruct
     public void run() {
         log.info("run");
-        youtubeService.feed();
+        // youtubeService.feed();
 
         // youtubeService.getVideo();
         // youtubeService.searchLive();
 
-        // youtubeService.getLiveId();
+        youtubeService.getLiveId();
     }
 
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")

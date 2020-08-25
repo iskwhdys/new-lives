@@ -7,14 +7,16 @@ import org.springframework.web.client.RestTemplate;
 
 public class YoutubeLivePage {
 
-    private static final String BASE_URL = "https://www.youtube.com/channel/%s/live";
+    // private static final String BASE_URL =
+    // "https://www.youtube.com/channel/%s/live";
+    private static final String BASE_URL = "https://www.youtube.com/channel/%s/videos?view=2&live_view=501";
 
     // private static final String REGEX_LIVE_STARTED = "<strong
     // class=\"watch-time-text metadata-updateable-date-text\">.*ライブ配信開始</strong>";
     // static final String REGEX_LIVE_STARTED = "<strong class=\"watch-time-text
     // metadata-updateable-date-text\">.*</strong>";
-    static final String REGEX_LIVE_STARTED = "ライブ配信開始";
-    private static final String REGEX_VIDEO_ID = "\"videoid\":\".*\"";
+    private static final String LIVE_STARTED = "viewCountText\":{\"runs\"";
+    private static final String REGEX_VIDEO_ID = "\"videoId\":\"[a-z,A-Z,0-9,_]*\"";
 
     private static final String REGEX_NO_CONTENT_TITLE = "<title>YouTube</title>";
 
@@ -32,9 +34,8 @@ public class YoutubeLivePage {
                 break;
             }
         }
-        Matcher liveMatch = Pattern.compile(REGEX_LIVE_STARTED).matcher(obj.getBody());
 
-        if (liveMatch.find()) {
+        if (obj.getBody().contains(LIVE_STARTED)) {
 
             Matcher videoId = Pattern.compile(REGEX_VIDEO_ID).matcher(obj.getBody());
 

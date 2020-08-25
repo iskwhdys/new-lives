@@ -59,6 +59,6 @@ public class YoutubeService {
     }
 
     public void getLiveId() {
-        log.info(youtubeLivePage.getId("UC0g1AE0DOjBYnLhkgoRWN1w"));
+        log.info(youtubeLivePage.getId("UCspv01oxUFf_MTSipURRhkA"));
     }
 }
