@@ -8,4 +8,3 @@ create index on youtube_video (live_start);
 create index on youtube_video (live_schedule);
 
 
-
