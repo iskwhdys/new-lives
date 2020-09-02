@@ -10,13 +10,24 @@
 
 
 	<properties>
-
 		<spring.boot.version>2.3.3.RELEASE</spring.boot.version>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
+		
+		<db.jdbc.groupId>org.postgresql</db.jdbc.groupId>
+		<db.jdbc.artifactId>postgresql</db.jdbc.artifactId>
+		<db.jdbc.version>42.2.16</db.jdbc.version>
+		<db.jdbc.driver>org.postgresql.Driver</db.jdbc.driver>
+		<db.name>postgres</db.name>
+		<db.host>localhost</db.host>
+		<db.port>34441</db.port>
+		<db.jdbc.url>jdbc:postgresql://${db.host}:${db.port}/${db.name}?currentSchema=${db.schema}</db.jdbc.url>
+		<db.username>postgres</db.username>
+		<db.password>postgres_new_lives</db.password>
+		<db.schema>public</db.schema>
 	</properties>
+
 
 	<dependencyManagement>
 		<dependencies>
@@ -27,13 +38,52 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-
+			<dependency>
+				<groupId>${db.jdbc.groupId}</groupId>
+				<artifactId>${db.jdbc.artifactId}</artifactId>
+				<version>${db.jdbc.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 
+	<!-- Build Settings -->
+	<build>
+		<defaultGoal>antrun:run</defaultGoal>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<inherited>false</inherited>
+				<configuration>
+					<target>
+						<ant antfile="build.xml" target="install"/>
+					</target>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.8</version>
+					<inherited>false</inherited>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.ant</groupId>
+							<artifactId>ant</artifactId>
+							<version>1.10.5</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+
 	<modules>
 		<module>new-lives-core</module>
+		<module>new-lives-entity</module>
 		<module>new-lives-admin</module>
 	</modules>
 

@@ -6,7 +6,8 @@ CREATE TABLE youtube_channel (
     thumbnail_url varchar(200),
     start_date date,
     end_date date,
-    check_expires boolean DEFAULT true
+    check_expires boolean DEFAULT true,
+    scraping boolean DEFAULT false
 );
 
 
@@ -44,7 +45,7 @@ CREATE TABLE liver (
     debut varchar(32),
 
     twitter varchar(16),
-    youtube varchar(32),
+    youtube varchar(32) references youtube_channel(id),
     
     start_date date,
     end_date date,
