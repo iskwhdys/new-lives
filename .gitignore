@@ -1,1 +1,6 @@
 new-lives-admin/src/main/resources/application-local.properties
+/new-lives-entity/target
+/new-lives-entity/.settings
+/target
+/new-lives-entity/.project
+/new-lives-entity/.classpath
