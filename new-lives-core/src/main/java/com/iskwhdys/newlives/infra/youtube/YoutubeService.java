@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.annotation.PostConstruct;
 
+import com.iskwhdys.newlives.domain.youtube.channel.YoutubeChannelEntity;
 import com.iskwhdys.newlives.infra.config.AppConfig;
 
 import org.jdom2.JDOMException;
@@ -41,6 +42,7 @@ public class YoutubeService {
     }
 
     public void downloadFeed() {
+        YoutubeChannelEntity yc = new YoutubeChannelEntity();
 
     }
 
