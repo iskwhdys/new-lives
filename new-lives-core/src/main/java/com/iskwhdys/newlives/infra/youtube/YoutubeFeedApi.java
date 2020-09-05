@@ -14,15 +14,15 @@ import org.springframework.web.client.RestTemplate;
 public class YoutubeFeedApi {
     private static final String URL_FEED = "https://www.youtube.com/feeds/videos.xml?channel_id=";
 
-    private RestTemplate restTemplate = new RestTemplate();
-    private SAXBuilder builder = new SAXBuilder();
+    private static RestTemplate restTemplate = new RestTemplate();
+    private static SAXBuilder builder = new SAXBuilder();
 
-    public YoutubeFeedApi() {
+    YoutubeFeedApi() {
         builder.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
         builder.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
     }
 
-    public YoutubeFeedEntity download(String channelId) throws JDOMException, IOException {
+    public static YoutubeFeedEntity download(String channelId) throws JDOMException, IOException {
         var response = restTemplate.getForEntity(URL_FEED + channelId, byte[].class);
         var bytes = response.getBody();
 
@@ -50,5 +50,4 @@ public class YoutubeFeedApi {
 
         return entity;
     }
-
 }

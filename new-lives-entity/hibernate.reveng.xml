@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-reverse-engineering
-  SYSTEM "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+  SYSTEM "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 
 <!-- See also -->
 <!-- https://docs.jboss.org/tools/latest/en/hibernatetools/html/reverseengineering.html -->
@@ -13,6 +13,9 @@
     <sql-type jdbc-type="TIMESTAMP" hibernate-type="java.time.LocalDateTime"/>
   </type-mapping>
 
-  <table-filter match-name="youtube_channel" package="com.iskwhdys.newlives.domain.youtube.channel"/>
+  <table-filter match-name="youtube_channel" package="com.iskwhdys.newlives.domain.youtube"/>
+  <table-filter match-name="youtube_video" package="com.iskwhdys.newlives.domain.youtube"/>
+  <table-filter match-name="liver" package="com.iskwhdys.newlives.domain.liver"/>
+  <table-filter match-name="liver_tag" package="com.iskwhdys.newlives.domain.liver"/>
 
 </hibernate-reverse-engineering>
