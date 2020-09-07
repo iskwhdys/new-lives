@@ -1,61 +1,84 @@
 package com.iskwhdys.newlives.infra.youtube;
 
-import java.util.Map;
-import java.util.Map.Entry;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelEntity;
+import com.iskwhdys.newlives.domain.youtube.YoutubeVideoEntity;
+import com.iskwhdys.newlives.infra.youtube.YoutubeFeedEntity.Video;
+
+import org.jdom2.Element;
 
 public class YoutubeFeedLogic {
 
     private YoutubeFeedLogic() {
     }
 
-    public static YoutubeChannelEntity update(YoutubeChannelEntity channel, Map<String, Object> items) {
-        for (Entry<String, ?> entry : items.entrySet()) {
-            String key = entry.getKey();
-
-            if (key.equals("snippet"))
-                setSnippet(channel, castMap(entry.getValue()));
-            else if (key.equals("statistics"))
-                setStatistics(channel, castMap(entry.getValue()));
-        }
-        return channel;
-    }
-
-    private static YoutubeChannelEntity setSnippet(YoutubeChannelEntity channel, Map<String, ?> map) {
-        if (map == null)
-            return channel;
-        if (map.containsKey("title"))
-            channel.setTitle(map.get("title").toString());
-        if (map.containsKey("description"))
-            channel.setDescription(map.get("description").toString());
-        if (map.containsKey("thumbnails")) {
-            var thumbnails = castMap(map.get("thumbnails"));
-            for (var key : new String[] { "default", "medium", "high" }) {
-                if (thumbnails.containsKey(key)) {
-                    var th = castMap(thumbnails.get(key));
-                    channel.setThumbnailUrl(th.get("url").toString());
+    public static YoutubeVideoEntity setElementData(YoutubeChannelEntity channel, YoutubeVideoEntity video,
+            Video feedVideo) {
+        video.setId(feedVideo.getId());
+        video.setYoutubeChannelEntity(channel);
+        video.setEnabled(true);
+        video.setUpdateDate(LocalDateTime.now());
+        for (Element element : feedVideo.getElement().getChildren()) {
+            switch (element.getName()) {
+                case "title":
+                    video.setTitle(element.getValue());
                     break;
-                }
+                case "published":
+                    video.setPublished(LocalDateTime.parse(element.getValue(), DateTimeFormatter.ISO_DATE_TIME));
+                    break;
+                case "updated":
+                    video.setUpdated(LocalDateTime.parse(element.getValue(), DateTimeFormatter.ISO_DATE_TIME));
+                    break;
+                case "group":
+                    setElementGroupData(video, element);
+                    break;
+                default:
+                    break;
             }
         }
-        return channel;
+        return video;
     }
 
-    private static YoutubeChannelEntity setStatistics(YoutubeChannelEntity channel, Map<String, ?> map) {
-        if (map == null)
-            return channel;
-        if (map.containsKey("subscriberCount"))
-            channel.setSubscriberCount(toInteger(map, "subscriberCount"));
-        return channel;
+    private static YoutubeVideoEntity setElementGroupData(YoutubeVideoEntity video, Element group) {
+        for (Element element : group.getChildren()) {
+            switch (element.getName()) {
+                case "description":
+                    video.setDescription(element.getValue());
+                    break;
+                case "thumbnail":
+                    video.setThumbnailUrl(element.getAttributeValue("url"));
+                    break;
+                case "community":
+                    setElementGroupCommunityData(video, element);
+                    break;
+                default:
+                    break;
+            }
+        }
+        return video;
     }
 
-    private static Integer toInteger(Map<String, ?> map, String key) {
-        return Integer.parseInt(map.get(key).toString());
+    private static YoutubeVideoEntity setElementGroupCommunityData(YoutubeVideoEntity video, Element community) {
+        for (Element element : community.getChildren()) {
+            switch (element.getName()) {
+                case "starRating":
+                    int count = Integer.parseInt(element.getAttributeValue("count"));
+                    String ave = element.getAttributeValue("average");
+                    int like = YoutubeCommon.getLikeCount(count, ave);
+                    int dislike = count - like;
+                    video.setLikes(like);
+                    video.setDislikes(dislike);
+                    break;
+                case "statistics":
+                    video.setViews(Integer.parseInt(element.getAttributeValue("views")));
+                    break;
+                default:
+                    break;
+            }
+        }
+        return video;
     }
 
-    @SuppressWarnings("unchecked")
-    private static Map<String, ?> castMap(Object item) {
-        return (Map<String, ?>) item;
-    }
 }

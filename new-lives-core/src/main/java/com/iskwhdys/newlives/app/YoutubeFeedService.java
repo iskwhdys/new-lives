@@ -4,20 +4,21 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelRepository;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
-import com.iskwhdys.newlives.infra.youtube.YoutubeCommon;
 import com.iskwhdys.newlives.infra.youtube.YoutubeFeedApi;
 import com.iskwhdys.newlives.infra.youtube.YoutubeFeedEntity;
+import com.iskwhdys.newlives.infra.youtube.YoutubeFeedLogic;
 import com.iskwhdys.newlives.infra.youtube.YoutubeFeedEntity.Video;
 
-import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,15 @@ public class YoutubeFeedService {
 
     Map<String, YoutubeFeedEntity> feedCache = new HashMap<>();
 
+    public List<String> getFeedVideoIdList(String channelId) {
+        try {
+            return getFeed(channelId).getVideos().stream().map(Video::getId).collect(Collectors.toList());
+        } catch (JDOMException | IOException e) {
+            log.error(e.getMessage(), e);
+            return List.of();
+        }
+    }
+
     public void update() {
         for (YoutubeChannelEntity channel : channelRepository.findAll()) {
             try {
@@ -45,15 +55,17 @@ public class YoutubeFeedService {
         }
     }
 
-    private void update(YoutubeChannelEntity channel) throws JDOMException, IOException {
-        YoutubeFeedEntity feed = feedCache.get(channel.getId());
+    private YoutubeFeedEntity getFeed(String channelId) throws JDOMException, IOException {
+        YoutubeFeedEntity feed = feedCache.get(channelId);
         if (feed != null && System.currentTimeMillis() < feed.getExpires()) {
-            return;
+            return feed;
         }
-        feed = YoutubeFeedApi.download(channel.getId());
+        return YoutubeFeedApi.download(channelId);
+    }
 
-        var time = LocalDateTime.ofInstant(Instant.ofEpochMilli(feed.getExpires()), ZoneId.systemDefault());
-        log.info(channel.getId() + ":expire:" + time);
+    private void update(YoutubeChannelEntity channel) throws JDOMException, IOException {
+        YoutubeFeedEntity feed = getFeed(channel.getId());
+        log.info(channel.getId() + ":expire:" + feed.getLocalDateTimeExpires());
 
         for (Video feedVideo : feed.getVideos()) {
             try {
@@ -71,70 +83,7 @@ public class YoutubeFeedService {
         if (video == null) {
             video = new YoutubeVideoEntity();
         }
-        setElementData(channel, video, feedVideo);
+        YoutubeFeedLogic.setElementData(channel, video, feedVideo);
         videoRepository.save(video);
-    }
-
-    private YoutubeVideoEntity setElementData(YoutubeChannelEntity channel, YoutubeVideoEntity video, Video feedVideo) {
-        video.setId(feedVideo.getId());
-        video.setYoutubeChannelEntity(channel);
-        video.setEnabled(true);
-        video.setUpdateDate(LocalDateTime.now());
-        for (Element element : feedVideo.getElement().getChildren()) {
-            switch (element.getName()) {
-                case "title":
-                    video.setTitle(element.getValue());
-                    break;
-                case "published":
-                    video.setUploadDate(LocalDateTime.parse(element.getValue(), DateTimeFormatter.ISO_DATE_TIME));
-                    break;
-                case "group":
-                    setElementGroupData(video, element);
-                    break;
-                default:
-                    break;
-            }
-        }
-        return video;
-    }
-
-    private YoutubeVideoEntity setElementGroupData(YoutubeVideoEntity video, Element group) {
-        for (Element element : group.getChildren()) {
-            switch (element.getName()) {
-                case "description":
-                    video.setDescription(element.getValue());
-                    break;
-                case "thumbnail":
-                    video.setThumbnailUrl(element.getAttributeValue("url"));
-                    break;
-                case "community":
-                    setElementGroupCommunityData(video, element);
-                    break;
-                default:
-                    break;
-            }
-        }
-        return video;
-    }
-
-    private YoutubeVideoEntity setElementGroupCommunityData(YoutubeVideoEntity video, Element community) {
-        for (Element element : community.getChildren()) {
-            switch (element.getName()) {
-                case "starRating":
-                    int count = Integer.parseInt(element.getAttributeValue("count"));
-                    String ave = element.getAttributeValue("average");
-                    int like = YoutubeCommon.getLikeCount(count, ave);
-                    int dislike = count - like;
-                    video.setLikes(like);
-                    video.setDislikes(dislike);
-                    break;
-                case "statistics":
-                    video.setViews(Integer.parseInt(element.getAttributeValue("views")));
-                    break;
-                default:
-                    break;
-            }
-        }
-        return video;
     }
 }

@@ -1,5 +1,8 @@
 package com.iskwhdys.newlives.infra.youtube;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.jdom2.Element;
@@ -18,5 +21,9 @@ public class YoutubeFeedEntity {
     public class Video {
         private String id;
         private Element element;
+    }
+
+    public LocalDateTime getLocalDateTimeExpires() {
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(getExpires()), ZoneId.systemDefault());
     }
 }
