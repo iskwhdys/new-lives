@@ -25,13 +25,13 @@ public class StartupController {
     public void run() {
         log.info("run");
         // youtubeChannelService.updateAllChannelInfo();
-        youtubeFeedService.update();
+        // youtubeFeedService.update();
 
     }
 
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
     public void cronPerMinute() {
-        youtubeFeedService.update();
+        // youtubeFeedService.update();
     }
 
 }

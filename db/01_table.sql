@@ -6,7 +6,7 @@ CREATE TABLE youtube_channel (
     thumbnail_url varchar(200),
     start_date date,
     end_date date,
-    check_expires boolean DEFAULT true,
+    check_expires boolean DEFAULT false,
     scraping boolean DEFAULT false
 );
 
@@ -15,11 +15,10 @@ CREATE TABLE youtube_video (
     id varchar(32) PRIMARY KEY,
     channel varchar(32) references youtube_channel(id),
     enabled boolean,
-    type varchar(32),
     title varchar(200),
     description text,
-    published timestamp(6) without time zone,
-    updated timestamp(6) without time zone,
+    type varchar(16),
+    status varchar(16),
     live_schedule timestamp(6) without time zone,
     live_start timestamp(6) without time zone,
     live_end timestamp(6) without time zone,
@@ -30,8 +29,10 @@ CREATE TABLE youtube_video (
     dislikes integer,
     favorites integer,
     comments integer,
-    upload_status varchar(32),
+    upload_status varchar(16),
     thumbnail_url varchar(200),
+    published timestamp(6) without time zone,
+    updated timestamp(6) without time zone,
     create_date timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     update_date timestamp without time zone
 );
