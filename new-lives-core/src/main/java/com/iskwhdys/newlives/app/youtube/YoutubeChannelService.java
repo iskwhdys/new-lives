@@ -1,4 +1,4 @@
-package com.iskwhdys.newlives.app;
+package com.iskwhdys.newlives.app.youtube;
 
 import java.util.Map;
 

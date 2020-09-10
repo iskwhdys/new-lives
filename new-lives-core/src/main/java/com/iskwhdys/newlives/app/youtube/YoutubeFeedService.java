@@ -1,13 +1,10 @@
-package com.iskwhdys.newlives.app;
+package com.iskwhdys.newlives.app.youtube;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelEntity;
@@ -82,8 +79,7 @@ public class YoutubeFeedService {
         log.info(feedVideo.getId());
         YoutubeVideoEntity video = videoRepository.findById(feedVideo.getId()).orElse(null);
         if (video == null) {
-            video = new YoutubeVideoEntity();
-            video.setVideoType("new");
+            video = YoutubeVideoLogic.createNewVideo();
         }
         YoutubeFeedLogic.setElementData(channel, video, feedVideo);
         videoRepository.save(video);

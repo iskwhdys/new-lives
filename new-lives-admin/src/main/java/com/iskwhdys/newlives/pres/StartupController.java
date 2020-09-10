@@ -2,8 +2,8 @@ package com.iskwhdys.newlives.pres;
 
 import javax.annotation.PostConstruct;
 
-import com.iskwhdys.newlives.app.YoutubeChannelService;
-import com.iskwhdys.newlives.app.YoutubeFeedService;
+import com.iskwhdys.newlives.app.youtube.YoutubeChannelService;
+import com.iskwhdys.newlives.app.youtube.YoutubeFeedService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -24,14 +24,12 @@ public class StartupController {
     @PostConstruct
     public void run() {
         log.info("run");
-        // youtubeChannelService.updateAllChannelInfo();
-        // youtubeFeedService.update();
 
     }
 
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
     public void cronPerMinute() {
-        // youtubeFeedService.update();
+        ;//
     }
 
 }

@@ -10,4 +10,6 @@ public interface YoutubeVideoRepository
 
     List<YoutubeVideoEntity> findByEnabledTrueAndIdNotIn(List<String> id);
 
+    List<YoutubeVideoEntity> findByEnabledTrueAndTypeEquals(String type);
+
 }
