@@ -12,4 +12,6 @@ public interface YoutubeVideoRepository
 
     List<YoutubeVideoEntity> findByEnabledTrueAndTypeEquals(String type);
 
+    List<YoutubeVideoEntity> findByEnabledTrueAndStatusEquals(String status);
+
 }

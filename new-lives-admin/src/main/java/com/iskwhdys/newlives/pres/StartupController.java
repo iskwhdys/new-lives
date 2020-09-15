@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 
 import com.iskwhdys.newlives.app.youtube.YoutubeChannelService;
 import com.iskwhdys.newlives.app.youtube.YoutubeFeedService;
+import com.iskwhdys.newlives.app.youtube.YoutubeVideoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -20,10 +21,14 @@ public class StartupController {
     YoutubeChannelService youtubeChannelService;
     @Autowired
     YoutubeFeedService youtubeFeedService;
+    @Autowired
+    YoutubeVideoService youtubeVideoService;
 
     @PostConstruct
     public void run() {
         log.info("run");
+        youtubeFeedService.update();
+        youtubeVideoService.updateNewVideo();
 
     }
 
