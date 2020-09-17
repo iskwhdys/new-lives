@@ -27,14 +27,6 @@ public class StartupController {
     @PostConstruct
     public void run() {
         log.info("run");
-        youtubeFeedService.update();
-        youtubeVideoService.updateNewVideo();
-
+        // youtubeVideoService.updateReserveVideo(60, 60);
     }
-
-    @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
-    public void cronPerMinute() {
-        ;//
-    }
-
 }

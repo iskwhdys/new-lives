@@ -1,5 +1,6 @@
 package com.iskwhdys.newlives.app.youtube;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -40,12 +41,24 @@ public class YoutubeVideoService {
         updateVideo(videoRepository.findByEnabledTrueAndTypeEquals(YoutubeVideoLogic.TYPE_NEW), dataApi::getAll);
     }
 
-    public void updateStramVideo() {
+    public void updateStreamVideo() {
         updateVideo(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_STREAM),
                 dataApi::getLiveStreamingDetails);
     }
 
     public void updateReserveVideo() {
+        updateVideo(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_RESERVE),
+                dataApi::getAll);
+    }
+
+    public void updateReserveVideo(int before, int after) {
+        LocalDateTime since = LocalDateTime.now().minusMinutes(before);
+        LocalDateTime until = LocalDateTime.now().plusMinutes(after);
+        updateVideo(videoRepository.findByEnabledTrueAndStatusEqualsAndLiveScheduleBetween(
+                YoutubeVideoLogic.STATUS_RESERVE, since, until), dataApi::getAll);
+    }
+
+    public void updateUploadedVideo() {
         updateVideo(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_RESERVE),
                 dataApi::getLiveStreamingDetails);
     }
@@ -68,5 +81,4 @@ public class YoutubeVideoService {
             }
         }
     }
-
 }

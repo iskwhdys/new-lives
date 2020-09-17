@@ -1,5 +1,6 @@
 package com.iskwhdys.newlives.domain.youtube;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +14,8 @@ public interface YoutubeVideoRepository
     List<YoutubeVideoEntity> findByEnabledTrueAndTypeEquals(String type);
 
     List<YoutubeVideoEntity> findByEnabledTrueAndStatusEquals(String status);
+
+    List<YoutubeVideoEntity> findByEnabledTrueAndStatusEqualsAndLiveScheduleBetween(String status, LocalDateTime since,
+            LocalDateTime until);
 
 }

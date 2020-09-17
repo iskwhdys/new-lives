@@ -14,5 +14,15 @@
                 "-Dspring.profiles.active=local"
             ]
         },
+        {
+            "type": "java",
+            "name": "batch",
+            "request": "launch",
+            "mainClass": "com.iskwhdys.newlives.BatchApplication",
+            "projectName": "new-lives-batch",
+            "vmArgs": [
+                "-Dspring.profiles.active=local"
+            ]
+        },
     ]
 }

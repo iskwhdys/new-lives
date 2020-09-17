@@ -14,7 +14,7 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<db.jdbc.groupId>org.postgresql</db.jdbc.groupId>
 		<db.jdbc.artifactId>postgresql</db.jdbc.artifactId>
 		<db.jdbc.version>42.2.16</db.jdbc.version>
@@ -84,6 +84,7 @@
 	<modules>
 		<module>new-lives-core</module>
 		<module>new-lives-entity</module>
+		<module>new-lives-batch</module>
 		<module>new-lives-admin</module>
 	</modules>
 
