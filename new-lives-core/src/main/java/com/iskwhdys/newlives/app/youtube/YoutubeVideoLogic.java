@@ -57,12 +57,7 @@ public class YoutubeVideoLogic {
         return STATUS_ARCHIVE.equals(v.getStatus());
     }
 
-    public static void updateTypeAndStatus(YoutubeVideoEntity v) {
-        v.setType(getType(v));
-        v.setStatus(getStatus(v));
-    }
-
-    private static String getType(YoutubeVideoEntity v) {
+    public static String updateType(YoutubeVideoEntity v) {
         if (v.getLiveSchedule() == null && v.getLiveStart() == null && v.getLiveEnd() == null) {
             return TYPE_UPLOAD;
         }
@@ -83,7 +78,7 @@ public class YoutubeVideoLogic {
         return TYPE_LIVE;
     }
 
-    private static String getStatus(YoutubeVideoEntity v) {
+    public static String updateStatus(YoutubeVideoEntity v) {
         if (TYPE_UPLOAD.equals(v.getType())) {
             return null;
         }

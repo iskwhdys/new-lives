@@ -44,6 +44,10 @@ public class YoutubeDataApi {
             return new HashMap<>();
         }
         List<?> items = (List<?>) map.get("items");
+        if (items == null || items.isEmpty()) {
+            return new HashMap<>();
+        }
+
         return castMap(items.get(0));
     }
 

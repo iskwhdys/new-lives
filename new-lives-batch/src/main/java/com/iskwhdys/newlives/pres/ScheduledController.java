@@ -26,35 +26,38 @@ public class ScheduledController {
     @Autowired
     YoutubeVideoService youtubeVideoService;
 
-    @PostConstruct
-    public void run() {
-        log.info("run");
-    }
-
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
     public void cronPerMinute() {
+        log.info("cronPerMinute Start");
+
+        int hour = LocalDateTime.now().getHour();
         int min = LocalDateTime.now().getMinute();
 
-        if (min == 0) {
+        if (hour == 16 && min == 45) {
+            // 日次(API回復直前に実行)
             youtubeChannelService.updateAllChannelInfo();
-            youtubeFeedService.update();
+            youtubeVideoService.updateReserveVideo();
+        }
+
+        youtubeFeedService.update();
+        if (min == 0) {
+            // 60分間隔
             youtubeVideoService.updateStreamVideo();
             youtubeVideoService.updateReserveVideo(60 * 24, 60 * 24);
-            youtubeVideoService.updateNewVideo();
         } else if (min % 20 == 0) {
-            youtubeFeedService.update();
+            // 20分間隔
             youtubeVideoService.updateStreamVideo();
             youtubeVideoService.updateReserveVideo(60 * 2, 60 * 2);
-            youtubeVideoService.updateNewVideo();
         } else if (min % 5 == 0) {
-            youtubeFeedService.update();
+            // 5分間隔
             youtubeVideoService.updateStreamVideo();
             youtubeVideoService.updateReserveVideo(60, 60);
-            youtubeVideoService.updateNewVideo();
         } else {
-            youtubeFeedService.update();
+            // 1分間隔
             youtubeVideoService.updateReserveVideo(15, 15);
-            youtubeVideoService.updateNewVideo();
         }
+        youtubeVideoService.updateNewVideo();
+
+        log.info("cronPerMinute end");
     }
 }

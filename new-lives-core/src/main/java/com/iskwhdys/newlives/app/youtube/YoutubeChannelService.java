@@ -27,7 +27,7 @@ public class YoutubeChannelService {
     @PostConstruct
     public void init() {
         dataApi = new YoutubeDataApi(appConfig.getYoutube().getApikey().getChannel());
-        log.info("API Channel:" + dataApi.getApiKey());
+        log.info("API Youtube Channel:" + dataApi.getApiKey());
     }
 
     public void updateAllChannelInfo() {

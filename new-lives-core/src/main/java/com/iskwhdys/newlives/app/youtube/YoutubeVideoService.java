@@ -23,18 +23,16 @@ import lombok.extern.slf4j.Slf4j;
 public class YoutubeVideoService {
 
     @Autowired
-    AppConfig appConfig;
+    private AppConfig appConfig;
     @Autowired
-    YoutubeChannelRepository channelRepository;
-    @Autowired
-    YoutubeVideoRepository videoRepository;
+    private YoutubeVideoRepository videoRepository;
 
-    YoutubeDataVideosApi dataApi;
+    private YoutubeDataVideosApi dataApi;
 
     @PostConstruct
     public void init() {
         dataApi = new YoutubeDataVideosApi(appConfig.getYoutube().getApikey().getVideo());
-        log.info("API Video:" + dataApi.getApiKey());
+        log.info("API Youtube Video:" + dataApi.getApiKey());
     }
 
     public void updateNewVideo() {
@@ -68,7 +66,10 @@ public class YoutubeVideoService {
             try {
                 Map<String, Object> map = dataApiGetFunction.apply(v.getId());
                 YoutubeDataVideosLogic.updateData(v, map);
-                YoutubeVideoLogic.updateTypeAndStatus(v);
+
+                v.setType(YoutubeVideoLogic.updateType(v));
+                v.setStatus(YoutubeVideoLogic.updateStatus(v));
+
                 videoRepository.save(v);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
@@ -81,4 +82,5 @@ public class YoutubeVideoService {
             }
         }
     }
+
 }

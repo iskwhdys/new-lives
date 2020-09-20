@@ -26,7 +26,7 @@ public class StartupController {
 
     @PostConstruct
     public void run() {
-        log.info("run");
-        // youtubeVideoService.updateReserveVideo(60, 60);
+        ;//
+         // youtubeVideoService.updateReserveVideo(60, 60);
     }
 }
