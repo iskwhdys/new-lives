@@ -63,7 +63,7 @@ public class YoutubeFeedService {
 
     private void update(YoutubeChannelEntity channel) throws JDOMException, IOException {
         YoutubeFeedEntity feed = getFeed(channel);
-        log.info(channel.getId() + ":expire:" + feed.getLocalDateTimeExpires());
+        log.info(channel.getId() + ":expire:" + feed.getFormattedLocalDateTimeExpires());
 
         for (Video feedVideo : feed.getVideos()) {
             try {
@@ -76,7 +76,6 @@ public class YoutubeFeedService {
     }
 
     private void updateVideo(YoutubeChannelEntity channel, Video feedVideo) {
-        log.info(feedVideo.getId());
         YoutubeVideoEntity video = videoRepository.findById(feedVideo.getId()).orElse(null);
         if (video == null) {
             video = YoutubeVideoLogic.createNewVideo();
@@ -142,10 +141,10 @@ public class YoutubeFeedService {
                 var last = feedCache.get(id);
                 if (last != null && last.getExpires() != feed.getExpires()
                         && System.currentTimeMillis() < last.getExpires()) {
-                    log.info(id + "now.expire:" + feed.getLocalDateTimeExpires() + ":last.expire:"
-                            + last.getLocalDateTimeExpires());
+                    log.info(id + "now.expire:" + feed.getFormattedLocalDateTimeExpires() + ":last.expire:"
+                            + last.getFormattedLocalDateTimeExpires());
                 } else {
-                    log.info(id + ": now.expire:" + feed.getLocalDateTimeExpires());
+                    log.info(id + ": now.expire:" + feed.getFormattedLocalDateTimeExpires());
                 }
                 feedCache.put(id, feed);
             } catch (JDOMException | IOException e) {

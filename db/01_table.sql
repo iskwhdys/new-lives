@@ -61,7 +61,7 @@ CREATE TABLE liver_tag (
     id varchar(32) references liver(id),
     key varchar(32),
     value varchar(200),
-    primary key (id, key)
+    primary key (id, key, value)
 )
 
 

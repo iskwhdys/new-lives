@@ -8,7 +8,6 @@ import java.util.function.Function;
 import javax.annotation.PostConstruct;
 
 import com.iskwhdys.newlives.app.twitter.TweetService;
-import com.iskwhdys.newlives.domain.youtube.YoutubeChannelRepository;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
 import com.iskwhdys.newlives.infra.config.AppConfig;
@@ -85,17 +84,17 @@ public class YoutubeVideoService {
     }
 
     private void updateStatus(YoutubeVideoEntity v) {
-        var lastStatus = v.getStatus();
+        String lastType = v.getType();
+        String lastStatus = v.getStatus();
         v.setType(YoutubeVideoLogic.updateType(v));
         v.setStatus(YoutubeVideoLogic.updateStatus(v));
 
-        if (lastStatus.equals(v.getStatus())) {
-            return;
-        }
-        log.info(v.getId() + ":" + v.getTitle() + ":" + v.getStatus());
-        if (YoutubeVideoLogic.isStatusStream(v)) {
-            tweetService.tweet(v);
+        if (!lastStatus.equals(v.getStatus()) || !lastType.equals(v.getType())) {
+            log.info(v.getId() + ":" + lastType + "->" + v.getType() + ":" + lastStatus + "->" + v.getStatus() + ":"
+                    + v.getTitle());
+            if (YoutubeVideoLogic.isTypeUpload(v) || YoutubeVideoLogic.isStatusStream(v)) {
+                tweetService.tweet(v);
+            }
         }
     }
-
 }

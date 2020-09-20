@@ -26,6 +26,11 @@ public class ScheduledController {
     @Autowired
     YoutubeVideoService youtubeVideoService;
 
+    @PostConstruct
+    public void init() {
+        cronPerMinute();
+    }
+
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
     public void cronPerMinute() {
         log.info("cronPerMinute Start");

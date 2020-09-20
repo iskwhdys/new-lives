@@ -3,6 +3,7 @@ package com.iskwhdys.newlives.infra.youtube;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.jdom2.Element;
@@ -26,4 +27,9 @@ public class YoutubeFeedEntity {
     public LocalDateTime getLocalDateTimeExpires() {
         return LocalDateTime.ofInstant(Instant.ofEpochMilli(getExpires()), ZoneId.systemDefault());
     }
+
+    public String getFormattedLocalDateTimeExpires() {
+        return getLocalDateTimeExpires().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    }
+
 }

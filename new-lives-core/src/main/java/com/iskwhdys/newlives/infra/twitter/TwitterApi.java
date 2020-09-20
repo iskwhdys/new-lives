@@ -45,7 +45,7 @@ public class TwitterApi {
             return false;
         }
 
-        String logText = text.replace("\r", "").replace("\n", "");
+        String logText = text.replace("\r\n", " ").replace("\r", " ").replace("\n", " ");
 
         if (!TwitterTextParser.parseTweet(text).isValid) {
             log.info("isInValid:" + logText);

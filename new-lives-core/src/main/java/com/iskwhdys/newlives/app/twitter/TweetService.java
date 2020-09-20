@@ -31,9 +31,15 @@ public class TweetService {
 
     public void tweet(YoutubeVideoEntity v) {
         try {
-            if (!tweet(v, true, false, true) /* || !tweet(v, true, false, true) */ || !tweet(v, true, false, false)) {
-                tweet(v, false, false, false);
-            }
+            if (tweet(v, true, false, true))
+                return;
+            if (tweet(v, true, false, true))
+                return;
+            if (tweet(v, true, false, false))
+                return;
+            if (tweet(v, false, false, false))
+                return;
+
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -78,12 +84,15 @@ public class TweetService {
 
     private String getHeader(YoutubeVideoEntity v) {
         var result = new StringBuilder();
-        var diffMin = ChronoUnit.MINUTES.between(v.getLiveStart(), LocalDateTime.now());
-        if (diffMin == 0) {
-            result.append("～");
-        } else {
-            result.append("～" + diffMin + "分前に");
+
+        result.append("～");
+        if (!YoutubeVideoLogic.isTypeUpload(v)) {
+            var diffMin = ChronoUnit.MINUTES.between(v.getLiveStart(), LocalDateTime.now());
+            if (diffMin != 0) {
+                result.append(diffMin + "分前に");
+            }
         }
+
         if (YoutubeVideoLogic.isTypeLive(v)) {
             result.append("配信開始");
         } else if (YoutubeVideoLogic.isTypeUpload(v)) {
@@ -100,9 +109,13 @@ public class TweetService {
         if (l.isPresent()) {
             return l.get().getName();
         } else {
+            // TODO 共有チャンネルの場合は複数個取得される
             var tag = liverTagRepository.findByIdKeyAndValue("youtube", v.getYoutubeChannelEntity().getId());
             if (tag.isPresent()) {
-                return tag.get().getLiverEntity().getName();
+                l = liverRepository.findById(tag.get().getId().getId());
+                if (l.isPresent()) {
+                    return l.get().getName();
+                }
             }
         }
         return null;

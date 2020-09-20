@@ -8,14 +8,10 @@ import com.iskwhdys.newlives.app.youtube.YoutubeVideoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @EnableScheduling
-@Slf4j
 public class StartupController {
     @Autowired
     YoutubeChannelService youtubeChannelService;
@@ -26,7 +22,6 @@ public class StartupController {
 
     @PostConstruct
     public void run() {
-        ;//
-         // youtubeVideoService.updateReserveVideo(60, 60);
+        //
     }
 }

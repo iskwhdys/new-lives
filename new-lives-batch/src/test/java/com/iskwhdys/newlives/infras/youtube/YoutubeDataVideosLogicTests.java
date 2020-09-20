@@ -24,7 +24,7 @@ class YoutubeDataVideosLogicTests {
     YoutubeDataVideosApi dataApi;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         dataApi = new YoutubeDataVideosApi(appConfig.getYoutube().getApikey().getVideo());
     }
 

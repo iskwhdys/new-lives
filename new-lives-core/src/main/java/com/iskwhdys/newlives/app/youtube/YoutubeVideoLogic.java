@@ -26,6 +26,7 @@ public class YoutubeVideoLogic {
     public static YoutubeVideoEntity createNewVideo() {
         var v = new YoutubeVideoEntity();
         v.setType(TYPE_NEW);
+        v.setStatus(STATUS_NONE);
         v.setCreateDate(LocalDateTime.now());
         return v;
     }
