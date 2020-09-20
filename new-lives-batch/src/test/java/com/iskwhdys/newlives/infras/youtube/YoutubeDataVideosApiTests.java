@@ -18,14 +18,13 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest
 @ActiveProfiles("local")
 class YoutubeDataVideosApiTests {
-
     @Autowired
     AppConfig appConfig;
 
     YoutubeDataVideosApi dataApi;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         dataApi = new YoutubeDataVideosApi(appConfig.getYoutube().getApikey().getVideo());
     }
 

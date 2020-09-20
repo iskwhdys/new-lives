@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.function.Function;
 
 import javax.annotation.PostConstruct;
+
+import com.iskwhdys.newlives.app.twitter.TweetService;
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelRepository;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
@@ -26,6 +28,8 @@ public class YoutubeVideoService {
     private AppConfig appConfig;
     @Autowired
     private YoutubeVideoRepository videoRepository;
+    @Autowired
+    private TweetService tweetService;
 
     private YoutubeDataVideosApi dataApi;
 
@@ -66,10 +70,7 @@ public class YoutubeVideoService {
             try {
                 Map<String, Object> map = dataApiGetFunction.apply(v.getId());
                 YoutubeDataVideosLogic.updateData(v, map);
-
-                v.setType(YoutubeVideoLogic.updateType(v));
-                v.setStatus(YoutubeVideoLogic.updateStatus(v));
-
+                updateStatus(v);
                 videoRepository.save(v);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
@@ -80,6 +81,20 @@ public class YoutubeVideoService {
                     log.error(e2.getMessage(), e2);
                 }
             }
+        }
+    }
+
+    private void updateStatus(YoutubeVideoEntity v) {
+        var lastStatus = v.getStatus();
+        v.setType(YoutubeVideoLogic.updateType(v));
+        v.setStatus(YoutubeVideoLogic.updateStatus(v));
+
+        if (lastStatus.equals(v.getStatus())) {
+            return;
+        }
+        log.info(v.getId() + ":" + v.getTitle() + ":" + v.getStatus());
+        if (YoutubeVideoLogic.isStatusStream(v)) {
+            tweetService.tweet(v);
         }
     }
 

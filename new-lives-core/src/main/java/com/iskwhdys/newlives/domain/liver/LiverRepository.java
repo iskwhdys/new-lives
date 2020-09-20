@@ -9,4 +9,6 @@ public interface LiverRepository extends JpaRepository<LiverEntity, String>, Jpa
 
     Optional<LiverEntity> findById(String id);
 
+    Optional<LiverEntity> findByYoutubeChannelEntityId(String youtubeId);
+
 }

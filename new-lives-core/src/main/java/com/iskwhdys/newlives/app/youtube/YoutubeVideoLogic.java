@@ -15,6 +15,7 @@ public class YoutubeVideoLogic {
     public static final String STATUS_RESERVE = "reserve";
     public static final String STATUS_STREAM = "stream";
     public static final String STATUS_ARCHIVE = "archive";
+    public static final String STATUS_NONE = "none";
 
     public static final String UPLOAD_STATUS_UPLOADED = "uploaded";
     public static final String UPLOAD_STATUS_PROCESSED = "processed";
@@ -80,7 +81,7 @@ public class YoutubeVideoLogic {
 
     public static String updateStatus(YoutubeVideoEntity v) {
         if (TYPE_UPLOAD.equals(v.getType())) {
-            return null;
+            return STATUS_NONE;
         }
         if (v.getLiveEnd() != null) {
             return STATUS_ARCHIVE;
