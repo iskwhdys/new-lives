@@ -2,6 +2,7 @@ package com.iskwhdys.newlives.app.twitter;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.stream.Collectors;
 
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoLogic;
 import com.iskwhdys.newlives.domain.liver.LiverRepository;
@@ -109,13 +110,11 @@ public class TweetService {
         if (l.isPresent()) {
             return l.get().getName();
         } else {
-            // TODO 共有チャンネルの場合は複数個取得される
-            var tag = liverTagRepository.findByIdKeyAndValue("youtube", v.getYoutubeChannelEntity().getId());
-            if (tag.isPresent()) {
-                l = liverRepository.findById(tag.get().getId().getId());
-                if (l.isPresent()) {
-                    return l.get().getName();
-                }
+            var tags = liverTagRepository.findByIdKeyAndValue("youtube", v.getYoutubeChannelEntity().getId());
+            if (!tags.isEmpty()) {
+                var names = tags.stream().map(tag -> liverRepository.findById(tag.getId().getId()).get().getName())
+                        .collect(Collectors.toList());
+                return String.join(" ", names);
             }
         }
         return null;
