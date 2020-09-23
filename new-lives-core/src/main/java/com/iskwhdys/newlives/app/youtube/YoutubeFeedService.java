@@ -76,12 +76,15 @@ public class YoutubeFeedService {
     }
 
     private void updateVideo(YoutubeChannelEntity channel, Video feedVideo) {
-        YoutubeVideoEntity video = videoRepository.findById(feedVideo.getId()).orElse(null);
-        if (video == null) {
-            video = YoutubeVideoLogic.createNewVideo();
+        YoutubeVideoEntity v = videoRepository.findById(feedVideo.getId()).orElse(null);
+        if (v == null) {
+            v = YoutubeVideoLogic.createNewVideo();
         }
-        YoutubeFeedLogic.setElementData(channel, video, feedVideo);
-        videoRepository.save(video);
+        if (YoutubeFeedLogic.isUpdated(v, feedVideo)) {
+            log.info(v.getId() + ":" + v.getUpdated() + ":" + v.getTitle());
+            YoutubeFeedLogic.setElementData(channel, v, feedVideo);
+            videoRepository.save(v);
+        }
     }
 
     /**

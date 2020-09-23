@@ -1,7 +1,9 @@
 package com.iskwhdys.newlives.app.twitter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoLogic;
@@ -9,9 +11,11 @@ import com.iskwhdys.newlives.domain.liver.LiverRepository;
 import com.iskwhdys.newlives.domain.liver.LiverTagRepository;
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelRepository;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoEntity;
+import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
 import com.iskwhdys.newlives.infra.twitter.TwitterApi;
 import com.twitter.twittertext.TwitterTextParser;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +30,8 @@ public class TweetService {
     LiverRepository liverRepository;
     @Autowired
     LiverTagRepository liverTagRepository;
+    @Autowired
+    YoutubeVideoRepository videoRepository;
 
     @Autowired
     TwitterApi twitterApi;
@@ -118,6 +124,54 @@ public class TweetService {
             }
         }
         return null;
+    }
+
+    public void tweetReserves(long nextMinues) {
+        try {
+            String livers = getReserveVideoLivers(nextMinues);
+            if (!StringUtils.isEmpty(livers)) {
+                String msg = getReserveTweet(livers, nextMinues);
+                if (TwitterTextParser.parseTweet(msg).isValid) {
+                    twitterApi.tweet(msg);
+                }
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    private String getReserveTweet(String livers, long nextMinues) {
+        String time = LocalDateTime.now().plusMinutes(nextMinues).format(DateTimeFormatter.ofPattern("HH:mm"));
+        var str = new StringBuilder();
+        str.append(time).append("から配信予定のライバーです。\r\n");
+        str.append(livers);
+        str.append("\r\n");
+        str.append("\r\n");
+        str.append("配信予定と配信中の情報はこちら：https://nijisanji-live.com/schedules");
+
+        return str.toString();
+    }
+
+    private String getReserveVideoLivers(long nextMinues) {
+
+        LocalDateTime since = LocalDateTime.now().plusMinutes(nextMinues - 1);
+        LocalDateTime until = LocalDateTime.now().plusMinutes(nextMinues + 1);
+        var videos = videoRepository
+                .findByEnabledTrueAndStatusEqualsAndLiveScheduleBetween(YoutubeVideoLogic.STATUS_RESERVE, since, until);
+
+        var livers = new ArrayList<String>();
+        for (YoutubeVideoEntity v : videos) {
+            try {
+                String name = getLiverName(v);
+                if (name == null) {
+                    name = v.getYoutubeChannelEntity().getTitle();
+                }
+                livers.add(name);
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            }
+        }
+        return String.join(" ", livers);
     }
 
 }

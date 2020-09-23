@@ -14,6 +14,16 @@ public class YoutubeFeedLogic {
     private YoutubeFeedLogic() {
     }
 
+    public static boolean isUpdated(YoutubeVideoEntity video, Video feedVideo) {
+        for (Element element : feedVideo.getElement().getChildren()) {
+            if (element.getName().equals("updated")) {
+                var date = LocalDateTime.parse(element.getValue(), DateTimeFormatter.ISO_DATE_TIME);
+                return !date.equals(video.getUpdated());
+            }
+        }
+        return true;
+    }
+
     public static YoutubeVideoEntity setElementData(YoutubeChannelEntity channel, YoutubeVideoEntity video,
             Video feedVideo) {
         video.setId(feedVideo.getId());

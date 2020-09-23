@@ -6,8 +6,11 @@ import lombok.Data;
 @Data
 @ConfigurationProperties("newlives")
 public class AppConfig {
+    String url;
+
     Youtube youtube;
     Twitter twitter;
+    Google google;
 
     @Data
     public static class Youtube {
@@ -30,6 +33,16 @@ public class AppConfig {
             String consumerSecret;
             String accessToken;
             String accessTokenSecret;
+        }
+    }
+
+    @Data
+    public static class Google {
+        Sitemap sitemap;
+
+        @Data
+        public static class Sitemap {
+            String xmlPath;
         }
     }
 
