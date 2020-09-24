@@ -27,6 +27,16 @@ public class YoutubeDataVideosLogic {
             video.setTitle(map.get("title").toString());
         if (map.containsKey("description"))
             video.setDescription(map.get("description").toString());
+        if (map.containsKey("thumbnails")) {
+            var thumbnails = toMap(map, "thumbnails");
+            if (thumbnails.containsKey("high")) {
+                video.setThumbnailUrl(toMap(thumbnails, "high").get("url").toString());
+            } else if (thumbnails.containsKey("medium")) {
+                video.setThumbnailUrl(toMap(thumbnails, "medium").get("url").toString());
+            } else if (thumbnails.containsKey("default")) {
+                video.setThumbnailUrl(toMap(thumbnails, "default").get("url").toString());
+            }
+        }
         return video;
     }
 
@@ -85,7 +95,7 @@ public class YoutubeDataVideosLogic {
     }
 
     @SuppressWarnings("unchecked")
-    private static Map<String, Object> toMap(Map<String, Object> map, String key) {
+    private static Map<String, Object> toMap(Map<String, ?> map, String key) {
         return (Map<String, Object>) map.get(key);
     }
 }

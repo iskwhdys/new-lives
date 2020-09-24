@@ -11,7 +11,8 @@
             "mainClass": "com.iskwhdys.newlives.AdminApplication",
             "projectName": "new-lives-admin",
             "vmArgs": [
-                "-Dspring.profiles.active=local"
+                "-Dspring.profiles.active=local",
+                "-Duser.timezone=UTC"
             ]
         },
         {
@@ -21,7 +22,8 @@
             "mainClass": "com.iskwhdys.newlives.BatchApplication",
             "projectName": "new-lives-batch",
             "vmArgs": [
-                "-Dspring.profiles.active=local"
+                "-Dspring.profiles.active=local",
+                "-Duser.timezone=UTC"
             ]
         },
     ]

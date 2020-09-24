@@ -116,7 +116,7 @@ public class TweetService {
         if (l.isPresent()) {
             return l.get().getName();
         } else {
-            var tags = liverTagRepository.findByIdKeyAndValue("youtube", v.getYoutubeChannelEntity().getId());
+            var tags = liverTagRepository.findByIdKeyAndIdValue("youtube", v.getYoutubeChannelEntity().getId());
             if (!tags.isEmpty()) {
                 var names = tags.stream().map(tag -> liverRepository.findById(tag.getId().getId()).get().getName())
                         .collect(Collectors.toList());

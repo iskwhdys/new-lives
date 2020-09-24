@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface LiverTagRepository
         extends JpaRepository<LiverTagEntity, String>, JpaSpecificationExecutor<LiverEntity> {
 
-    List<LiverTagEntity> findByIdKeyAndValue(String key, String value);
+    List<LiverTagEntity> findByIdKeyAndIdValue(String key, String value);
 
 }

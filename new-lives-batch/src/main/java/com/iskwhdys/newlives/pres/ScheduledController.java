@@ -33,7 +33,7 @@ public class ScheduledController {
 
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
     public void cronPerMinute() {
-        log.info("cronPerMinute Start");
+        log.info("cronPerMinute Start:" + LocalDateTime.now());
 
         int hour = LocalDateTime.now().getHour();
         int min = LocalDateTime.now().getMinute();
@@ -43,6 +43,11 @@ public class ScheduledController {
             youtubeChannelService.updateAllChannelInfo();
             youtubeVideoService.updateReserveVideo();
         }
+
+        // TODO 画像の更新タイミングをどうするか
+        // ライブは開始30分は5分おき？予約は1日未満なら1時間、6時間なら20分、1時間なら5分置き？
+        // 過去分は？
+        // 動画のEnabledにもつながる（apiで分かったかも。テスト要確認）
 
         youtubeFeedService.update();
         if (min == 0) {
@@ -63,6 +68,6 @@ public class ScheduledController {
         }
         youtubeVideoService.updateNewVideo();
 
-        log.info("cronPerMinute end");
+        log.info("cronPerMinute end:" + LocalDateTime.now());
     }
 }
