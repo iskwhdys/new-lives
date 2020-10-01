@@ -68,8 +68,12 @@ public class YoutubeVideoService {
         for (YoutubeVideoEntity v : list) {
             try {
                 Map<String, Object> map = dataApiGetFunction.apply(v.getId());
-                YoutubeDataVideosLogic.updateData(v, map);
-                updateStatus(v);
+                if (map.isEmpty()) {
+                    v.setEnabled(false);
+                } else {
+                    YoutubeDataVideosLogic.updateData(v, map);
+                    updateStatus(v);
+                }
                 videoRepository.save(v);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);

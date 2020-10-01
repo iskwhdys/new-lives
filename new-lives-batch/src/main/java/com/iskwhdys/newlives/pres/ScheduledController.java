@@ -6,7 +6,9 @@ import javax.annotation.PostConstruct;
 
 import com.iskwhdys.newlives.app.youtube.YoutubeChannelService;
 import com.iskwhdys.newlives.app.youtube.YoutubeFeedService;
+import com.iskwhdys.newlives.app.youtube.YoutubeImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoService;
+import com.iskwhdys.newlives.infra.google.SitemapService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -25,6 +27,10 @@ public class ScheduledController {
     YoutubeFeedService youtubeFeedService;
     @Autowired
     YoutubeVideoService youtubeVideoService;
+    @Autowired
+    SitemapService sitemapService;
+    @Autowired
+    YoutubeImageService youtubeImageService;
 
     @PostConstruct
     public void init() {
@@ -54,6 +60,7 @@ public class ScheduledController {
             // 60分間隔
             youtubeVideoService.updateStreamVideo();
             youtubeVideoService.updateReserveVideo(60 * 24, 60 * 24);
+            sitemapService.update();
         } else if (min % 20 == 0) {
             // 20分間隔
             youtubeVideoService.updateStreamVideo();

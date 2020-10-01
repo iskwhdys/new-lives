@@ -94,7 +94,8 @@ public class TweetService {
 
         result.append("～");
         if (!YoutubeVideoLogic.isTypeUpload(v)) {
-            var diffMin = ChronoUnit.MINUTES.between(v.getLiveStart(), LocalDateTime.now());
+            long diffMin = ChronoUnit.MINUTES.between(v.getLiveStart(), LocalDateTime.now());
+            // 初回起動時に大量に出力される or 投稿はxmlで取るので基本遅れるため動画は特に見ない
             if (diffMin != 0) {
                 result.append(diffMin + "分前に");
             }

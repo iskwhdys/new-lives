@@ -8,9 +8,21 @@ import lombok.Data;
 public class AppConfig {
     String url;
 
+    Image image;
     Youtube youtube;
     Twitter twitter;
     Google google;
+
+    @Data
+    public static class Image {
+        Youtube youtube;
+
+        @Data
+        public static class Youtube {
+            String thumbnailPath;
+            String channelPath;
+        }
+    }
 
     @Data
     public static class Youtube {
