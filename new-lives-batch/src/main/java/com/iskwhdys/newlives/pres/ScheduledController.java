@@ -4,9 +4,10 @@ import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 
+import com.iskwhdys.newlives.app.youtube.YoutubeChannelImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeChannelService;
 import com.iskwhdys.newlives.app.youtube.YoutubeFeedService;
-import com.iskwhdys.newlives.app.youtube.YoutubeImageService;
+import com.iskwhdys.newlives.app.youtube.YoutubeVideoImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoService;
 import com.iskwhdys.newlives.infra.google.SitemapService;
 
@@ -30,7 +31,9 @@ public class ScheduledController {
     @Autowired
     SitemapService sitemapService;
     @Autowired
-    YoutubeImageService youtubeImageService;
+    YoutubeVideoImageService youtubeVideoImageService;
+    @Autowired
+    YoutubeChannelImageService youtubeChannelImageService;
 
     @PostConstruct
     public void init() {
@@ -47,13 +50,14 @@ public class ScheduledController {
         if (hour == 16 && min == 45) {
             // 日次(API回復直前に実行)
             youtubeChannelService.updateAllChannelInfo();
+            youtubeChannelImageService.downloadAll();
             youtubeVideoService.updateReserveVideo();
         }
 
-        // TODO 画像の更新タイミングをどうするか
+        // TODO サムネ画像の更新タイミングをどうするか
         // ライブは開始30分は5分おき？予約は1日未満なら1時間、6時間なら20分、1時間なら5分置き？
         // 過去分は？
-        // 動画のEnabledにもつながる（apiで分かったかも。テスト要確認）
+        // 動画のEnabledにもつながる
 
         youtubeFeedService.update();
         if (min == 0) {

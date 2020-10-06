@@ -5,3 +5,4 @@ new-lives-admin/src/main/resources/application-local.properties
 /new-lives-entity/.project
 /new-lives-entity/.classpath
 .project
+/data

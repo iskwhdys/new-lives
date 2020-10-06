@@ -1,6 +1,5 @@
 package com.iskwhdys.newlives.app.youtube;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,12 +12,14 @@ import com.iskwhdys.newlives.infra.config.AppConfig;
 import com.iskwhdys.newlives.infra.image.ImageEditor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class YoutubeImageService {
+@Service
+public class YoutubeVideoImageService {
 
     @Autowired
     private AppConfig appConfig;
@@ -53,19 +54,24 @@ public class YoutubeImageService {
                 .forEach(this::downloadThumbnail);
     }
 
+    public void downloadUploadThumbnail() {
+        videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_NONE)
+                .forEach(this::downloadThumbnail);
+    }
+
     public void downloadThumbnail(YoutubeVideoEntity v) {
         try {
             String dir = appConfig.getImage().getYoutube().getThumbnailPath();
 
-            Path origin = Paths.get(dir, v.getId(), ".jpg");
-            Files.createDirectory(origin.getParent());
+            Path origin = Paths.get(dir, v.getId() + ".jpg");
+            Files.createDirectories(origin.getParent());
             byte[] bytes = restTemplate.getForObject(v.getThumbnailUrl(), byte[].class);
             Files.write(origin, bytes, StandardOpenOption.CREATE);
 
-            Path resize = Paths.get(dir, "176x98", v.getId(), ".jpg");
+            Path resize = Paths.get(dir, "176x98", v.getId() + ".jpg");
             bytes = ImageEditor.resize(bytes, 176, 132, 1.0f);
             bytes = ImageEditor.trim(bytes, 176, 98, 1.0f);
-            Files.createDirectory(resize.getParent());
+            Files.createDirectories(resize.getParent());
             Files.write(resize, bytes, StandardOpenOption.CREATE);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

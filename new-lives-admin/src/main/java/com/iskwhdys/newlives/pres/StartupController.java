@@ -2,8 +2,10 @@ package com.iskwhdys.newlives.pres;
 
 import javax.annotation.PostConstruct;
 
+import com.iskwhdys.newlives.app.youtube.YoutubeChannelImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeChannelService;
 import com.iskwhdys.newlives.app.youtube.YoutubeFeedService;
+import com.iskwhdys.newlives.app.youtube.YoutubeVideoImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoService;
 import com.iskwhdys.newlives.infra.config.AppConfig;
 
@@ -23,9 +25,18 @@ public class StartupController {
     @Autowired
     AppConfig appConfig;
 
+    @Autowired
+    YoutubeVideoImageService youtubeVideoImageService;
+    @Autowired
+    YoutubeChannelImageService youtubeChannelImageService;
+
     @PostConstruct
     public void run() {
-        System.out.println(appConfig.getGoogle().getSitemap().getXmlPath());
+
+        // youtubeChannelService.updateAllChannelInfo();
+        // youtubeChannelImageService.downloadAll();
+
+        // youtubeVideoImageService.downloadUploadThumbnail();
 
     }
 }
