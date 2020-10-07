@@ -2,6 +2,7 @@ package com.iskwhdys.newlives.pres;
 
 import javax.annotation.PostConstruct;
 
+import com.iskwhdys.newlives.app.liver.LiverImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeChannelImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeChannelService;
 import com.iskwhdys.newlives.app.youtube.YoutubeFeedService;
@@ -30,6 +31,9 @@ public class StartupController {
     @Autowired
     YoutubeChannelImageService youtubeChannelImageService;
 
+    @Autowired
+    LiverImageService liverImageService;
+
     @PostConstruct
     public void run() {
 
@@ -37,6 +41,8 @@ public class StartupController {
         // youtubeChannelImageService.downloadAll();
 
         // youtubeVideoImageService.downloadUploadThumbnail();
+
+        liverImageService.downloadAll();
 
     }
 }

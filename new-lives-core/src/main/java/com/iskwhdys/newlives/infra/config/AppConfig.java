@@ -16,11 +16,17 @@ public class AppConfig {
     @Data
     public static class Image {
         Youtube youtube;
+        Liver liver;
 
         @Data
         public static class Youtube {
             String thumbnailPath;
             String channelPath;
+        }
+
+        @Data
+        public static class Liver {
+            String iconPath;
         }
     }
 

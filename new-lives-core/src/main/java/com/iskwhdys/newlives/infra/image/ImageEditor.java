@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import java.awt.Color;
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
@@ -31,6 +32,30 @@ public class ImageEditor {
             param.setCompressionQuality(quality);
             writer.setOutput(ios);
             writer.write(null, new IIOImage(destImage, null, null), param);
+            writer.dispose();
+
+            return os.toByteArray();
+        }
+    }
+
+    public static byte[] png2jpg(final byte[] src, Color background) throws IOException {
+
+        try (ByteArrayInputStream is = new ByteArrayInputStream(src);
+                ByteArrayOutputStream os = new ByteArrayOutputStream();
+                ImageOutputStream ios = ImageIO.createImageOutputStream(os)) {
+            BufferedImage srcImage = ImageIO.read(is);
+
+            BufferedImage newBufferedImage = new BufferedImage(srcImage.getWidth(), srcImage.getHeight(),
+                    BufferedImage.TYPE_INT_RGB);
+            newBufferedImage.createGraphics().drawImage(srcImage, 0, 0, background, null);
+
+            // 保存品質はユーザー指定に従う
+            ImageWriter writer = ImageIO.getImageWritersByFormatName("jpeg").next();
+            ImageWriteParam param = writer.getDefaultWriteParam();
+            param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+            param.setCompressionQuality(1.0f);
+            writer.setOutput(ios);
+            writer.write(null, new IIOImage(newBufferedImage, null, null), param);
             writer.dispose();
 
             return os.toByteArray();
