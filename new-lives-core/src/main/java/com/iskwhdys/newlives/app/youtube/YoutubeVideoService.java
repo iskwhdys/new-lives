@@ -4,10 +4,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
 import com.iskwhdys.newlives.app.twitter.TweetService;
+import com.iskwhdys.newlives.domain.youtube.YoutubeChannelEntity;
+import com.iskwhdys.newlives.domain.youtube.YoutubeChannelRepository;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
 import com.iskwhdys.newlives.infra.config.AppConfig;
@@ -30,6 +34,9 @@ public class YoutubeVideoService {
     @Autowired
     private TweetService tweetService;
 
+    @Autowired
+    private YoutubeChannelRepository youtubeChannelRepository;
+
     private YoutubeDataVideosApi dataApi;
 
     @PostConstruct
@@ -39,51 +46,61 @@ public class YoutubeVideoService {
     }
 
     public void updateNewVideo() {
-        updateVideo(videoRepository.findByEnabledTrueAndTypeEquals(YoutubeVideoLogic.TYPE_NEW), dataApi::getAll);
+        updateVideos(videoRepository.findByEnabledTrueAndTypeEquals(YoutubeVideoLogic.TYPE_NEW), dataApi::getAll);
     }
 
     public void updateStreamVideo() {
-        updateVideo(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_STREAM),
+        updateVideos(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_STREAM),
                 dataApi::getLiveStreamingDetails);
     }
 
     public void updateReserveVideo() {
-        updateVideo(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_RESERVE),
+        updateVideos(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_RESERVE),
                 dataApi::getAll);
     }
 
     public void updateReserveVideo(int before, int after) {
         LocalDateTime since = LocalDateTime.now().minusMinutes(before);
         LocalDateTime until = LocalDateTime.now().plusMinutes(after);
-        updateVideo(videoRepository.findByEnabledTrueAndStatusEqualsAndLiveScheduleBetween(
+        updateVideos(videoRepository.findByEnabledTrueAndStatusEqualsAndLiveScheduleBetween(
                 YoutubeVideoLogic.STATUS_RESERVE, since, until), dataApi::getAll);
     }
 
     public void updateUploadedVideo() {
-        updateVideo(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_RESERVE),
+        updateVideos(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_RESERVE),
                 dataApi::getLiveStreamingDetails);
     }
 
-    private void updateVideo(List<YoutubeVideoEntity> list, Function<String, Map<String, Object>> dataApiGetFunction) {
+    private void updateVideos(List<YoutubeVideoEntity> list, Function<String, Map<String, Object>> dataApiGetFunction) {
+        var bannedId = youtubeChannelRepository.findByEnabledFalse().stream().map(YoutubeChannelEntity::getId)
+                .collect(Collectors.toList());
+
         for (YoutubeVideoEntity v : list) {
+            if (bannedId.contains(v.getChannel())) {
+                continue;
+            }
+            updateVideo(v, dataApiGetFunction);
+        }
+    }
+
+    private void updateVideo(YoutubeVideoEntity v, Function<String, Map<String, Object>> dataApiGetFunction) {
+        try {
+            Map<String, Object> map = dataApiGetFunction.apply(v.getId());
+            if (map.isEmpty()) {
+                v.setEnabled(false);
+                // TODO チャンネル誤BAN時に軒並みDisabledになる問題の対応
+            } else {
+                YoutubeDataVideosLogic.updateData(v, map);
+                updateStatus(v);
+            }
+            videoRepository.save(v);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             try {
-                Map<String, Object> map = dataApiGetFunction.apply(v.getId());
-                if (map.isEmpty()) {
-                    v.setEnabled(false);
-                    // TODO チャンネル誤BAN時に軒並みDisabledになる問題の対応
-                } else {
-                    YoutubeDataVideosLogic.updateData(v, map);
-                    updateStatus(v);
-                }
+                v.setType(YoutubeVideoLogic.TYPE_ERROR);
                 videoRepository.save(v);
-            } catch (Exception e) {
-                log.error(e.getMessage(), e);
-                try {
-                    v.setType(YoutubeVideoLogic.TYPE_ERROR);
-                    videoRepository.save(v);
-                } catch (Exception e2) {
-                    log.error(e2.getMessage(), e2);
-                }
+            } catch (Exception e2) {
+                log.error(e2.getMessage(), e2);
             }
         }
     }

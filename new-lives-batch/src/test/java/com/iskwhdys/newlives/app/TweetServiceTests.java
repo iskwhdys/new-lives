@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 import com.iskwhdys.newlives.app.twitter.TweetService;
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoLogic;
-import com.iskwhdys.newlives.domain.youtube.YoutubeChannelEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoEntity;
 
 import org.junit.jupiter.api.Test;
@@ -77,7 +76,7 @@ class TweetServiceTests {
     void secondChannel() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
             NoSuchMethodException, SecurityException {
         var v = getLiveEntity();
-        v.getYoutubeChannelEntity().setId("UCTi_rzf5QIkXjhJjkbcAdTg");
+        v.setChannel("UCTi_rzf5QIkXjhJjkbcAdTg");
         String text = "～配信開始～\r\nタイトル\r\nhttps://www.youtube.com/watch?v=null\r\n緑仙\r\n";
         assertEquals(text, getTweetMessage.invoke(tweetService, v, true, false, false));
     }
@@ -113,7 +112,7 @@ class TweetServiceTests {
     void kizuhaChannel() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
             NoSuchMethodException, SecurityException {
         var v = getLiveEntity();
-        v.getYoutubeChannelEntity().setId("UCSFCh5NL4qXrAy9u-u2lX3g");
+        v.setChannel("UCSFCh5NL4qXrAy9u-u2lX3g");
         String text = "～配信開始～\r\nタイトル\r\nhttps://www.youtube.com/watch?v=null\r\n葛葉\r\n";
         assertEquals(text, getTweetMessage.invoke(tweetService, v, true, false, false));
     }
@@ -122,7 +121,7 @@ class TweetServiceTests {
     void kanaeChannel() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
             NoSuchMethodException, SecurityException {
         var v = getLiveEntity();
-        v.getYoutubeChannelEntity().setId("UCspv01oxUFf_MTSipURRhkA");
+        v.setChannel("UCspv01oxUFf_MTSipURRhkA");
         String text = "～配信開始～\r\nタイトル\r\nhttps://www.youtube.com/watch?v=null\r\n叶\r\n";
         assertEquals(text, getTweetMessage.invoke(tweetService, v, true, false, false));
     }
@@ -131,7 +130,7 @@ class TweetServiceTests {
     void coupleChannel() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
             NoSuchMethodException, SecurityException {
         var v = getLiveEntity();
-        v.getYoutubeChannelEntity().setId("UCz6vnIbgiqFT9xUcD6Bp65Q");
+        v.setChannel("UCz6vnIbgiqFT9xUcD6Bp65Q");
         String text = "～配信開始～\r\nタイトル\r\nhttps://www.youtube.com/watch?v=null\r\n葛葉 叶\r\n";
         assertEquals(text, getTweetMessage.invoke(tweetService, v, true, false, false));
     }
@@ -141,9 +140,7 @@ class TweetServiceTests {
         v.setType(YoutubeVideoLogic.TYPE_LIVE);
         v.setTitle("タイトル");
         v.setLiveStart(LocalDateTime.now());
-        var c = new YoutubeChannelEntity();
-        c.setId("UCHVXbQzkl3rDfsXWo8xi2qw");
-        v.setYoutubeChannelEntity(c);
+        v.setChannel("UCHVXbQzkl3rDfsXWo8xi2qw");
         return v;
     }
 

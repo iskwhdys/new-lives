@@ -4,6 +4,7 @@ CREATE TABLE youtube_channel (
     description text,
     subscriber_count integer,
     thumbnail_url varchar(200),
+    enabled boolean DEFAULT true,
     start_date date,
     end_date date,
     check_expires boolean DEFAULT false,
@@ -13,7 +14,7 @@ CREATE TABLE youtube_channel (
 
 CREATE TABLE youtube_video (
     id varchar(32) PRIMARY KEY,
-    channel varchar(32) references youtube_channel(id),
+    channel varchar(32),
     enabled boolean,
     title varchar(200),
     description text,
@@ -47,18 +48,18 @@ CREATE TABLE liver (
     debut varchar(32),
 
     twitter varchar(16),
-    youtube varchar(32) references youtube_channel(id),
+    youtube varchar(32),
     
     start_date date,
     end_date date,
 
-    official text,
-    icon text,
-    wiki text
+    official varchar(200),
+    icon varchar(200),
+    wiki varchar(200)
 );
 
 CREATE TABLE liver_tag (
-    id varchar(32) references liver(id),
+    id varchar(32),
     key varchar(32),
     value varchar(200),
     primary key (id, key, value)

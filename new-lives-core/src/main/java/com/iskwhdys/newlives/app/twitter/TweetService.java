@@ -75,7 +75,7 @@ public class TweetService {
         }
 
         if (useChannel) {
-            channelRepository.findById(v.getYoutubeChannelEntity().getId()).ifPresent(c -> {
+            channelRepository.findById(v.getChannel()).ifPresent(c -> {
                 if (!result.toString().contains(c.getTitle())) {
                     result.append(c.getTitle()).append("\r\n");
                 }
@@ -113,11 +113,11 @@ public class TweetService {
     }
 
     private String getLiverName(YoutubeVideoEntity v) {
-        var l = liverRepository.findByYoutubeChannelEntityId(v.getYoutubeChannelEntity().getId());
+        var l = liverRepository.findByYoutube(v.getChannel());
         if (l.isPresent()) {
             return l.get().getName();
         } else {
-            var tags = liverTagRepository.findByIdKeyAndIdValue("youtube", v.getYoutubeChannelEntity().getId());
+            var tags = liverTagRepository.findByIdKeyAndIdValue("youtube", v.getChannel());
             if (!tags.isEmpty()) {
                 var names = tags.stream().map(tag -> liverRepository.findById(tag.getId().getId()).get().getName())
                         .collect(Collectors.toList());
@@ -165,7 +165,10 @@ public class TweetService {
             try {
                 String name = getLiverName(v);
                 if (name == null) {
-                    name = v.getYoutubeChannelEntity().getTitle();
+                    var opt = channelRepository.findById(v.getChannel());
+                    if (opt.isPresent()) {
+                        name = opt.get().getTitle();
+                    }
                 }
                 livers.add(name);
             } catch (Exception e) {

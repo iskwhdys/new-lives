@@ -1,4 +1,4 @@
-package com.iskwhdys.newlives.app.youtube;
+package com.iskwhdys.newlives.app.image;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 
+import com.iskwhdys.newlives.app.youtube.YoutubeVideoLogic;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
 import com.iskwhdys.newlives.infra.config.AppConfig;

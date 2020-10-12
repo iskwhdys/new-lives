@@ -27,7 +27,7 @@ public class YoutubeFeedLogic {
     public static YoutubeVideoEntity setElementData(YoutubeChannelEntity channel, YoutubeVideoEntity video,
             Video feedVideo) {
         video.setId(feedVideo.getId());
-        video.setYoutubeChannelEntity(channel);
+        video.setChannel(channel.getId());
         video.setEnabled(true);
         video.setUpdateDate(LocalDateTime.now());
         for (Element element : feedVideo.getElement().getChildren()) {

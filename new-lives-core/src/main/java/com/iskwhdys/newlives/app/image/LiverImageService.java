@@ -1,4 +1,4 @@
-package com.iskwhdys.newlives.app.liver;
+package com.iskwhdys.newlives.app.image;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

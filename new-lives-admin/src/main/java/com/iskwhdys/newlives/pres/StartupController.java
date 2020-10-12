@@ -2,11 +2,11 @@ package com.iskwhdys.newlives.pres;
 
 import javax.annotation.PostConstruct;
 
-import com.iskwhdys.newlives.app.liver.LiverImageService;
-import com.iskwhdys.newlives.app.youtube.YoutubeChannelImageService;
+import com.iskwhdys.newlives.app.image.LiverImageService;
+import com.iskwhdys.newlives.app.image.YoutubeChannelImageService;
+import com.iskwhdys.newlives.app.image.YoutubeVideoImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeChannelService;
 import com.iskwhdys.newlives.app.youtube.YoutubeFeedService;
-import com.iskwhdys.newlives.app.youtube.YoutubeVideoImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoService;
 import com.iskwhdys.newlives.infra.config.AppConfig;
 
@@ -39,10 +39,8 @@ public class StartupController {
 
         // youtubeChannelService.updateAllChannelInfo();
         // youtubeChannelImageService.downloadAll();
-
         // youtubeVideoImageService.downloadUploadThumbnail();
-
-        liverImageService.downloadAll();
+        // liverImageService.downloadAll();
 
     }
 }

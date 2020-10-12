@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 
-import com.iskwhdys.newlives.app.youtube.YoutubeChannelImageService;
+import com.iskwhdys.newlives.app.image.YoutubeChannelImageService;
+import com.iskwhdys.newlives.app.image.YoutubeVideoImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeChannelService;
 import com.iskwhdys.newlives.app.youtube.YoutubeFeedService;
-import com.iskwhdys.newlives.app.youtube.YoutubeVideoImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoService;
 import com.iskwhdys.newlives.infra.google.SitemapService;
 
@@ -36,10 +36,6 @@ public class ScheduledController {
     YoutubeChannelImageService youtubeChannelImageService;
 
     @PostConstruct
-    public void init() {
-        cronPerMinute();
-    }
-
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
     public void cronPerMinute() {
         log.info("cronPerMinute Start:" + LocalDateTime.now());
