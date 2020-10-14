@@ -42,12 +42,23 @@ public class YoutubeFeedService {
         }
     }
 
-    public void update() {
-        for (YoutubeChannelEntity channel : channelRepository.findAll()) {
+    public void updateAllChannelVideo() {
+        for (YoutubeChannelEntity channel : channelRepository.findByEnabledTrue()) {
             try {
                 update(channel);
             } catch (JDOMException | IOException e) {
                 log.error(e.getMessage(), e);
+                channel.setEnabled(false);
+                channelRepository.save(channel);
+            }
+        }
+        for (YoutubeChannelEntity channel : channelRepository.findByEnabledFalse()) {
+            try {
+                update(channel);
+                channel.setEnabled(true);
+                channelRepository.save(channel);
+            } catch (JDOMException | IOException e) {
+                // BAN解除確認用
             }
         }
     }
@@ -66,11 +77,7 @@ public class YoutubeFeedService {
         log.info(channel.getId() + ":expire:" + feed.getFormattedLocalDateTimeExpires());
 
         for (Video feedVideo : feed.getVideos()) {
-            try {
-                updateVideo(channel, feedVideo);
-            } catch (Exception e) {
-                log.error(e.getMessage(), e);
-            }
+            updateVideo(channel, feedVideo);
         }
         feedCache.put(channel.getId(), feed);
     }
@@ -80,9 +87,15 @@ public class YoutubeFeedService {
         if (v == null) {
             v = YoutubeVideoLogic.createNewVideo();
         }
-        if (YoutubeFeedLogic.isUpdated(v, feedVideo)) {
-            log.info(v.getId() + ":" + v.getUpdated() + ":" + v.getTitle());
-            YoutubeFeedLogic.setElementData(channel, v, feedVideo);
+        try {
+            if (YoutubeFeedLogic.isUpdated(v, feedVideo)) {
+                log.info(v.getId() + ":" + v.getUpdated() + ":" + v.getTitle());
+                YoutubeFeedLogic.setElementData(channel, v, feedVideo);
+                videoRepository.save(v);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            v.setEnabled(false);
             videoRepository.save(v);
         }
     }

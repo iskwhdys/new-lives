@@ -28,7 +28,7 @@ public class YoutubeChannelImageService {
     private static RestTemplate restTemplate = new RestTemplate();
 
     public void downloadAll() {
-        channelRepository.findAll().forEach(this::download);
+        channelRepository.findByEnabledTrue().forEach(this::download);
     }
 
     public void download(YoutubeChannelEntity c) {

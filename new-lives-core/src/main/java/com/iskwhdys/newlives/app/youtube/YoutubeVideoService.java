@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -88,7 +87,6 @@ public class YoutubeVideoService {
             Map<String, Object> map = dataApiGetFunction.apply(v.getId());
             if (map.isEmpty()) {
                 v.setEnabled(false);
-                // TODO チャンネル誤BAN時に軒並みDisabledになる問題の対応
             } else {
                 YoutubeDataVideosLogic.updateData(v, map);
                 updateStatus(v);

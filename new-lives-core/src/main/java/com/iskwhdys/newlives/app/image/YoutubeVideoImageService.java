@@ -6,7 +6,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 
+import com.iskwhdys.newlives.app.youtube.YoutubeFeedService;
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoLogic;
+import com.iskwhdys.newlives.domain.youtube.YoutubeChannelRepository;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
 import com.iskwhdys.newlives.infra.config.AppConfig;
@@ -26,6 +28,10 @@ public class YoutubeVideoImageService {
     private AppConfig appConfig;
     @Autowired
     private YoutubeVideoRepository videoRepository;
+    @Autowired
+    private YoutubeChannelRepository channelRepository;
+    @Autowired
+    private YoutubeFeedService youtubeFeedService;
 
     private static RestTemplate restTemplate = new RestTemplate();
 
@@ -55,9 +61,12 @@ public class YoutubeVideoImageService {
                 .forEach(this::downloadThumbnail);
     }
 
-    public void downloadUploadThumbnail() {
-        videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_NONE)
-                .forEach(this::downloadThumbnail);
+    public void downloadFeedThumbnail() {
+        for (var channel : channelRepository.findByEnabledTrue()) {
+            for (String id : youtubeFeedService.getFeedVideoIdList(channel)) {
+                videoRepository.findById(id).ifPresent(this::downloadThumbnail);
+            }
+        }
     }
 
     public void downloadThumbnail(YoutubeVideoEntity v) {
@@ -76,6 +85,8 @@ public class YoutubeVideoImageService {
             Files.write(resize, bytes, StandardOpenOption.CREATE);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
+            v.setEnabled(false);
+            videoRepository.save(v);
         }
     }
 

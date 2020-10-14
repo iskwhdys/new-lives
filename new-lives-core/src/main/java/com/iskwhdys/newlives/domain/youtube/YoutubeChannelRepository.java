@@ -9,4 +9,6 @@ public interface YoutubeChannelRepository
         extends JpaRepository<YoutubeChannelEntity, String>, JpaSpecificationExecutor<YoutubeChannelEntity> {
 
     List<YoutubeChannelEntity> findByEnabledFalse();
+
+    List<YoutubeChannelEntity> findByEnabledTrue();
 }

@@ -35,13 +35,21 @@ public class ScheduledController {
     @Autowired
     YoutubeChannelImageService youtubeChannelImageService;
 
-    @PostConstruct
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
     public void cronPerMinute() {
         log.info("cronPerMinute Start:" + LocalDateTime.now());
+        updateJob(LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
+        log.info("cronPerMinute end:" + LocalDateTime.now());
+    }
 
-        int hour = LocalDateTime.now().getHour();
-        int min = LocalDateTime.now().getMinute();
+    @PostConstruct
+    private void startup() {
+        log.info("startup Start:" + LocalDateTime.now());
+        updateJob(16, 00);
+        log.info("startup end:" + LocalDateTime.now());
+    }
+
+    private void updateJob(int hour, int min) {
 
         if (hour == 16 && min == 45) {
             // 日次(API回復直前に実行)
@@ -50,16 +58,14 @@ public class ScheduledController {
             youtubeVideoService.updateReserveVideo();
         }
 
-        // TODO サムネ画像の更新タイミングをどうするか
-        // ライブは開始30分は5分おき？予約は1日未満なら1時間、6時間なら20分、1時間なら5分置き？
-        // 過去分は？
-        // 動画のEnabledにもつながる
+        // TODO Feed外の動画の更新タイミング
 
-        youtubeFeedService.update();
+        youtubeFeedService.updateAllChannelVideo();
         if (min == 0) {
             // 60分間隔
             youtubeVideoService.updateStreamVideo();
             youtubeVideoService.updateReserveVideo(60 * 24, 60 * 24);
+            youtubeVideoImageService.downloadFeedThumbnail();
             sitemapService.update();
         } else if (min % 20 == 0) {
             // 20分間隔
@@ -69,12 +75,12 @@ public class ScheduledController {
             // 5分間隔
             youtubeVideoService.updateStreamVideo();
             youtubeVideoService.updateReserveVideo(60, 60);
+            youtubeVideoImageService.downloadStreamThumbnail(0, 60);
         } else {
             // 1分間隔
-            youtubeVideoService.updateReserveVideo(15, 15);
+            youtubeVideoService.updateReserveVideo(15, 20);
         }
         youtubeVideoService.updateNewVideo();
-
-        log.info("cronPerMinute end:" + LocalDateTime.now());
     }
+
 }
