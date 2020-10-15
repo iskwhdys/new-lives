@@ -11,6 +11,7 @@ public class YoutubeDataChannelsLogic {
     }
 
     public static YoutubeChannelEntity update(YoutubeChannelEntity channel, Map<String, Object> items) {
+        channel.setEnabled(true);
         for (Entry<String, ?> entry : items.entrySet()) {
             String key = entry.getKey();
 

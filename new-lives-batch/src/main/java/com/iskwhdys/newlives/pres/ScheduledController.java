@@ -59,6 +59,8 @@ public class ScheduledController {
         }
 
         // TODO Feed外の動画の更新タイミング
+        // TODO 長期間視聴者が0の動画はメン限
+        // TODO プレミア公開は開始時間に公開扱い
 
         youtubeFeedService.updateAllChannelVideo();
         if (min == 0) {

@@ -34,7 +34,7 @@ public class YoutubeVideoService {
     private TweetService tweetService;
 
     @Autowired
-    private YoutubeChannelRepository youtubeChannelRepository;
+    private YoutubeChannelRepository channelRepository;
 
     private YoutubeDataVideosApi dataApi;
 
@@ -71,7 +71,7 @@ public class YoutubeVideoService {
     }
 
     private void updateVideos(List<YoutubeVideoEntity> list, Function<String, Map<String, Object>> dataApiGetFunction) {
-        var bannedId = youtubeChannelRepository.findByEnabledFalse().stream().map(YoutubeChannelEntity::getId)
+        var bannedId = channelRepository.findByEnabledFalse().stream().map(YoutubeChannelEntity::getId)
                 .collect(Collectors.toList());
 
         for (YoutubeVideoEntity v : list) {
