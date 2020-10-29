@@ -6,4 +6,6 @@ INSERT INTO public.liver_tag (id,"key",value) VALUES
 ,('Ratna_Petit','youtube','UCpfjQCCavrO-rnKaAaIF9dg')
 ,('Kuzuha','youtube','UCz6vnIbgiqFT9xUcD6Bp65Q')
 ,('Masaru_Suzuki','youtube','UCaF-mODqAziHivqg0Q61XKQ')
+,('Nijisanji','youtube','UCKtHRql9pczvUR_1kCDA6vw')
+,('Nijisanji','youtube','UC_T8F2CvqZOwa2kme0WwRhg')
 ;
