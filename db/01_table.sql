@@ -66,3 +66,37 @@ CREATE TABLE liver_tag (
 )
 
 
+CREATE TABLE top_live (
+    id varchar(32) PRIMARY KEY,
+    channel varchar(32),
+    title varchar(200),
+    live_start timestamp(6) without time zone,
+    live_views integer,
+    likes integer,
+    dislikes integer,
+    thumbnail_url varchar(200)
+);
+
+CREATE TABLE top_upload (
+    id varchar(32) PRIMARY KEY,
+    channel varchar(32),
+    title varchar(200),
+    upload_date timestamp(6) without time zone,
+    views integer,
+    likes integer,
+    dislikes integer,
+    thumbnail_url varchar(200)
+);
+
+CREATE TABLE top_archive (
+    id varchar(32) PRIMARY KEY,
+    channel varchar(32),
+    title varchar(200),
+    duration integer,
+    views integer,
+    likes integer,
+    dislikes integer,
+    thumbnail_url varchar(200)
+);
+
+

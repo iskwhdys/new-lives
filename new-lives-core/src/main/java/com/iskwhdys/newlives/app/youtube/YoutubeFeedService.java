@@ -36,7 +36,7 @@ public class YoutubeFeedService {
     public List<String> getFeedVideoIdList(YoutubeChannelEntity channel) {
         try {
             return getFeed(channel).getVideos().stream().map(Video::getId).collect(Collectors.toList());
-        } catch (JDOMException | IOException e) {
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
             return List.of();
         }
@@ -46,7 +46,7 @@ public class YoutubeFeedService {
         for (YoutubeChannelEntity channel : channelRepository.findByEnabledTrue()) {
             try {
                 update(channel);
-            } catch (JDOMException | IOException e) {
+            } catch (Exception e) {
                 log.error(e.getMessage(), e);
                 channel.setEnabled(false);
                 channelRepository.save(channel);
@@ -57,7 +57,7 @@ public class YoutubeFeedService {
                 update(channel);
                 channel.setEnabled(true);
                 channelRepository.save(channel);
-            } catch (JDOMException | IOException e) {
+            } catch (Exception e) {
                 // BAN解除確認用
             }
         }

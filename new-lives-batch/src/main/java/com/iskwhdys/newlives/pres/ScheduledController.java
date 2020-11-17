@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 
+import com.iskwhdys.newlives.app.delivery.VideoDeloveryService;
 import com.iskwhdys.newlives.app.image.YoutubeChannelImageService;
 import com.iskwhdys.newlives.app.image.YoutubeVideoImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeChannelService;
@@ -35,6 +36,9 @@ public class ScheduledController {
     @Autowired
     YoutubeChannelImageService youtubeChannelImageService;
 
+    @Autowired
+    VideoDeloveryService videoDeloveryService;
+
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
     public void cronPerMinute() {
         log.info("cronPerMinute Start:" + LocalDateTime.now());
@@ -45,12 +49,11 @@ public class ScheduledController {
     @PostConstruct
     private void startup() {
         log.info("startup Start:" + LocalDateTime.now());
-        updateJob(16, 00);
+        updateJob(16, 15);
         log.info("startup end:" + LocalDateTime.now());
     }
 
     private void updateJob(int hour, int min) {
-
         if (hour == 16 && min == 45) {
             // 日次(API回復直前に実行)
             youtubeChannelService.updateAllChannelInfo();
@@ -60,7 +63,6 @@ public class ScheduledController {
 
         // TODO Feed外の動画の更新タイミング
         // TODO 長期間視聴者が0の動画はメン限
-        // TODO プレミア公開は開始時間に公開扱い
 
         youtubeFeedService.updateAllChannelVideo();
         if (min == 0) {
@@ -73,6 +75,7 @@ public class ScheduledController {
             // 20分間隔
             youtubeVideoService.updateStreamVideo();
             youtubeVideoService.updateReserveVideo(60 * 2, 60 * 2);
+            youtubeVideoImageService.downloadStreamThumbnail(0, 60);
         } else if (min % 5 == 0) {
             // 5分間隔
             youtubeVideoService.updateStreamVideo();
@@ -83,6 +86,8 @@ public class ScheduledController {
             youtubeVideoService.updateReserveVideo(15, 20);
         }
         youtubeVideoService.updateNewVideo();
+
+        videoDeloveryService.updateLive();
     }
 
 }

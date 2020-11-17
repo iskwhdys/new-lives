@@ -18,4 +18,8 @@
   <table-filter match-name="liver" package="com.iskwhdys.newlives.domain.liver"/>
   <table-filter match-name="liver_tag" package="com.iskwhdys.newlives.domain.liver"/>
 
+  <table-filter match-name="top_live" package="com.iskwhdys.newlives.domain.delivery"/>
+  <table-filter match-name="top_upload" package="com.iskwhdys.newlives.domain.delivery"/>
+  <table-filter match-name="top_archive" package="com.iskwhdys.newlives.domain.delivery"/>
+
 </hibernate-reverse-engineering>
