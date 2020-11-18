@@ -88,6 +88,7 @@ public class ScheduledController {
         youtubeVideoService.updateNewVideo();
 
         videoDeloveryService.updateLive();
+        videoDeloveryService.updateUpload();
     }
 
 }

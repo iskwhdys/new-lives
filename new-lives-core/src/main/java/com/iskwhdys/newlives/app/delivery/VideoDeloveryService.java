@@ -1,7 +1,13 @@
 package com.iskwhdys.newlives.app.delivery;
 
+import java.util.List;
+
+import com.iskwhdys.newlives.app.youtube.YoutubeVideoLogic;
+import com.iskwhdys.newlives.domain.delivery.TopArchiveRepository;
 import com.iskwhdys.newlives.domain.delivery.TopLiveEntity;
 import com.iskwhdys.newlives.domain.delivery.TopLiveRepository;
+import com.iskwhdys.newlives.domain.delivery.TopUploadEntity;
+import com.iskwhdys.newlives.domain.delivery.TopUploadRepository;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +26,21 @@ public class VideoDeloveryService {
 
     @Autowired
     TopLiveRepository topLiveRepository;
+    @Autowired
+    TopUploadRepository topUploadRepository;
+    @Autowired
+    TopArchiveRepository topArchiveRepository;
 
     @Transactional
     public void updateLive() {
         log.info("Start updateLive");
 
         topLiveRepository.deleteAll();
-        for (var v : youtubeVideoRepository.nativeByLiveStreams()) {
+        for (var v : youtubeVideoRepository.nativeTopLive()) {
             var t = new TopLiveEntity();
-            t.setId(v.getId());
             t.setChannel(v.getChannel());
             t.setDislikes(v.getDislikes());
+            t.setId(v.getId());
             t.setLikes(v.getLikes());
             t.setLiveStart(v.getLiveStart());
             t.setLiveViews(v.getLiveViews());
@@ -44,18 +54,26 @@ public class VideoDeloveryService {
     public void updateUpload() {
         log.info("Start updateUpload");
 
-        topLiveRepository.deleteAll();
-        for (var v : youtubeVideoRepository.nativeByLiveStreams()) {
-            var t = new TopLiveEntity();
-            t.setId(v.getId());
+        topUploadRepository.deleteAll();
+        var data = youtubeVideoRepository.nativeTopPremier();
+        data.addAll(youtubeVideoRepository.nativeTopUpload());
+
+        for (var v : data) {
+            var t = new TopUploadEntity();
             t.setChannel(v.getChannel());
             t.setDislikes(v.getDislikes());
+            t.setId(v.getId());
             t.setLikes(v.getLikes());
-            t.setLiveStart(v.getLiveStart());
-            t.setLiveViews(v.getLiveViews());
+            if (YoutubeVideoLogic.isTypeUpload(v)) {
+                t.setUploadDate(v.getPublished());
+            } else {
+                t.setUploadDate(v.getLiveSchedule());
+            }
             t.setThumbnailUrl(v.getThumbnailUrl());
             t.setTitle(v.getTitle());
-            topLiveRepository.save(t);
+            t.setViews(v.getViews());
+
+            topUploadRepository.save(t);
         }
     }
 

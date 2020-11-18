@@ -19,7 +19,16 @@ public interface YoutubeVideoRepository
         List<YoutubeVideoEntity> findByEnabledTrueAndStatusEqualsAndLiveScheduleBetween(String status,
                         LocalDateTime since, LocalDateTime until);
 
-        @Query(value = "select * from youtube_video yv  where yv.channel in (select youtube from nijisanji_liver)  and yv.type = 'live' and yv.status = 'stream'", nativeQuery = true)
-        List<YoutubeVideoEntity> nativeByLiveStreams();
+        public static final String NATIVE_TOP_BASE = "select * from youtube_video yv  where yv.channel in (select youtube from nijisanji_liver) ";
 
+        @Query(value = NATIVE_TOP_BASE + " and yv.type = 'live' and yv.status = 'stream'", nativeQuery = true)
+        List<YoutubeVideoEntity> nativeTopLive();
+
+        @Query(value = NATIVE_TOP_BASE
+                        + " and yv.type = 'upload' and published > current_timestamp - interval '2 day'", nativeQuery = true)
+        List<YoutubeVideoEntity> nativeTopUpload();
+
+        @Query(value = NATIVE_TOP_BASE
+                        + " and yv.type = 'premier' and yv.status = 'archive' and live_start > current_timestamp - interval '2 day'", nativeQuery = true)
+        List<YoutubeVideoEntity> nativeTopPremier();
 }
