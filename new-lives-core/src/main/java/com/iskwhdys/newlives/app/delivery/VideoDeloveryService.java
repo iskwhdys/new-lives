@@ -1,8 +1,7 @@
 package com.iskwhdys.newlives.app.delivery;
 
-import java.util.List;
-
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoLogic;
+import com.iskwhdys.newlives.domain.delivery.TopArchiveEntity;
 import com.iskwhdys.newlives.domain.delivery.TopArchiveRepository;
 import com.iskwhdys.newlives.domain.delivery.TopLiveEntity;
 import com.iskwhdys.newlives.domain.delivery.TopLiveRepository;
@@ -74,6 +73,27 @@ public class VideoDeloveryService {
             t.setViews(v.getViews());
 
             topUploadRepository.save(t);
+        }
+    }
+
+    @Transactional
+    public void updateArchive() {
+        log.info("Start updateArchive");
+
+        topArchiveRepository.deleteAll();
+
+        for (var v : youtubeVideoRepository.nativeTopArchive()) {
+            var t = new TopArchiveEntity();
+            t.setChannel(v.getChannel());
+            t.setDislikes(v.getDislikes());
+            t.setId(v.getId());
+            t.setLikes(v.getLikes());
+            t.setLiveStart(v.getLiveStart());
+            t.setThumbnailUrl(v.getThumbnailUrl());
+            t.setTitle(v.getTitle());
+            t.setViews(v.getViews());
+
+            topArchiveRepository.save(t);
         }
     }
 

@@ -93,6 +93,7 @@ CREATE TABLE top_archive (
     channel varchar(32),
     title varchar(200),
     duration integer,
+    live_start timestamp(6) without time zone,
     views integer,
     likes integer,
     dislikes integer,

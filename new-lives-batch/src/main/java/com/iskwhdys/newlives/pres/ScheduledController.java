@@ -49,7 +49,7 @@ public class ScheduledController {
     @PostConstruct
     private void startup() {
         log.info("startup Start:" + LocalDateTime.now());
-        updateJob(16, 15);
+        updateJob(16, 00);
         log.info("startup end:" + LocalDateTime.now());
     }
 
@@ -89,6 +89,7 @@ public class ScheduledController {
 
         videoDeloveryService.updateLive();
         videoDeloveryService.updateUpload();
+        videoDeloveryService.updateArchive();
     }
 
 }

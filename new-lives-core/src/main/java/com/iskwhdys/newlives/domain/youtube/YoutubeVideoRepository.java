@@ -31,4 +31,8 @@ public interface YoutubeVideoRepository
         @Query(value = NATIVE_TOP_BASE
                         + " and yv.type = 'premier' and yv.status = 'archive' and live_start > current_timestamp - interval '2 day'", nativeQuery = true)
         List<YoutubeVideoEntity> nativeTopPremier();
+
+        @Query(value = NATIVE_TOP_BASE
+                        + " and yv.type = 'live' and yv.status = 'archive' order by live_start desc limit 30", nativeQuery = true)
+        List<YoutubeVideoEntity> nativeTopArchive();
 }

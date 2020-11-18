@@ -6,3 +6,4 @@ new-lives-admin/src/main/resources/application-local.properties
 /new-lives-entity/.classpath
 .project
 /data
+sitemap.xml
