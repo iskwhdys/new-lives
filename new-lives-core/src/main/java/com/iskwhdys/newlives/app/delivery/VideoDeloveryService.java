@@ -1,6 +1,10 @@
 package com.iskwhdys.newlives.app.delivery;
 
-import com.iskwhdys.newlives.app.youtube.YoutubeVideoLogic;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.iskwhdys.newlives.domain.delivery.TopArchiveEntity;
 import com.iskwhdys.newlives.domain.delivery.TopArchiveRepository;
 import com.iskwhdys.newlives.domain.delivery.TopLiveEntity;
@@ -11,13 +15,9 @@ import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import lombok.var;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class VideoDeloveryService {
 
     @Autowired
@@ -30,71 +30,27 @@ public class VideoDeloveryService {
     @Autowired
     TopArchiveRepository topArchiveRepository;
 
-    @Transactional
-    public void updateLive() {
-        log.info("Start updateLive");
-
-        topLiveRepository.deleteAll();
-        for (var v : youtubeVideoRepository.nativeTopLive()) {
-            var t = new TopLiveEntity();
-            t.setChannel(v.getChannel());
-            t.setDislikes(v.getDislikes());
-            t.setId(v.getId());
-            t.setLikes(v.getLikes());
-            t.setLiveStart(v.getLiveStart());
-            t.setLiveViews(v.getLiveViews());
-            t.setThumbnailUrl(v.getThumbnailUrl());
-            t.setTitle(v.getTitle());
-            topLiveRepository.save(t);
-        }
+    public List<TopLiveEntity> getLive() {
+        return topLiveRepository.findAll();
     }
 
-    @Transactional
-    public void updateUpload() {
-        log.info("Start updateUpload");
-
-        topUploadRepository.deleteAll();
-        var data = youtubeVideoRepository.nativeTopPremier();
-        data.addAll(youtubeVideoRepository.nativeTopUpload());
-
-        for (var v : data) {
-            var t = new TopUploadEntity();
-            t.setChannel(v.getChannel());
-            t.setDislikes(v.getDislikes());
-            t.setId(v.getId());
-            t.setLikes(v.getLikes());
-            if (YoutubeVideoLogic.isTypeUpload(v)) {
-                t.setUploadDate(v.getPublished());
-            } else {
-                t.setUploadDate(v.getLiveSchedule());
-            }
-            t.setThumbnailUrl(v.getThumbnailUrl());
-            t.setTitle(v.getTitle());
-            t.setViews(v.getViews());
-
-            topUploadRepository.save(t);
-        }
+    public List<TopUploadEntity> getUpdate() {
+        return topUploadRepository.findAll();
     }
 
-    @Transactional
-    public void updateArchive() {
-        log.info("Start updateArchive");
-
-        topArchiveRepository.deleteAll();
-
-        for (var v : youtubeVideoRepository.nativeTopArchive()) {
-            var t = new TopArchiveEntity();
-            t.setChannel(v.getChannel());
-            t.setDislikes(v.getDislikes());
-            t.setId(v.getId());
-            t.setLikes(v.getLikes());
-            t.setLiveStart(v.getLiveStart());
-            t.setThumbnailUrl(v.getThumbnailUrl());
-            t.setTitle(v.getTitle());
-            t.setViews(v.getViews());
-
-            topArchiveRepository.save(t);
-        }
+    public List<TopArchiveEntity> getArchive() {
+        return topArchiveRepository.findAll();
     }
 
+    public List<TopUploadEntity> getUpdate(String from, int count) {
+        LocalDateTime time = LocalDateTime.parse(from, DateTimeFormatter.ISO_DATE_TIME);
+        return youtubeVideoRepository.nativeUpload(time, count).stream().map(VideoDeliveryLogic::createTopUpload)
+                .collect(Collectors.toList());
+    }
+
+    public List<TopUploadEntity> getArchive(String from, int count) {
+        LocalDateTime time = LocalDateTime.parse(from, DateTimeFormatter.ISO_DATE_TIME);
+        return youtubeVideoRepository.nativeUpload(time, count).stream().map(VideoDeliveryLogic::createTopUpload)
+                .collect(Collectors.toList());
+    }
 }

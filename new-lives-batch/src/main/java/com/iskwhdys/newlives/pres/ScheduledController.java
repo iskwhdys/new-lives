@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 
-import com.iskwhdys.newlives.app.delivery.VideoDeloveryService;
+import com.iskwhdys.newlives.app.delivery.TopVideoUpdateService;
 import com.iskwhdys.newlives.app.image.YoutubeChannelImageService;
 import com.iskwhdys.newlives.app.image.YoutubeVideoImageService;
 import com.iskwhdys.newlives.app.youtube.YoutubeChannelService;
@@ -37,19 +37,30 @@ public class ScheduledController {
     YoutubeChannelImageService youtubeChannelImageService;
 
     @Autowired
-    VideoDeloveryService videoDeloveryService;
+    TopVideoUpdateService topVideoUpdateService;
+
+    boolean lock = false;
 
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
     public void cronPerMinute() {
+        if (lock)
+            return;
+        lock = true;
         log.info("cronPerMinute Start:" + LocalDateTime.now());
-        updateJob(LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
+        try {
+            updateJob(LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
         log.info("cronPerMinute end:" + LocalDateTime.now());
+        lock = false;
     }
 
     @PostConstruct
     private void startup() {
+        lock = true;
         log.info("startup Start:" + LocalDateTime.now());
-        updateJob(16, 00);
+        updateJob(16, 15);
         log.info("startup end:" + LocalDateTime.now());
     }
 
@@ -87,9 +98,9 @@ public class ScheduledController {
         }
         youtubeVideoService.updateNewVideo();
 
-        videoDeloveryService.updateLive();
-        videoDeloveryService.updateUpload();
-        videoDeloveryService.updateArchive();
+        topVideoUpdateService.updateLive();
+        topVideoUpdateService.updateUpload();
+        topVideoUpdateService.updateArchive();
     }
 
 }
