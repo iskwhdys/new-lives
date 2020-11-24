@@ -21,5 +21,7 @@
   <table-filter match-name="top_live" package="com.iskwhdys.newlives.domain.delivery"/>
   <table-filter match-name="top_upload" package="com.iskwhdys.newlives.domain.delivery"/>
   <table-filter match-name="top_archive" package="com.iskwhdys.newlives.domain.delivery"/>
+  <table-filter match-name="top_premier" package="com.iskwhdys.newlives.domain.delivery"/>
+  <table-filter match-name="top_schedule" package="com.iskwhdys.newlives.domain.delivery"/>
 
 </hibernate-reverse-engineering>

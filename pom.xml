@@ -86,6 +86,7 @@
 		<module>new-lives-entity</module>
 		<module>new-lives-batch</module>
 		<module>new-lives-admin</module>
+		<module>new-lives-api</module>
 	</modules>
 
 

@@ -37,8 +37,6 @@ CREATE TABLE youtube_video (
     create_date timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     update_date timestamp without time zone
 );
-
-
 CREATE TABLE liver (
     id varchar(32) PRIMARY KEY,
     name varchar(32),
@@ -57,15 +55,12 @@ CREATE TABLE liver (
     icon varchar(200),
     wiki varchar(200)
 );
-
 CREATE TABLE liver_tag (
     id varchar(32),
     key varchar(32),
     value varchar(200),
     primary key (id, key, value)
-)
-
-
+);
 CREATE TABLE top_live (
     id varchar(32) PRIMARY KEY,
     channel varchar(32),
@@ -76,7 +71,6 @@ CREATE TABLE top_live (
     dislikes integer,
     thumbnail_url varchar(200)
 );
-
 CREATE TABLE top_upload (
     id varchar(32) PRIMARY KEY,
     channel varchar(32),
@@ -87,7 +81,6 @@ CREATE TABLE top_upload (
     dislikes integer,
     thumbnail_url varchar(200)
 );
-
 CREATE TABLE top_archive (
     id varchar(32) PRIMARY KEY,
     channel varchar(32),
@@ -99,5 +92,23 @@ CREATE TABLE top_archive (
     dislikes integer,
     thumbnail_url varchar(200)
 );
-
+CREATE TABLE top_premier (
+    id varchar(32) PRIMARY KEY,
+    channel varchar(32),
+    title varchar(200),
+    duration integer,
+    live_schedule timestamp(6) without time zone,
+    likes integer,
+    dislikes integer,
+    thumbnail_url varchar(200)
+);
+CREATE TABLE top_schedule (
+    id varchar(32) PRIMARY KEY,
+    channel varchar(32),
+    title varchar(200),
+    live_schedule timestamp(6) without time zone,
+    likes integer,
+    dislikes integer,
+    thumbnail_url varchar(200)
+);
 

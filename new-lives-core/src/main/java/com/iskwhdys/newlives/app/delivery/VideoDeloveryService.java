@@ -9,13 +9,16 @@ import com.iskwhdys.newlives.domain.delivery.TopArchiveEntity;
 import com.iskwhdys.newlives.domain.delivery.TopArchiveRepository;
 import com.iskwhdys.newlives.domain.delivery.TopLiveEntity;
 import com.iskwhdys.newlives.domain.delivery.TopLiveRepository;
+import com.iskwhdys.newlives.domain.delivery.TopPremierEntity;
+import com.iskwhdys.newlives.domain.delivery.TopPremierRepository;
+import com.iskwhdys.newlives.domain.delivery.TopScheduleEntity;
+import com.iskwhdys.newlives.domain.delivery.TopScheduleRepository;
 import com.iskwhdys.newlives.domain.delivery.TopUploadEntity;
 import com.iskwhdys.newlives.domain.delivery.TopUploadRepository;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 public class VideoDeloveryService {
@@ -29,6 +32,10 @@ public class VideoDeloveryService {
     TopUploadRepository topUploadRepository;
     @Autowired
     TopArchiveRepository topArchiveRepository;
+    @Autowired
+    TopPremierRepository topPremierRepository;
+    @Autowired
+    TopScheduleRepository topScheduleRepository;
 
     public List<TopLiveEntity> getLive() {
         return topLiveRepository.findAll();
@@ -42,15 +49,35 @@ public class VideoDeloveryService {
         return topArchiveRepository.findAll();
     }
 
+    public List<TopPremierEntity> getPremier() {
+        return topPremierRepository.findAll();
+    }
+
+    public List<TopScheduleEntity> getSchedule() {
+        return topScheduleRepository.findAll();
+    }
+
     public List<TopUploadEntity> getUpdate(String from, int count) {
         LocalDateTime time = LocalDateTime.parse(from, DateTimeFormatter.ISO_DATE_TIME);
         return youtubeVideoRepository.nativeUpload(time, count).stream().map(VideoDeliveryLogic::createTopUpload)
                 .collect(Collectors.toList());
     }
 
-    public List<TopUploadEntity> getArchive(String from, int count) {
+    public List<TopArchiveEntity> getArchive(String from, int count) {
         LocalDateTime time = LocalDateTime.parse(from, DateTimeFormatter.ISO_DATE_TIME);
-        return youtubeVideoRepository.nativeUpload(time, count).stream().map(VideoDeliveryLogic::createTopUpload)
+        return youtubeVideoRepository.nativeArchive(time, count).stream().map(VideoDeliveryLogic::createTopArchive)
+                .collect(Collectors.toList());
+    }
+
+    public List<TopPremierEntity> getPremier(String from, int count) {
+        LocalDateTime time = LocalDateTime.parse(from, DateTimeFormatter.ISO_DATE_TIME);
+        return youtubeVideoRepository.nativePremier(time, count).stream().map(VideoDeliveryLogic::createTopPremier)
+                .collect(Collectors.toList());
+    }
+
+    public List<TopScheduleEntity> getSchedule(String from, int count) {
+        LocalDateTime time = LocalDateTime.parse(from, DateTimeFormatter.ISO_DATE_TIME);
+        return youtubeVideoRepository.nativeTopSchedule(time, count).stream().map(VideoDeliveryLogic::createTopSchedule)
                 .collect(Collectors.toList());
     }
 }

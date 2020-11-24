@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import com.iskwhdys.newlives.domain.delivery.TopArchiveRepository;
 import com.iskwhdys.newlives.domain.delivery.TopLiveRepository;
+import com.iskwhdys.newlives.domain.delivery.TopPremierRepository;
+import com.iskwhdys.newlives.domain.delivery.TopScheduleRepository;
 import com.iskwhdys.newlives.domain.delivery.TopUploadRepository;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
 
@@ -26,6 +28,10 @@ public class TopVideoUpdateService {
     TopUploadRepository topUploadRepository;
     @Autowired
     TopArchiveRepository topArchiveRepository;
+    @Autowired
+    TopPremierRepository topPremierRepository;
+    @Autowired
+    TopScheduleRepository topScheduleRepository;
 
     @Transactional
     public void updateLive() {
@@ -56,6 +62,24 @@ public class TopVideoUpdateService {
         topArchiveRepository.deleteAll();
         for (var v : youtubeVideoRepository.nativeTopArchive()) {
             topArchiveRepository.save(VideoDeliveryLogic.createTopArchive(v));
+        }
+    }
+
+    @Transactional
+    public void updatePremier() {
+        log.info("Start updatePremier");
+        topPremierRepository.deleteAll();
+        for (var v : youtubeVideoRepository.nativePremier(LocalDateTime.now().minusDays(1), 6)) {
+            topPremierRepository.save(VideoDeliveryLogic.createTopPremier(v));
+        }
+    }
+
+    @Transactional
+    public void updateSchedule() {
+        log.info("Start updateSchedule");
+        topScheduleRepository.deleteAll();
+        for (var v : youtubeVideoRepository.nativeTopSchedule()) {
+            topScheduleRepository.save(VideoDeliveryLogic.createTopSchedule(v));
         }
     }
 

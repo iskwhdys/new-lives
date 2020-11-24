@@ -101,6 +101,8 @@ public class ScheduledController {
         topVideoUpdateService.updateLive();
         topVideoUpdateService.updateUpload();
         topVideoUpdateService.updateArchive();
+        topVideoUpdateService.updatePremier();
+        topVideoUpdateService.updateSchedule();
     }
 
 }

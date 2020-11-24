@@ -6,6 +6,17 @@
     "configurations": [
         {
             "type": "java",
+            "name": "api",
+            "request": "launch",
+            "mainClass": "com.iskwhdys.newlives.ApiApplication",
+            "projectName": "new-lives-api",
+            "vmArgs": [
+                "-Dspring.profiles.active=local",
+                "-Duser.timezone=UTC"
+            ]
+        },
+        {
+            "type": "java",
             "name": "admin",
             "request": "launch",
             "mainClass": "com.iskwhdys.newlives.AdminApplication",
