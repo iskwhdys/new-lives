@@ -1,6 +1,7 @@
 package com.iskwhdys.newlives.pres;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
 
@@ -13,6 +14,7 @@ import com.iskwhdys.newlives.app.youtube.YoutubeVideoService;
 import com.iskwhdys.newlives.infra.google.SitemapService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,9 @@ public class ScheduledController {
     @Autowired
     TopVideoUpdateService topVideoUpdateService;
 
+    @Autowired
+    private Environment environment;
+
     boolean lock = false;
 
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
@@ -58,7 +63,9 @@ public class ScheduledController {
 
     @PostConstruct
     private void startup() {
-        lock = true;
+        if (Arrays.stream(environment.getActiveProfiles()).anyMatch(e -> e.equals("local"))) {
+            lock = true;
+        }
         log.info("startup Start:" + LocalDateTime.now());
         updateJob(16, 15);
         log.info("startup end:" + LocalDateTime.now());

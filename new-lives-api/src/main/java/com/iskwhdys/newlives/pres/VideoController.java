@@ -3,7 +3,7 @@ package com.iskwhdys.newlives.pres;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.iskwhdys.newlives.app.delivery.VideoDeloveryService;
+import com.iskwhdys.newlives.app.delivery.VideoDeliveryService;
 import com.iskwhdys.newlives.domain.delivery.TopArchiveEntity;
 import com.iskwhdys.newlives.domain.delivery.TopLiveEntity;
 import com.iskwhdys.newlives.domain.delivery.TopPremierEntity;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/video")
 public class VideoController {
   @Autowired
-  VideoDeloveryService videoDeloveryService;
+  VideoDeliveryService videoDeloveryService;
 
   @GetMapping("/live")
   public List<TopLiveEntity> getLive() {

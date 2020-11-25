@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 
+import com.iskwhdys.newlives.app.Constants;
 import com.iskwhdys.newlives.app.youtube.YoutubeFeedService;
 import com.iskwhdys.newlives.app.youtube.YoutubeVideoLogic;
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelRepository;
@@ -73,12 +74,12 @@ public class YoutubeVideoImageService {
         try {
             String dir = appConfig.getImage().getYoutube().getThumbnailPath();
 
-            Path origin = Paths.get(dir, v.getId() + ".jpg");
+            Path origin = Paths.get(dir, v.getId() + Constants.THUMBNAIL_EXT);
             Files.createDirectories(origin.getParent());
             byte[] bytes = restTemplate.getForObject(v.getThumbnailUrl(), byte[].class);
             Files.write(origin, bytes, StandardOpenOption.CREATE);
 
-            Path resize = Paths.get(dir, "176x98", v.getId() + ".jpg");
+            Path resize = Paths.get(dir, Constants.SIZE_THUMBNAIL, v.getId() + Constants.THUMBNAIL_EXT);
             bytes = ImageEditor.resize(bytes, 176, 132, 1.0f);
             bytes = ImageEditor.trim(bytes, 176, 98, 1.0f);
             Files.createDirectories(resize.getParent());
