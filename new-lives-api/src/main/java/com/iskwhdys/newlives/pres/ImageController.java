@@ -1,10 +1,8 @@
 package com.iskwhdys.newlives.pres;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-
 import com.iskwhdys.newlives.app.Constants;
 import com.iskwhdys.newlives.app.delivery.ImageDeliveryService;
+import com.iskwhdys.newlives.app.delivery.ImageDeliveryService.ImageTimestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -24,22 +22,40 @@ public class ImageController {
     @Autowired
     ImageDeliveryService imageDeliveryService;
 
-    @GetMapping("/video/" + Constants.SIZE_THUMBNAIL + "/{id}")
+    @GetMapping("/video/{id}/" + Constants.SIZE_THUMBNAIL)
     public ResponseEntity<byte[]> getVideoThumbnail(WebRequest swr, @PathVariable String id) {
-        byte[] data = imageDeliveryService.getYoutubeThumbnail(id);
-        LocalDateTime time = imageDeliveryService.getLastUpateTime(id);
-        return getResponse(swr, time, data);
+        return getResponse(swr, imageDeliveryService.getYoutubeThumbnail(id));
     }
 
-    private ResponseEntity<byte[]> getResponse(WebRequest swr, LocalDateTime lastUpdateTime, byte[] obj) {
+    @GetMapping("/channel/{id}")
+    public ResponseEntity<byte[]> getChannelIconOrigin(WebRequest swr, @PathVariable String id) {
+        return getResponse(swr, imageDeliveryService.getYoutubeChannelIcon(id, ""));
+    }
+
+    @GetMapping("/channel/{id}/" + Constants.SIZE_CHANNEL_ICON)
+    public ResponseEntity<byte[]> getChannelIcon(WebRequest swr, @PathVariable String id) {
+        return getResponse(swr, imageDeliveryService.getYoutubeChannelIcon(id, Constants.SIZE_CHANNEL_ICON));
+    }
+
+    @GetMapping("/liver/{id}/" + Constants.SIZE_LIVER_BLACK_ICON)
+    public ResponseEntity<byte[]> getLiverBlackIcon(WebRequest swr, @PathVariable String id) {
+        return getResponse(swr, imageDeliveryService.getLiverIcon(id, Constants.SIZE_LIVER_BLACK_ICON));
+    }
+
+    @GetMapping("/liver/{id}/" + Constants.SIZE_LIVER_WHITE_ICON)
+    public ResponseEntity<byte[]> getLiverWhiteIcon(WebRequest swr, @PathVariable String id) {
+        return getResponse(swr, imageDeliveryService.getLiverIcon(id, Constants.SIZE_LIVER_WHITE_ICON));
+    }
+
+    private ResponseEntity<byte[]> getResponse(WebRequest swr, ImageTimestamp imageTimestamp) {
         HttpHeaders headers = new HttpHeaders();
-        long time = Timestamp.valueOf(lastUpdateTime).getTime();
+        long time = imageTimestamp.getTime().getTime();
         if (swr.checkNotModified(time)) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         } else {
             headers.setContentType(MediaType.IMAGE_JPEG);
             headers.setLastModified(time);
-            return new ResponseEntity<>(obj, headers, HttpStatus.OK);
+            return new ResponseEntity<>(imageTimestamp.getImage(), headers, HttpStatus.OK);
         }
     }
 

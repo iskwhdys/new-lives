@@ -18,6 +18,7 @@ public class AppConfig {
         Youtube youtube;
         Liver liver;
         Integer thumbnailCacheCount;
+        Integer iconCacheCount;
 
         @Data
         public static class Youtube {

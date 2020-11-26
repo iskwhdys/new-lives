@@ -33,7 +33,7 @@ public class HashCache<K extends Object, V> {
         return writeTime.get(key);
     }
 
-    public V put(K key, V value) {
+    public void put(K key, V value) {
         writeTime.put(key, LocalDateTime.now());
         readTime.put(key, LocalDateTime.now());
 
@@ -41,7 +41,6 @@ public class HashCache<K extends Object, V> {
         if (readTime.size() > capacity) {
             removeLastReadData();
         }
-        return value;
     }
 
     private void removeLastReadData() {

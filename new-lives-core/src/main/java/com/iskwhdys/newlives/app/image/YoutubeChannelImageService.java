@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+import com.iskwhdys.newlives.app.Constants;
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelRepository;
 import com.iskwhdys.newlives.infra.config.AppConfig;
@@ -31,16 +32,22 @@ public class YoutubeChannelImageService {
         channelRepository.findByEnabledTrue().forEach(this::download);
     }
 
+    public Path getOriginIconPath() {
+        return Paths.get(appConfig.getImage().getYoutube().getChannelPath());
+    }
+
+    public Path getIconPath() {
+        return Paths.get(appConfig.getImage().getYoutube().getChannelPath(), Constants.SIZE_CHANNEL_ICON);
+    }
+
     public void download(YoutubeChannelEntity c) {
         try {
-            String dir = appConfig.getImage().getYoutube().getChannelPath();
-
-            Path origin = Paths.get(dir, c.getId() + ".jpg");
+            Path origin = getOriginIconPath().resolve(c.getId() + Constants.IMAGE_EXT);
             Files.createDirectories(origin.getParent());
             byte[] bytes = restTemplate.getForObject(c.getThumbnailUrl(), byte[].class);
             Files.write(origin, bytes, StandardOpenOption.CREATE);
 
-            Path resize = Paths.get(dir, "30x30", c.getId() + ".jpg");
+            Path resize = getIconPath().resolve(c.getId() + Constants.IMAGE_EXT);
             bytes = ImageEditor.resize(bytes, 30, 30, 1.0f);
             Files.createDirectories(resize.getParent());
             Files.write(resize, bytes, StandardOpenOption.CREATE);
