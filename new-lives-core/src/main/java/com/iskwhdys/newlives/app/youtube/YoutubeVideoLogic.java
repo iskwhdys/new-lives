@@ -20,6 +20,8 @@ public class YoutubeVideoLogic {
     public static final String UPLOAD_STATUS_UPLOADED = "uploaded";
     public static final String UPLOAD_STATUS_PROCESSED = "processed";
 
+    public static final String PRIVACY_STATUS_UNLISTED = "unlisted"; // メン限
+
     private YoutubeVideoLogic() {
     }
 

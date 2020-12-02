@@ -43,16 +43,18 @@ public class YoutubeFeedService {
     }
 
     public void updateAllChannelVideo() {
-        for (YoutubeChannelEntity channel : channelRepository.findByEnabledTrue()) {
+
+        channelRepository.findByEnabledTrue().stream().forEach(channel -> {
             try {
                 update(channel);
             } catch (Exception e) {
+                log.error(channel.getId() + " " + channel.getTitle());
                 log.error(e.getMessage(), e);
                 channel.setEnabled(false);
                 channelRepository.save(channel);
             }
-        }
-        for (YoutubeChannelEntity channel : channelRepository.findByEnabledFalse()) {
+        });
+        channelRepository.findByEnabledFalse().stream().forEach(channel -> {
             try {
                 update(channel);
                 channel.setEnabled(true);
@@ -60,7 +62,7 @@ public class YoutubeFeedService {
             } catch (Exception e) {
                 // BAN解除確認用
             }
-        }
+        });
     }
 
     private YoutubeFeedEntity getFeed(YoutubeChannelEntity channel) throws JDOMException, IOException {

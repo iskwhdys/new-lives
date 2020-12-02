@@ -83,6 +83,8 @@ public class YoutubeDataVideosLogic {
             return video;
         if (map.containsKey("uploadStatus"))
             video.setUploadStatus(map.get("uploadStatus").toString());
+        if (map.containsKey("privacyStatus"))
+            video.setPrivacyStatus(map.get("privacyStatus").toString());
         return video;
     }
 

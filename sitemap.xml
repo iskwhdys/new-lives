@@ -2,27 +2,27 @@
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://nijisanji-live.com</loc>
-        <lastmod>2020-11-17</lastmod>
+        <lastmod>2020-12-02</lastmod>
         <changefreq>hourly</changefreq>
     </url>
     <url>
         <loc>https://nijisanji-live.com/schedules</loc>
-        <lastmod>2020-11-17</lastmod>
+        <lastmod>2020-12-02</lastmod>
         <changefreq>hourly</changefreq>
     </url>
     <url>
         <loc>https://nijisanji-live.com/broadcasters</loc>
-        <lastmod>2020-11-17</lastmod>
+        <lastmod>2020-12-02</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>https://nijisanji-live.com/channels</loc>
-        <lastmod>2020-11-17</lastmod>
+        <lastmod>2020-12-02</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>https://nijisanji-live.com/about</loc>
-        <lastmod>2020-11-17</lastmod>
+        <lastmod>2020-12-02</lastmod>
         <changefreq>monthly</changefreq>
     </url>
 </urlset>

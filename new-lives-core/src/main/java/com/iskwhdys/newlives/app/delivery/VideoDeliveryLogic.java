@@ -17,6 +17,8 @@ public class VideoDeliveryLogic {
         var t = new TopLiveEntity();
         t.setChannel(v.getChannel());
         t.setDislikes(v.getDislikes());
+        t.setType(v.getType());
+        t.setStatus(v.getStatus());
         t.setId(v.getId());
         t.setLikes(v.getLikes());
         t.setLiveStart(v.getLiveStart());
@@ -29,6 +31,8 @@ public class VideoDeliveryLogic {
     public static TopUploadEntity createTopUpload(YoutubeVideoEntity v) {
         var t = new TopUploadEntity();
         t.setChannel(v.getChannel());
+        t.setType(v.getType());
+        t.setStatus(v.getStatus());
         t.setDislikes(v.getDislikes());
         t.setId(v.getId());
         t.setLikes(v.getLikes());
@@ -46,6 +50,8 @@ public class VideoDeliveryLogic {
     public static TopArchiveEntity createTopArchive(YoutubeVideoEntity v) {
         var t = new TopArchiveEntity();
         t.setChannel(v.getChannel());
+        t.setType(v.getType());
+        t.setStatus(v.getStatus());
         t.setDislikes(v.getDislikes());
         t.setId(v.getId());
         t.setLikes(v.getLikes());
@@ -59,6 +65,8 @@ public class VideoDeliveryLogic {
     public static TopPremierEntity createTopPremier(YoutubeVideoEntity v) {
         var t = new TopPremierEntity();
         t.setChannel(v.getChannel());
+        t.setType(v.getType());
+        t.setStatus(v.getStatus());
         t.setDislikes(v.getDislikes());
         t.setDuration(v.getDuration());
         t.setId(v.getId());
@@ -72,6 +80,8 @@ public class VideoDeliveryLogic {
     public static TopScheduleEntity createTopSchedule(YoutubeVideoEntity v) {
         var t = new TopScheduleEntity();
         t.setChannel(v.getChannel());
+        t.setType(v.getType());
+        t.setStatus(v.getStatus());
         t.setDislikes(v.getDislikes());
         t.setId(v.getId());
         t.setLikes(v.getLikes());

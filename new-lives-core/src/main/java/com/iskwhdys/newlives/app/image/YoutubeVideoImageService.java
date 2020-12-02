@@ -64,9 +64,8 @@ public class YoutubeVideoImageService {
 
     public void downloadFeedThumbnail() {
         for (var channel : channelRepository.findByEnabledTrue()) {
-            for (String id : youtubeFeedService.getFeedVideoIdList(channel)) {
-                videoRepository.findById(id).ifPresent(this::downloadThumbnail);
-            }
+            youtubeFeedService.getFeedVideoIdList(channel).parallelStream()
+                    .forEach(id -> videoRepository.findById(id).ifPresent(this::downloadThumbnail));
         }
     }
 
