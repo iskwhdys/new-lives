@@ -31,7 +31,7 @@ public class YoutubeChannelService {
     }
 
     public void updateAllChannelInfo() {
-        for (YoutubeChannelEntity channel : channelRepository.findAll()) {
+        channelRepository.findAll().parallelStream().forEach(channel -> {
             try {
                 log.info(channel.getId() + ":" + channel.getTitle());
                 Map<String, Object> items = dataApi.channels(channel.getId(), "snippet", "statistics");
@@ -40,6 +40,6 @@ public class YoutubeChannelService {
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
-        }
+        });
     }
 }

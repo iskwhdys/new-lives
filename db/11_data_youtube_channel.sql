@@ -1,4 +1,4 @@
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCqEp6RdtsMbUNrCdCswr6pA','海夜叉神/黄泉波咲夜【にじさんじ】',NULL,39100,'https://yt3.ggpht.com/a/AATXAJxMRbWLiI07grisUumliSxSNgQhn5tLV7ZV_E3qhA=s88-c-k-c0xffffffff-no-rj-mo',false,'2018-06-03','2019-04-09',false,false)
 ,('UCks41vQN-hN-1KHmpZyPY3A','名伽尾アズマ☀️',NULL,44600,'https://yt3.ggpht.com/a/AATXAJxhzUugKXNR-nG-baMWdeKI8G_36UcbAVV-iGyb=s88-c-k-c0xffffffff-no-rj-mo',false,'2018-06-03','2019-05-31',false,false)
 ,('UCF1JdALrXgub24weQpqDy9Q','鳴門こがね',NULL,7040,'https://yt3.ggpht.com/a/AATXAJwkO35OsN8gBddvGWm_5zuxXa4t9AxrvhGouQup=s88-c-k-c0xffffffff-no-rj-mo',false,'2018-08-09','2018-12-31',false,false)
@@ -10,7 +10,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UC0WwEfE-jOM2rzjpdfhTzZA','愛園 愛美/Aizono Manami',NULL,124000,'https://yt3.ggpht.com/a/AATXAJydWLVXwOYczl0dNqghLzr7l3HsGV-HEi_sWsc=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-04-02',NULL,false,false)
 ,('UCHBhnG2G-qN0JrrWmMO2FTA','シェリン・バーガンディ -Shellin Burgundy- 【にじさんじ】',NULL,155000,'https://yt3.ggpht.com/a/AATXAJybXxa6aoUKdpHCsvGyRnku2fAXzi5OZSptY9uc=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-09-19',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCl1oLKcAq93p-pwKfDGhiYQ','えま★おうがすと',NULL,142000,'https://yt3.ggpht.com/a/AATXAJywxQNzYfnxPpeoxa9bJe9-xpXsrREcAjrVxsiC=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-10-31',NULL,false,false)
 ,('UCb6ObE-XGCctO3WrjRZC-cw','ルイス・キャミー',NULL,113000,'https://yt3.ggpht.com/a/AATXAJyndfpQLg6WojdxN54yhxiPXhRlOru4EPSwG7sJ=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-10-31',NULL,false,false)
 ,('UC1QgXt46-GEvtNjEC1paHnw','グウェル・オス・ガール / Gwelu Os Gar 【にじさんじ】',NULL,105000,'https://yt3.ggpht.com/a/AATXAJxgum23XTFf9FSJv34R5ZLtC_ELpkXwrffH-KXF=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-11-28',NULL,false,false)
@@ -22,7 +22,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UCHK5wkevfaGrPr7j3g56Jmw','瀬戸 美夜子 - Miyako Seto',NULL,85500,'https://yt3.ggpht.com/a/AATXAJz3dNOm6a1U-N-OqcBNH_KT7bQq5Fo_32fu3tA3=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-01-28',NULL,false,false)
 ,('UCwQ9Uv-m8xkE5PzRc7Bqx3Q','御伽原 江良 / Otogibara Era【にじさんじ】',NULL,475000,'https://yt3.ggpht.com/a/AATXAJzTAj75NzbpWn_0zxNIW7srzRHqVXUIA4BQqkV35Q=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-03-08',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UC6oDys1BGgBsIC3WhG1BovQ','Shizuka Rin Official',NULL,304000,'https://yt3.ggpht.com/a/AATXAJzx6b79exsGqBy-1Oof_27mYBVNsKDzpHxj3kznrw=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-01-31',NULL,false,false)
 ,('UCNW1Ex0r6HsWRD4LCtPwvoQ','三枝明那 / Saegusa Akina',NULL,206000,'https://yt3.ggpht.com/a/AATXAJzPmdfvPzyEKg5m8UNKbmBv6_q6iZZkWqR1t0r4=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-04-02',NULL,false,false)
 ,('UCtpB6Bvhs1Um93ziEDACQ8g','森中花咲',NULL,184000,'https://yt3.ggpht.com/a/AATXAJz2OM2EEH03UIjQqSlg4wKyVZQKqaCDEp__ifF5=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-03-05',NULL,false,false)
@@ -34,7 +34,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UCeShTCVgZyq2lsBW9QwIJcw','【3年0組】郡道美玲の教室',NULL,270000,'https://yt3.ggpht.com/a/AATXAJzqUb9-iQKulNjd_sBNwtcwSrJ2ncieux813dKFQQ=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-01-17',NULL,false,false)
 ,('UCfQVs_KuXeNAlGa3fb8rlnQ','桜凛月',NULL,163000,'https://yt3.ggpht.com/a/AATXAJxoAd1g6arV51vxFfSs0pCzSUxazJu1-97C2UiB=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-08-31',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCfM_A7lE6LkGrzx6_mOtI4g','雪汝*setsuna channel',NULL,72900,'https://yt3.ggpht.com/a/AATXAJw8f9qPiMJ0mo4SSRoLbvJR80ZUd8vLLlle-Me31g=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-07-30','2019-10-30',false,false)
 ,('UCt0clH12Xk1-Ej5PXKGfdPA','♥️♠️物述有栖♦️♣️',NULL,210000,'https://yt3.ggpht.com/a/AATXAJwOlinsLww_3SSI1NgExhGyfYaAak6xkKL0N3lM=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-03-05',NULL,false,false)
 ,('UCHX7YpFG8rVwhsHCx34xt7w','雪城眞尋/Yukishiro Mahiro【にじさんじ所属】',NULL,103000,'https://yt3.ggpht.com/a/AATXAJwwQ5IhWC9xKHp_9UdbnQMGEkxT_u-xKUn0cGjqQw=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-04-29',NULL,false,false)
@@ -46,7 +46,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UCo7TRj3cS-f_1D9ZDmuTsjw','町田ちま【にじさんじ】',NULL,193000,'https://yt3.ggpht.com/a/AATXAJxwaXX9wSID05DhzdfgUo2hfSjWAbZ0C427pxtr8g=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-08-31',NULL,false,false)
 ,('UCGYAYLDE7TZiiC8U6teciDQ','葉加瀬 冬雪 / Hakase Fuyuki',NULL,179000,'https://yt3.ggpht.com/a/AATXAJwXJhTgv7qRJC8hnRhAC3gG0t1Dh7nSvzO4SHFo=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-07-03',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCTIE7LM5X15NVugV7Krp9Hw','夢追翔のJUKE BOX',NULL,204000,'https://yt3.ggpht.com/a/AATXAJzZfLxXfgKZsSTMLbmSCX0xLMn_rNxo31RHJCP4=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-09-25',NULL,false,false)
 ,('UCL34fAoFim9oHLbVzMKFavQ','夜見れな/yorumi rena【にじさんじ所属】',NULL,246000,'https://yt3.ggpht.com/a/AATXAJx-GOgcY3h_DfihZwT3U3U2jYVQizjrKvZdbtR-=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-07-03',NULL,false,false)
 ,('UC6wvdADTJ88OfIbJYIpAaDA','不破 湊 / Fuwa Minato【にじさんじ】',NULL,173000,'https://yt3.ggpht.com/a/AATXAJxOL_HSYig4uhCoUykgPGxouMFckrUNGkoMUF_5=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-11-28',NULL,false,false)
@@ -58,7 +58,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UC-o-E6I3IC2q8sAoAuM6Umg','奈羅花 - Naraka -',NULL,109000,'https://yt3.ggpht.com/a/AATXAJyvtJMaBY8RuAS_UaFu_LgfFJpJNt5i2eJzeo84=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-12-26',NULL,false,false)
 ,('UCJubINhCcFXlsBwnHp0wl_g','舞元啓介',NULL,247000,'https://yt3.ggpht.com/a/AATXAJyL4OetUAZ5QDJAKTXJyZGSe-MOi6iQsdQdNG9f=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-08-09',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCt5-0i4AVHXaWJrL8Wql3mw','緑仙channel',NULL,352000,'https://yt3.ggpht.com/a/AATXAJxSjRvsEiC8s64w_kWi_lctdCpNKiXDSHDbbatMKw=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-06-03',NULL,false,false)
 ,('UCLO9QDxVL4bnvRRsz6K4bsQ','勇気ちひろ',NULL,325000,'https://yt3.ggpht.com/a/AATXAJxcPHyvb-AIFlk7KoAaMwh8nSz9zq4HB6rPlEde=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-01-31',NULL,false,false)
 ,('UCXRlIK3Cw_TJIQC5kSJJQMg','戌亥とこ -Inui Toko-',NULL,328000,'https://yt3.ggpht.com/a/AATXAJwJRdA0NzJRqlaoMqUUT5IMUpD-NmfXznhi-hAR=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-03-22',NULL,false,false)
@@ -70,7 +70,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UC_a1ZYZ8ZTXpjg9xUY9sj8w','鈴原るる【にじさんじ所属】',NULL,442000,'https://yt3.ggpht.com/a/AATXAJwCAz6iHqDmbg6r1qHDhZbRqo1Paw8N0Wp7PGAI=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-04-29',NULL,false,false)
 ,('UCpnvhOIJ6BN-vPkYU9ls-Eg','鈴谷アキの陽だまりの庭',NULL,96300,'https://yt3.ggpht.com/a/AATXAJxfYN2mWghjKxg7wG64D4GmzQJ1GgHXAKLUSFn1=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-01-31',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCeK9HFcRZoTrvqcUCtccMoQ','渋谷ハジメのはじめ支部',NULL,110000,'https://yt3.ggpht.com/a/AATXAJwH4kwGfPW76Lh92vh8cm7Jp91ygrVtFHsGyzHi=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-01-31',NULL,false,false)
 ,('UCIG9rDtgR45VCZmYnd-4DUw','ラトナ・プティ -Ratna Petit -にじさんじ所属',NULL,180000,'https://yt3.ggpht.com/a/AATXAJwCjLLVq2dmwR33HRwuG6gZsm1NVjb7QKYNx0r97g=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-08-08',NULL,false,false)
 ,('UCRcLAVTbmx2-iNcXSsupdNA','来栖 夏芽-kurusu natsume-【にじさんじ】',NULL,70000,'https://yt3.ggpht.com/a/AATXAJxgRP6354rMB2Idr2C6xif2HontklyQeYw-avYg=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-12-26',NULL,false,false)
@@ -82,7 +82,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UCwrjITPwG4q71HzihV2C7Nw','フミ/にじさんじ',NULL,116000,'https://yt3.ggpht.com/a/AATXAJxprwC_I00Numqaw2XIov9X8AVPQOf0Fpo_i6d1QA=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-10-17',NULL,false,false)
 ,('UCuep1JCrMvSxOGgGhBfJuYw','フレン・E・ルスタリオ',NULL,181000,'https://yt3.ggpht.com/a/AATXAJwLQfgIVodpdAbG60bK9Orhg6nOZCnQfFaZ7Sw=s88-c-k-c0xffffffff-no-rj-mo',true,'2020-01-30',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCo2N7C-Z91waaR6lF3LL_jw','甲斐田 晴 / Kaida Haru【にじさんじ】',NULL,94700,'https://yt3.ggpht.com/a/AATXAJxCUGsaemim48P_jDkh12NLUd8HeLfJG3CDdked=s88-c-k-c0xffffffff-no-rj-mo',true,'2020-04-02',NULL,false,false)
 ,('UCoztvTULBYd3WmStqYeoHcA','笹木咲 / Sasaki Saku',NULL,463000,'https://yt3.ggpht.com/a/AATXAJzh6YZfmX7oLfb_YGGS0iqp1BwExnqQI0sA_YbZ=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-07-06',NULL,false,false)
 ,('UC_4tXjqecqox5Uc05ncxpxg','椎名唯華',NULL,363000,'https://yt3.ggpht.com/a/AATXAJxuBgoaTYEsEtk_ydDJlKPNLCwID4AQ5C9oGrYV=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-07-30',NULL,false,false)
@@ -94,7 +94,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UC1zFJrfEKvCixhsjNSb1toQ','シスター・クレア -SisterClaire-',NULL,285000,'https://yt3.ggpht.com/a/AATXAJxBZFKjuz2EvXj5ewwjFN9DudWuMMWvyfYWu3ZciQ=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-06-03',NULL,false,false)
 ,('UCCVwhI5trmaSxfcze_Ovzfw','夢月ロア🌖Yuzuki Roa',NULL,340000,'https://yt3.ggpht.com/a/AATXAJzx3-0jSe8t4prE8vYk5Aro84GAdFO-6J_tlgrovQ=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-01-17',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCg63a3lk6PNeWhVvMRM_mrQ','小野町 春香 / Onomachi Haruka 【にじさんじ】',NULL,103000,'https://yt3.ggpht.com/a/AATXAJxOchIxygkCt-xySeoRdwa8V2Y2_mV3m_gzvO37cA=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-01-28',NULL,false,false)
 ,('UCIytNcoz4pWzXfLda0DoULQ','エクス・アルビオ -Ex Albio-',NULL,224000,'https://yt3.ggpht.com/a/AATXAJweuRn6OgKkhXp5YAhlWbKabrSmXdIlJB2SdhML=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-05-17',NULL,false,false)
 ,('UCUc8GZfFxtmk7ZwSO7ccQ0g','ニュイ・ソシエール //[Nui Sociere]',NULL,208000,'https://yt3.ggpht.com/a/AATXAJw6M9NaByejbfqShCo8z_OHXTxMZjOGEVbygC0Z=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-06-19',NULL,false,false)
@@ -106,7 +106,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UCkIimWZ9gBJRamKF0rmPU8w','天宮 こころ / Amamya Ch.',NULL,188000,'https://yt3.ggpht.com/a/AATXAJym8KC2NTRmU_Si1u-BZc2an-WPvnLEVFEPDJZ71Q=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-08-08',NULL,false,false)
 ,('UCPvGypSgfDkVe7JG2KygK7A','竜胆 尊 / Rindou Mikoto',NULL,300000,'https://yt3.ggpht.com/a/AATXAJxWuVy-BIgr9mjrngx1cCgSE35w2eU8FpH_cKGJ=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-08-31',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCGw7lrT-rVZCWHfdG9Frcgg','弦月 藤士郎 / Genzuki Tojiro【にじさんじ】',NULL,73600,'https://yt3.ggpht.com/a/AATXAJzKWRswVKDdkpmE53N-BBvrjnA8XRS4PmwGWRXm=s88-c-k-c0xffffffff-no-rj-mo',true,'2020-04-02',NULL,false,false)
 ,('UCRV9d6YCYIMUszK-83TwxVA','轟京子/kyoko todoroki【にじさんじ】',NULL,74700,'https://yt3.ggpht.com/a/AATXAJwelZdYgMqCFHZC6At8GfAknZVjDx0-7TZ-KyTK=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-06-03',NULL,false,false)
 ,('UC69URn8iP4u8D_zUp-IJ1sg','金魚坂めいろ',NULL,113000,'https://yt3.ggpht.com/a/AATXAJyouy4044LKvcBVDZ-bD3AybxEZRTSXm6JeXg=s88-c-k-c0xffffffff-no-rj-mo',true,'2020-06-30',NULL,false,false)
@@ -118,7 +118,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UCD-miitqNY3nyukJ4Fnf4_A','月ノ美兎',NULL,628000,'https://yt3.ggpht.com/a/AATXAJzloNyJgJauawF6NcFTYc9U0uG00gwCyK40vlBEtg=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-01-31',NULL,false,false)
 ,('UCv1fFr156jc65EMiLbaLImw','剣持刀也',NULL,220000,'https://yt3.ggpht.com/a/AATXAJx3LF3D_djtbBluDXBp2JnWAkGOrOB7TpAVn8f2=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-03-05',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCtAvQ5U0aXyKwm2i4GqFgJg','春崎エアル',NULL,47100,'https://yt3.ggpht.com/a/AATXAJya2ivbMppCkUsE7imXLQ6LgsqnPRH3D8iTibYZ=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-08-09',NULL,false,false)
 ,('UCWz0CSYCxf4MhRKPDm220AQ','【にじさんじ】神田笑一',NULL,141000,'https://yt3.ggpht.com/a/AATXAJzHqC3FHPjH6FVWg1nPx5W-mfUEgPBZKnCo5jft=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-08-09',NULL,false,false)
 ,('UCveZ9Ic1VtcXbsyaBgxPMvg','童田明治-わらべだめいじー-',NULL,208000,'https://yt3.ggpht.com/a/AATXAJyLU2eb8QGZUCWfVo6pgXm5s_U7g2r-NB3cIN5T=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-01-08',NULL,false,false)
@@ -130,7 +130,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UCt9qik4Z-_J-rj3bKKQCeHg','アキくんちゃんネル',NULL,57600,'https://yt3.ggpht.com/a/AATXAJxcU59UwbqYlvcecC06W00k8uSrSKqAf9_Gnedn=s88-c-k-c0xffffffff-no-rj-mo',true,NULL,NULL,false,false)
 ,('UC_T8F2CvqZOwa2kme0WwRhg','にじさんじ公式切り抜きチャンネル【NIJISANJI Official Best Moments】',NULL,94300,'https://yt3.ggpht.com/a/AATXAJxjZQaKlPAbp9cy-Xv_IIjOOVhEyC7dO6PmqP9r=s88-c-k-c0xffffffff-no-rj-mo',true,NULL,NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCTi_rzf5QIkXjhJjkbcAdTg','みどりのさぶちゃんねる',NULL,38200,'https://yt3.ggpht.com/a/AATXAJw72JnG_hO_SVV7HfUzL6Dqr1FrnnpXoemUEzpY=s88-c-k-c0xffffffff-no-rj-mo',true,NULL,NULL,false,false)
 ,('UCaF-mODqAziHivqg0Q61XKQ','鈴木勝の旧Channel【にじさんじ】',NULL,29600,'https://yt3.ggpht.com/a/AATXAJz6vE2_jBt2HYIp9hc88LcQyEDfsWBH7gltSv-Qiw=s88-c-k-c0xffffffff-no-rj-mo',true,NULL,NULL,false,false)
 ,('UCKtHRql9pczvUR_1kCDA6vw','にじさんじ[公式サブch]',NULL,35600,'https://yt3.ggpht.com/a/AATXAJwuTUchRA22C8WLIIWsCLtGVx0LXKo2MsVIUZaD=s88-c-k-c0xffffffff-no-rj-mo',true,NULL,NULL,false,false)
@@ -142,7 +142,7 @@ INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbn
 ,('UCtnO2N4kPTXmyvedjGWdx3Q','レヴィ・エリファ-Levi Elipha-',NULL,150000,'https://yt3.ggpht.com/a/AATXAJwlsnm7NvAv8WPRdYc7rgTjveUsexdeISY1XXsp=s88-c-k-c0xffffffff-no-rj-mo',true,'2019-05-17',NULL,false,false)
 ,('UCRqBKoKuX30ruKAq05pCeRQ','北小路ヒスイ / Kitakoji Hisui 【にじさんじ】',NULL,84800,'https://yt3.ggpht.com/a/AATXAJy3iAehKM9YLuOKLeVyiGqw2HsgIw0-pFv6p_Gy=s88-c-k-c0xffffffff-no-rj-mo',true,'2020-08-06',NULL,false,false)
 ;
-INSERT INTO public.youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
+INSERT INTO youtube_channel (id,title,description,subscriber_count,thumbnail_url,enabled,start_date,end_date,check_expires,scraping) VALUES 
 ('UCoM_XmK45j504hfUWvN06Qg','成瀬 鳴 / Naruse Naru【にじさんじ】',NULL,44300,'https://yt3.ggpht.com/a/AATXAJzJNkf8xDpbTeoaZnZ7XApXuAV3CfFVsIE-VaON=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-09-25',NULL,false,false)
 ,('UCNUgrFCo2Hr_VXc9bEwjcHQ','闇夜乃モルル / Moruru Yamiyono',NULL,62600,'https://yt3.ggpht.com/a/AATXAJyegfssX-oHHJUklc4_Sgdqw5m7AAEXP7vsyX1Sjw=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-07-06','2019-06-27',false,false)
 ,('UCYKP16oMX9KKPbrNgo_Kgag','エルフのえる / にじさんじ所属',NULL,168000,'https://yt3.ggpht.com/a/AATXAJzaYqBcv7TIc2GEfL6QlBI-K9cTmdoqtCbbklwN=s88-c-k-c0xffffffff-no-rj-mo',true,'2018-01-31',NULL,false,false)

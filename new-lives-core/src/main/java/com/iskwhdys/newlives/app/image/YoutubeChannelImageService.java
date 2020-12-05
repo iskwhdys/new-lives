@@ -29,7 +29,7 @@ public class YoutubeChannelImageService {
     private static RestTemplate restTemplate = new RestTemplate();
 
     public void downloadAll() {
-        channelRepository.findByEnabledTrue().forEach(this::download);
+        channelRepository.findByEnabledTrue().parallelStream().forEach(this::download);
     }
 
     public Path getOriginIconPath() {

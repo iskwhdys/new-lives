@@ -1,4 +1,4 @@
-INSERT INTO public.liver_tag (id,"key",value) VALUES 
+INSERT INTO liver_tag (id,"key",value) VALUES 
 ('Devidevi_Devil','youtube','UCP19rQ5V-46B-6ZeLDJqp5w')
 ,('Kanae','youtube','UCz6vnIbgiqFT9xUcD6Bp65Q')
 ,('Ryushen','youtube','UCTi_rzf5QIkXjhJjkbcAdTg')

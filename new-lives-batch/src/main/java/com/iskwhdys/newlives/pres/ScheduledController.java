@@ -67,7 +67,7 @@ public class ScheduledController {
             lock = true;
         }
         log.info("startup Start:" + LocalDateTime.now());
-        updateJob(16, 45);
+        updateJob(16, 30);
         log.info("startup end:" + LocalDateTime.now());
     }
 
@@ -80,7 +80,6 @@ public class ScheduledController {
         }
 
         // TODO Feed外の動画の更新タイミング
-        // TODO 長期間視聴者が0の動画はメン限
 
         youtubeFeedService.updateAllChannelVideo();
         if (min == 0) {

@@ -1,4 +1,4 @@
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('akane-asahina','朝日南アカネ','あさひなあかね','いちから株式会社','にじさんじ','2020Q3','akane_asahina__','UCe_p3YEuYJb8Np0Ip9dk-FQ','2020-08-06',NULL,'https://nijisanji.ichikara.co.jp/member/akane-asahina/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Akane_Asahina.png','https://wikiwiki.jp/nijisanji/朝日南アカネ')
 ,('sango-suo','周央サンゴ','すおうさんご','いちから株式会社','にじさんじ','2020Q3','Suo_Sango','UCL_O_HXgLJx3Auteer0n0pA','2020-08-06',NULL,'https://nijisanji.ichikara.co.jp/member/sango-suo/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Sango_Suo.png','https://wikiwiki.jp/nijisanji/周央サンゴ')
 ,('kohaku-todo','東堂コハク','とうどうこはく','いちから株式会社','にじさんじ','2020Q3','kohaku_todo','UCebT4Aq-3XWb5je1S1FvR_A','2020-08-06',NULL,'https://nijisanji.ichikara.co.jp/member/kohaku-todo','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Kohaku_Todo.png','https://wikiwiki.jp/nijisanji/東堂コハク')
@@ -10,7 +10,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Devidevi_Devil','でびでび・でびる','でびでびでびる','いちから株式会社','にじさんじ','SEEDs二期生','debidebiru_sama','UCjlmCrq4TP1I4xguOtJ-31w','2018-08-31',NULL,'https://nijisanji.ichikara.co.jp/member/debidebi-debiru/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Devidevi_Devil.png','https://wikiwiki.jp/nijisanji/でびでび・でびる')
 ,('Aduchi_Momo','安土桃','あづちもも','いちから株式会社','にじさんじ','SEEDs一期生','momo_azuchi_','UC6TfqY40Xt1Y0J-N18c85qQ','2018-06-03',NULL,'https://nijisanji.ichikara.co.jp/member/Momo-Aduchi/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Aduchi_Momo.png','https://wikiwiki.jp/nijisanji/安土桃')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Belmondo_Banderasu','ベルモンド・バンデラス','べるもんどばんでらす','いちから株式会社','にじさんじ','SEEDs二期生','belmond_b_2434','UCbc8fwhdUNlqi-J99ISYu4A','2018-09-25',NULL,'https://nijisanji.ichikara.co.jp/member/belmond-banderas/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Belmondo_Banderasu.png','https://wikiwiki.jp/nijisanji/ベルモンド・バンデラス')
 ,('Ushimi_Ichigo','宇志海いちご','うしみいちご','いちから株式会社','にじさんじ','二期生','ushimi_ichigo','UCmUjjW5zF1MMOhYUwwwQv9Q','2018-03-05',NULL,'https://nijisanji.ichikara.co.jp/member/Ichigo-Ushimi/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Ushimi_Ichigo.png','https://wikiwiki.jp/nijisanji/宇志海いちご')
 ,('Aizono_Manami','愛園愛美','あいぞのまなみ','いちから株式会社','にじさんじ','2019Q2','manami_aizono','UC0WwEfE-jOM2rzjpdfhTzZA','2019-04-02',NULL,'https://nijisanji.ichikara.co.jp/member/manami-aizono/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Aizono_Manami.png','https://wikiwiki.jp/nijisanji/愛園愛美')
@@ -22,7 +22,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Mashiro','ましろ','ましろ','いちから株式会社','にじさんじ','2019Q4','mashiro2434','UCfki3lMEF6SGBFiFfo9kvUA','2019-12-26',NULL,'https://nijisanji.ichikara.co.jp/member/mashiro/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Mashiro.png','https://wikiwiki.jp/nijisanji/ましろ')
 ,('Jo_Rikiichi','ジョー・力一','じょーりきいち','いちから株式会社','にじさんじ','SEEDs二期生','JoeRikiichi','UChUJbHiTVeGrSkTdBzVfNCQ','2018-08-31',NULL,'https://nijisanji.ichikara.co.jp/member/joe-rikiichi/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Jo_Rikiichi.png','https://wikiwiki.jp/nijisanji/ジョー・力一')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Kudou_Chitose','久遠千歳','くどうちとせ','いちから株式会社','にじさんじ','2019Q1','kudou_chitose','UCP2o-o6u4uX3uq1hXspl0rg','2019-01-08','2019-08-31',NULL,NULL,'https://wikiwiki.jp/nijisanji/久遠千歳')
 ,('Tsukimi_Shizuku','月見しずく','つきみしずく','いちから株式会社','にじさんじ','SEEDs二期生','tukimi_sizuku','UCqQV8xEBWd5SVZBLlYrS_5Q','2018-08-31','2020-01-13',NULL,NULL,'https://wikiwiki.jp/nijisanji/月見しずく')
 ,('Kataribe_Tumugu','語部紡','かたりべつむぐ','いちから株式会社','にじさんじ','2019Q1','KataribeTsumugu','UCufQu4q65z63IgE4cfKs1BQ','2019-01-28',NULL,'https://nijisanji.ichikara.co.jp/member/Tsumugu-Kataribe/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Kataribe_Tumugu.png','https://wikiwiki.jp/nijisanji/語部紡')
@@ -34,7 +34,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Kazaki_Morinaka','森中花咲','もりなかかざき','いちから株式会社','にじさんじ','二期生','KazakiMorinaka','UCtpB6Bvhs1Um93ziEDACQ8g','2018-03-05',NULL,'https://nijisanji.ichikara.co.jp/member/Kazaki-Morinaka/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Kazaki_Morinaka_20190825.png','https://wikiwiki.jp/nijisanji/森中花咲')
 ,('Kanae','叶','かなえ','いちから株式会社','にじさんじ','ゲーマーズ','Kanae_2434','UCspv01oxUFf_MTSipURRhkA','2018-05-02',NULL,'https://nijisanji.ichikara.co.jp/member/kanae/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Kanae.png','https://wikiwiki.jp/nijisanji/叶')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Yashiro_Kizuku','社築','やしろきずく','いちから株式会社','にじさんじ','SEEDs一期生','846kizuQ','UCKMYISTJAQ8xTplUPHiABlA','2018-06-03',NULL,'https://nijisanji.ichikara.co.jp/member/kizuku-yashiro/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Yashiro_Kizuku.png','https://wikiwiki.jp/nijisanji/社築')
 ,('Kuroi_Shiba','黒井しば','くろいしば','いちから株式会社','にじさんじ','SEEDs二期生','BlackShiba_chan','UCmeyo5pRj_6PXG-CsGUuWWg','2018-09-25',NULL,'https://nijisanji.ichikara.co.jp/member/Shiba-Kuroi/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Kuroi_Shiba.png','https://wikiwiki.jp/nijisanji/黒井しば')
 ,('Kana_Sukoya','健屋花那','すこやかな','いちから株式会社','にじさんじ','2019Q3','sukosuko_sukoya','UC8C1LLhBhf_E2IBPLSDJXlQ','2019-09-19',NULL,'https://nijisanji.ichikara.co.jp/member/kana-sukoya/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Kana_Sukoya.png','https://wikiwiki.jp/nijisanji/健屋花那')
@@ -46,7 +46,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Shouichi_Kanda','神田笑一','かんだしょういち','いちから株式会社','にじさんじ','SEEDs二期生','Kanda_Shoichi','UCWz0CSYCxf4MhRKPDm220AQ','2018-08-09',NULL,'https://nijisanji.ichikara.co.jp/member/Shoichi-Kanda/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Shouichi_Kanda_20191114.png','https://wikiwiki.jp/nijisanji/神田笑一')
 ,('Ritsuki_Sakura','桜凛月','さくらりつき','いちから株式会社','にじさんじ','SEEDs二期生','SAKURA_RITSUKI','UCfQVs_KuXeNAlGa3fb8rlnQ','2018-08-31',NULL,'https://nijisanji.ichikara.co.jp/member/Ritsuki-Sakura/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Ritsuki_Sakura_20191122.png','https://wikiwiki.jp/nijisanji/桜凛月')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Setsuna','雪汝','せつな ','いちから株式会社','にじさんじ','ゲーマーズ','setsuna2434','UCfM_A7lE6LkGrzx6_mOtI4g','2018-07-30','2019-10-30',NULL,NULL,'https://wikiwiki.jp/nijisanji/雪汝')
 ,('Hassaku_Yuzu','八朔ゆず','はっさくゆず','いちから株式会社','にじさんじ','SEEDs一期生','839yuzu','UCFaDvgez8USXHiKidt0NtZg','2018-06-03','2019-05-07',NULL,NULL,'https://wikiwiki.jp/nijisanji/八朔ゆず')
 ,('Nakao_Azuma','名伽尾アズマ','なかおあずま','いちから株式会社','にじさんじ','SEEDs一期生','azuma_dazo','UCks41vQN-hN-1KHmpZyPY3A','2018-06-03','2019-05-31',NULL,NULL,'https://wikiwiki.jp/nijisanji/名伽尾アズマ')
@@ -58,7 +58,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Honma_Himawari','本間ひまわり','ほんまひまわり','いちから株式会社','にじさんじ','ゲーマーズ','honmahimawari','UC0g1AE0DOjBYnLhkgoRWN1w','2018-07-06',NULL,'https://nijisanji.ichikara.co.jp/member/himawari-honma/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Honma_Himawari.png','https://wikiwiki.jp/nijisanji/本間ひまわり')
 ,('Ririmu','魔界ノりりむ','まかいのりりむ','いちから株式会社','にじさんじ','ゲーマーズ','makaino_ririmu','UC9EjSJ8pvxtvPdxLOElv73w','2018-07-30',NULL,'https://nijisanji.ichikara.co.jp/member/Makaino-Ririmu/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Ririmu.png','https://wikiwiki.jp/nijisanji/魔界ノりりむ')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Asuka_Hina','飛鳥ひな','あすかひな','いちから株式会社','にじさんじ','SEEDs二期生','hina__asuka','UCiSRx1a2k-0tOg-fs6gAolQ','2018-08-09',NULL,'https://nijisanji.ichikara.co.jp/member/Hina-Asuka/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Asuka_Hina.png','https://wikiwiki.jp/nijisanji/飛鳥ひな')
 ,('Machida_Chima','町田ちま','まちたちま','いちから株式会社','にじさんじ','SEEDs二期生','chima_machita23','UCo7TRj3cS-f_1D9ZDmuTsjw','2018-08-31',NULL,'https://nijisanji.ichikara.co.jp/member/chima-machita/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Machida_Chima.png','https://wikiwiki.jp/nijisanji/町田ちま')
 ,('Hakase_Fuyuki','葉加瀬冬雪','はかせふゆき','いちから株式会社','にじさんじ','2019Q3','hakase_fuyuki','UCGYAYLDE7TZiiC8U6teciDQ','2019-07-03',NULL,'https://nijisanji.ichikara.co.jp/member/fuyuki-hakase/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Hakase_Fuyuki.png','https://wikiwiki.jp/nijisanji/葉加瀬冬雪')
@@ -70,7 +70,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Fushimi_Gaku','伏見ガク','ふしみがく','いちから株式会社','にじさんじ','二期生','gaku_fushimi','UCXU7YYxy_iQd3ulXyO-zC2w','2018-03-05',NULL,'https://nijisanji.ichikara.co.jp/member/Gaku-Fushimi/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Fushimi_Gaku.png','https://wikiwiki.jp/nijisanji/伏見ガク')
 ,('Sou_Hayase','早瀬走','はやせそう','いちから株式会社','にじさんじ','2019Q3','SouHayase','UC2OacIzd2UxGHRGhdHl1Rhw','2019-09-19',NULL,'https://nijisanji.ichikara.co.jp/member/sou-hayase/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Sou_Hayase.png','https://wikiwiki.jp/nijisanji/早瀬走')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Mao_Matsukai','魔使マオ','まつかいまお','いちから株式会社','にじさんじ','2019Q4','matsukai_mao','UCerkculBD7YLc_vOGrF7tKg','2019-10-31',NULL,'https://nijisanji.ichikara.co.jp/member/mao-matsukai/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Mao_Matsukai.png','https://wikiwiki.jp/nijisanji/魔使マオ')
 ,('Tomoe_Shirayuki','白雪巴','しらゆきともえ','いちから株式会社','にじさんじ','2019Q4','Tomoe_Shirayuki','UCuvk5PilcvDECU7dDZhQiEw','2019-11-28',NULL,'https://nijisanji.ichikara.co.jp/member/tomoe-shirayuki/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Tomoe_Shirayuki.png','https://wikiwiki.jp/nijisanji/白雪巴')
 ,('Naraka','奈羅花','ならか','いちから株式会社','にじさんじ','2019Q4','Naraka_2434','UC-o-E6I3IC2q8sAoAuM6Umg','2019-12-26',NULL,'https://nijisanji.ichikara.co.jp/member/naraka/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Naraka.png','https://wikiwiki.jp/nijisanji/奈羅花')
@@ -82,7 +82,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Suzuka_Utako','鈴鹿詩子','すずかうたこ','いちから株式会社','にじさんじ','二期生','suzukautako','UCwokZsOK_uEre70XayaFnzA','2018-03-05',NULL,'https://nijisanji.ichikara.co.jp/member/Utako-Suzuka/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Suzuka_Utako.png','https://wikiwiki.jp/nijisanji/鈴鹿詩子')
 ,('Akabane_Youko','赤羽葉子','あかばねようこ','いちから株式会社','にじさんじ','ゲーマーズ','Youko_Akabane','UCBi8YaVyZpiKWN3_Z0dCTfQ','2018-05-02',NULL,'https://nijisanji.ichikara.co.jp/member/youko-akabane/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Akabane_Youko.png','https://wikiwiki.jp/nijisanji/赤羽葉子')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Masaru_Suzuki','鈴木勝','すずきまさる','いちから株式会社','にじさんじ','SEEDs一期生','Darkness_Eater','UCryOPk2GZ1meIDt53tL30Tw','2018-06-03',NULL,'https://nijisanji.ichikara.co.jp/member/Masaru-Suzuki/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Masaru_Suzuki200121.png','https://wikiwiki.jp/nijisanji/鈴木勝')
 ,('Dola','ドーラ','どーら','いちから株式会社','にじさんじ','SEEDs一期生','___Dola','UC53UDnhAAYwvNO7j_2Ju1cQ','2018-06-03',NULL,'https://nijisanji.ichikara.co.jp/member/dola/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Dola.png','https://wikiwiki.jp/nijisanji/ドーラ')
 ,('Hanabatake_Chaika','花畑チャイカ','はなばたけちゃいか','いちから株式会社','にじさんじ','SEEDs一期生','ZulmIhP1nlMOT5y','UCsFn_ueskBkMCEyzCEqAOvg','2018-06-03',NULL,'https://nijisanji.ichikara.co.jp/member/chaika-hanabatake/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Hanabatake_Chaika.png','https://wikiwiki.jp/nijisanji/花畑チャイカ')
@@ -94,7 +94,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Natsume_Kurusu','来栖夏芽','くるすなつめ','いちから株式会社','にじさんじ','2019Q4','kurusu72me','UCRcLAVTbmx2-iNcXSsupdNA','2019-12-26',NULL,'https://nijisanji.ichikara.co.jp/member/natsume-kurusu/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Natsume_Kurusu.png','https://wikiwiki.jp/nijisanji/来栖夏芽')
 ,('Ibrahim','イブラヒム','いぶらひむ','いちから株式会社','にじさんじ','2020Q1','honmono_ibrahim','UCmZ1Rbthn-6Jm_qOGjYsh5A','2020-01-30',NULL,'https://nijisanji.ichikara.co.jp/member/ibrahim/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Ibrahim.png','https://wikiwiki.jp/nijisanji/イブラヒム')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Melissa_Kinrenka','メリッサ・キンレンカ','めりっさきんれんか','いちから株式会社','にじさんじ','2020Q1','melissa_2434','UCwcyyxn6h9ex4sMXGtpQE_g','2020-01-30',NULL,'https://nijisanji.ichikara.co.jp/member/melissa-kinrenka/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Melissa_Kinrenka.png','https://wikiwiki.jp/nijisanji/メリッサ・キンレンカ')
 ,('Achikita_Chinami','遠北千南','あちきたちなみ','いちから株式会社','にじさんじ','SEEDs二期生','ac1kt','UCuz0vzQgC8LRdS6lVV0UkUg','2018-08-31','2020-03-31','https://nijisanji.ichikara.co.jp/member/Chinami-Achikita/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Achikita_Chinami.png','https://wikiwiki.jp/nijisanji/遠北千南')
 ,('Moira','モイラ','もいら','いちから株式会社','にじさんじ','一期生','Moiramoimoimoi','UCvmppcdYf4HOv-tFQhHHJMA','2018-01-31',NULL,'https://nijisanji.ichikara.co.jp/member/moira/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Moira.png','https://wikiwiki.jp/nijisanji/モイラ')
@@ -106,7 +106,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Kei_Nagao','長尾景','ながおけい','いちから株式会社','にじさんじ','2020Q2','kei_nagao2434','UCXW4MqCQn-jCaxlX-nn-BYg','2020-04-02',NULL,'https://nijisanji.ichikara.co.jp/member/kei-nagao/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Kei_Nagao.png','https://wikiwiki.jp/nijisanji/長尾景')
 ,('Sasaki_Saku','笹木咲','ささきさく','いちから株式会社','にじさんじ','ゲーマーズ','saku_sasaki','UCoztvTULBYd3WmStqYeoHcA','2018-07-06',NULL,'https://nijisanji.ichikara.co.jp/member/Saku-Sasaki/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Sasaki_Saku.png','https://wikiwiki.jp/nijisanji/笹木咲')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Shiina_Yuika','椎名唯華','しいなゆいか','いちから株式会社','にじさんじ','ゲーマーズ','yuika_siina','UC_4tXjqecqox5Uc05ncxpxg','2018-07-30',NULL,'https://nijisanji.ichikara.co.jp/member/Yuika-Shiina/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Shiina_Yuika.png','https://wikiwiki.jp/nijisanji/椎名唯華')
 ,('Kuzuha','葛葉','くずは','いちから株式会社','にじさんじ','ゲーマーズ','Vamp_Kuzu','UCSFCh5NL4qXrAy9u-u2lX3g','2018-07-30',NULL,'https://nijisanji.ichikara.co.jp/member/kuzuha/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Kuzuha.png','https://wikiwiki.jp/nijisanji/葛葉')
 ,('Rion_Takamiya','鷹宮リオン','たかみやりおん','いちから株式会社','にじさんじ','SEEDs二期生','TakamiyaRion','UCV5ZZlLjk5MKGg3L0n0vbzw','2018-08-09',NULL,'https://nijisanji.ichikara.co.jp/member/Rion-Takamiya/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Rion_Takamiya200121.png','https://wikiwiki.jp/nijisanji/鷹宮リオン')
@@ -118,7 +118,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Onomachi_Haruka','小野町春香','おのまちはるか','いちから株式会社','にじさんじ','2019Q1','onomachi_haruka','UCg63a3lk6PNeWhVvMRM_mrQ','2019-01-28',NULL,'https://nijisanji.ichikara.co.jp/member/haruka-onomachi/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Onomachi_Haruka.png','https://wikiwiki.jp/nijisanji/小野町春香')
 ,('Ex_Albio','エクス・アルビオ','えくすあるびお','いちから株式会社','にじさんじ','2019Q2','ex_albio','UCIytNcoz4pWzXfLda0DoULQ','2019-05-17',NULL,'https://nijisanji.ichikara.co.jp/member/ex-albio/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Ex+Albio.png','https://wikiwiki.jp/nijisanji/エクス・アルビオ')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Nui_Sociere','ニュイ・ソシエール','にゅいそしえーる','いちから株式会社','にじさんじ','2019Q2','Nui_Sociere','UCUc8GZfFxtmk7ZwSO7ccQ0g','2019-06-19',NULL,'https://nijisanji.ichikara.co.jp/member/nui-sociere/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Nui_Sociere.png','https://wikiwiki.jp/nijisanji/ニュイ・ソシエール')
 ,('Kagami_Hayato','加賀美ハヤト','かがみはやと','いちから株式会社','にじさんじ','2019Q3','H_KAGAMI2434','UCmovZ2th3Sqpd00F5RdeigQ','2019-07-03',NULL,'https://nijisanji.ichikara.co.jp/member/hayato-kagami/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Kagami_Hayato.png','https://wikiwiki.jp/nijisanji/加賀美ハヤト')
 ,('Mayuzumi_Kai','黛灰','まゆずみかい','いちから株式会社','にじさんじ','2019Q3','mayuzumi_X','UCb5JxV6vKlYVknoJB8TnyYg','2019-07-24',NULL,'https://nijisanji.ichikara.co.jp/member/kai-mayuzumi/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Mayuzumi_Kai.png','https://wikiwiki.jp/nijisanji/黛灰')
@@ -130,7 +130,7 @@ INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,s
 ,('Tojiro_Genzuki','弦月藤士郎','げんづきとうじろう','いちから株式会社','にじさんじ','2020Q2','1O46V','UCGw7lrT-rVZCWHfdG9Frcgg','2020-04-02',NULL,'https://nijisanji.ichikara.co.jp/member/tojiro-genzuki/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Tojiro_Genzuki.png','https://wikiwiki.jp/nijisanji/弦月藤士郎')
 ,('Todoroki_Kyouko','轟京子','とどろききょうこ','いちから株式会社','にじさんじ','SEEDs一期生','KT_seeds','UCRV9d6YCYIMUszK-83TwxVA','2018-06-03',NULL,'https://nijisanji.ichikara.co.jp/member/kyoko-todoroki/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Todoroki_Kyouko.png','https://wikiwiki.jp/nijisanji/轟京子')
 ;
-INSERT INTO public.liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
+INSERT INTO liver (id,"name",kana,company,"group",debut,twitter,youtube,start_date,end_date,official,icon,wiki) VALUES 
 ('Meiro_Kingyozaka','金魚坂めいろ','きんぎょざかめいろ','いちから株式会社','にじさんじ','2020Q3','meiro_oO','UC69URn8iP4u8D_zUp-IJ1sg','2020-06-30',NULL,'https://nijisanji.ichikara.co.jp/member/meiro-kingyozaka/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Meiro_Kingyozaka.png','https://wikiwiki.jp/nijisanji/金魚坂めいろ')
 ,('Chigusa_Nishizono','西園チグサ','にしぞのちぐさ','いちから株式会社','にじさんじ','2020Q3','Chigusa_24zono','UCkngxfPbmGyGl_RIq4FA3MQ','2020-08-06',NULL,'https://nijisanji.ichikara.co.jp/member/chigusa-nishizono/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Chigusa_Nishizono.png','https://wikiwiki.jp/nijisanji/西園チグサ')
 ,('Uduki_Kou','卯月コウ','うづきこう','いちから株式会社','にじさんじ','SEEDs一期生','udukikohh','UC3lNFeJiTq6L3UWoz4g1e-A','2018-06-03',NULL,'https://nijisanji.ichikara.co.jp/member/Kou-Uduki/','https://s3-ap-northeast-1.amazonaws.com/liver-icons/400x400/Uduki_Kou.png','https://wikiwiki.jp/nijisanji/卯月コウ')
