@@ -78,9 +78,9 @@ public class YoutubeFeedService {
         YoutubeFeedEntity feed = getFeed(channel);
         log.info(channel.getId() + ":expire:" + feed.getFormattedLocalDateTimeExpires());
 
-        for (Video feedVideo : feed.getVideos()) {
+        feed.getVideos().parallelStream().forEach(feedVideo -> {
             updateVideo(channel, feedVideo);
-        }
+        });
         feedCache.put(channel.getId(), feed);
     }
 
@@ -90,8 +90,8 @@ public class YoutubeFeedService {
             v = YoutubeVideoLogic.createNewVideo();
         }
         try {
-            if (YoutubeFeedLogic.isUpdated(v, feedVideo)) {
-                log.info(v.getId() + ":" + v.getUpdated() + ":" + v.getTitle());
+            if (true /* YoutubeFeedLogic.isUpdated(v, feedVideo) */) {
+                // log.info(v.getId() + ":" + v.getUpdated() + ":" + v.getTitle());
                 YoutubeFeedLogic.setElementData(channel, v, feedVideo);
                 videoRepository.save(v);
             }

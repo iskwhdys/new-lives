@@ -34,6 +34,7 @@ public class VideoDeliveryLogic {
         t.setType(v.getType());
         t.setStatus(v.getStatus());
         t.setDislikes(v.getDislikes());
+        t.setDuration(v.getDuration());
         t.setId(v.getId());
         t.setLikes(v.getLikes());
         if (YoutubeVideoLogic.isTypeUpload(v)) {
@@ -53,6 +54,7 @@ public class VideoDeliveryLogic {
         t.setType(v.getType());
         t.setStatus(v.getStatus());
         t.setDislikes(v.getDislikes());
+        t.setDuration(v.getDuration());
         t.setId(v.getId());
         t.setLikes(v.getLikes());
         t.setLiveStart(v.getLiveStart());

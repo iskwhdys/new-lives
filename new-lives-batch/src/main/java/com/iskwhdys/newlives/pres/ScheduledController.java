@@ -67,7 +67,7 @@ public class ScheduledController {
             lock = true;
         }
         log.info("startup Start:" + LocalDateTime.now());
-        updateJob(16, 30);
+        updateJob(16, 45);
         log.info("startup end:" + LocalDateTime.now());
     }
 

@@ -27,6 +27,10 @@
 		<exec executable="${mvn.cmd}" failonerror="true">
 			<arg line="-f new-lives-api package spring-boot:repackage" />
 		</exec>
+
+		<exec executable="${mvn.cmd}" failonerror="true">
+			<arg line="-f new-lives-batch package spring-boot:repackage" />
+		</exec>
 	</target>
 
 

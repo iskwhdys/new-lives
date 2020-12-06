@@ -26,8 +26,8 @@ public interface YoutubeVideoRepository
         static final String NATIVE_TOP_ARCHIVE = " and yv.type = 'live' and yv.status = 'archive'                     order by live_start desc limit 30";
         static final String NATIVE_ARCHIVE = "     and yv.type = 'live' and yv.status = 'archive' and live_start < ?1 order by live_start desc limit ?2";
         static final String NATIVE_TOP = "         and yv.type = 'premier' and yv.status = 'reserve' and live_schedule > ?1 order by live_schedule desc limit ?2";
-        static final String NATIVE_SCHEDULE_TOP = "and yv.type = 'live'    and yv.status = 'reserve' and live_schedule between current_timestamp - interval '1 day' and current_timestamp + interval '3 day' order by live_schedule desc ";
-        static final String NATIVE_SCHEDULE = "    and yv.type = 'live'    and yv.status = 'reserve' and live_schedule > ?1 order by live_schedule desc limit ?2";
+        static final String NATIVE_SCHEDULE_TOP = "and yv.type = 'live'    and yv.status = 'reserve' and live_schedule between current_timestamp - interval '1 day' and current_timestamp + interval '3 day' order by live_schedule asc ";
+        static final String NATIVE_SCHEDULE = "    and yv.type = 'live'    and yv.status = 'reserve' and live_schedule > ?1 order by live_schedule asc limit ?2";
 
         @Query(value = NATIVE_TOP_BASE + NATIVE_TOP_LIVE, nativeQuery = true)
         List<YoutubeVideoEntity> nativeTopLive();
@@ -52,4 +52,10 @@ public interface YoutubeVideoRepository
 
         @Query(value = NATIVE_TOP_BASE + NATIVE_SCHEDULE, nativeQuery = true)
         List<YoutubeVideoEntity> nativeTopSchedule(LocalDateTime from, int count);
+
+        @Query(value = "select * from youtube_video yv where yv.privacy_status = 'public' and yv.channel = ?1 order by published desc limit 10", nativeQuery = true)
+        List<YoutubeVideoEntity> nativeChannelVideo(String channelId);
+
+        @Query(value = "select * from youtube_video yv where yv.privacy_status = 'public' and yv.channel = ?1 and published < ?2 order by published desc limit ?3", nativeQuery = true)
+        List<YoutubeVideoEntity> nativeChannelVideo(String channelId, LocalDateTime from, int count);
 }

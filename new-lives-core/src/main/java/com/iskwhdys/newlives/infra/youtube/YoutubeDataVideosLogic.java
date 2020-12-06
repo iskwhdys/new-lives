@@ -37,6 +37,10 @@ public class YoutubeDataVideosLogic {
                 video.setThumbnailUrl(toMap(thumbnails, "default").get("url").toString());
             }
         }
+        if (map.containsKey("publishedAt"))
+            video.setPublished(toDate(map, "publishedAt"));
+        if (map.containsKey("channelId"))
+            video.setChannel(map.get("channelId").toString());
         return video;
     }
 

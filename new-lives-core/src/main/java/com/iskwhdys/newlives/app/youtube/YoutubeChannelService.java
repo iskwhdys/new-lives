@@ -4,7 +4,6 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
-import com.iskwhdys.newlives.domain.youtube.YoutubeChannelEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelRepository;
 import com.iskwhdys.newlives.infra.config.AppConfig;
 import com.iskwhdys.newlives.infra.youtube.YoutubeDataApi;

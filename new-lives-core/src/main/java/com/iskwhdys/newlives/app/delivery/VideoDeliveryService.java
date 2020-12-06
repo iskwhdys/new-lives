@@ -15,6 +15,7 @@ import com.iskwhdys.newlives.domain.delivery.TopScheduleEntity;
 import com.iskwhdys.newlives.domain.delivery.TopScheduleRepository;
 import com.iskwhdys.newlives.domain.delivery.TopUploadEntity;
 import com.iskwhdys.newlives.domain.delivery.TopUploadRepository;
+import com.iskwhdys.newlives.domain.youtube.YoutubeVideoEntity;
 import com.iskwhdys.newlives.domain.youtube.YoutubeVideoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +80,15 @@ public class VideoDeliveryService {
         LocalDateTime time = LocalDateTime.parse(from, DateTimeFormatter.ISO_DATE_TIME);
         return youtubeVideoRepository.nativeTopSchedule(time, count).stream().map(VideoDeliveryLogic::createTopSchedule)
                 .collect(Collectors.toList());
+    }
+
+    public List<YoutubeVideoEntity> nativeChannelVideo(String id) {
+        return youtubeVideoRepository.nativeChannelVideo(id);
+    }
+
+    public List<YoutubeVideoEntity> nativeChannelVideo(String id, String from, int count) {
+
+        LocalDateTime time = LocalDateTime.parse(from, DateTimeFormatter.ISO_DATE_TIME);
+        return youtubeVideoRepository.nativeChannelVideo(id, time, count);
     }
 }

@@ -80,6 +80,7 @@ CREATE TABLE top_upload (
     title varchar(200),
     type varchar(16),
     status varchar(16),
+    duration integer,
     upload_date timestamp(6) without time zone,
     views integer,
     likes integer,

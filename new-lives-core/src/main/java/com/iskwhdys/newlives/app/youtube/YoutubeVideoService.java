@@ -50,7 +50,7 @@ public class YoutubeVideoService {
 
     public void updateStreamVideo() {
         updateVideos(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_STREAM),
-                dataApi::getLiveStreamingDetails);
+                dataApi::getAll);
     }
 
     public void updateReserveVideo() {
@@ -67,19 +67,18 @@ public class YoutubeVideoService {
 
     public void updateUploadedVideo() {
         updateVideos(videoRepository.findByEnabledTrueAndStatusEquals(YoutubeVideoLogic.STATUS_RESERVE),
-                dataApi::getLiveStreamingDetails);
+                dataApi::getAll);
     }
 
     private void updateVideos(List<YoutubeVideoEntity> list, Function<String, Map<String, Object>> dataApiGetFunction) {
         var bannedId = channelRepository.findByEnabledFalse().stream().map(YoutubeChannelEntity::getId)
                 .collect(Collectors.toList());
 
-        for (YoutubeVideoEntity v : list) {
-            if (bannedId.contains(v.getChannel())) {
-                continue;
+        list.stream().forEach(v -> {
+            if (!bannedId.contains(v.getChannel())) {
+                updateVideo(v, dataApiGetFunction);
             }
-            updateVideo(v, dataApiGetFunction);
-        }
+        });
     }
 
     private void updateVideo(YoutubeVideoEntity v, Function<String, Map<String, Object>> dataApiGetFunction) {

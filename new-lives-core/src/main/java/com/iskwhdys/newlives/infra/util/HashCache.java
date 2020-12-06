@@ -34,12 +34,13 @@ public class HashCache<K extends Object, V> {
     }
 
     public void put(K key, V value) {
-        writeTime.put(key, LocalDateTime.now());
-        readTime.put(key, LocalDateTime.now());
-
-        data.put(key, value);
-        if (readTime.size() > capacity) {
-            removeLastReadData();
+        synchronized (writeTime) {
+            writeTime.put(key, LocalDateTime.now());
+            readTime.put(key, LocalDateTime.now());
+            data.put(key, value);
+            if (readTime.size() > capacity) {
+                removeLastReadData();
+            }
         }
     }
 
