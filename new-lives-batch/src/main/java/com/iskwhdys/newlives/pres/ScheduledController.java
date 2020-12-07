@@ -63,12 +63,14 @@ public class ScheduledController {
 
     @PostConstruct
     private void startup() {
-        if (Arrays.stream(environment.getActiveProfiles()).anyMatch(e -> e.equals("local"))) {
-            lock = true;
-        }
+        lock = true;
         log.info("startup Start:" + LocalDateTime.now());
         updateJob(16, 45);
         log.info("startup end:" + LocalDateTime.now());
+
+        if (!Arrays.stream(environment.getActiveProfiles()).anyMatch(e -> e.equals("local"))) {
+            lock = false;
+        }
     }
 
     private void updateJob(int hour, int min) {
@@ -80,6 +82,7 @@ public class ScheduledController {
         }
 
         // TODO Feed外の動画の更新タイミング
+        // TODO 画像の再キャッシュ（都度ファイルのタイムスタンプ見るか
 
         youtubeFeedService.updateAllChannelVideo();
         if (min == 0) {

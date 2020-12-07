@@ -25,11 +25,11 @@
 
 	<target name="pack">
 		<exec executable="${mvn.cmd}" failonerror="true">
-			<arg line="-f new-lives-api package spring-boot:repackage" />
+			<arg line="-f new-lives-api clean package spring-boot:repackage" />
 		</exec>
 
 		<exec executable="${mvn.cmd}" failonerror="true">
-			<arg line="-f new-lives-batch package spring-boot:repackage" />
+			<arg line="-f new-lives-batch clean package spring-boot:repackage" />
 		</exec>
 	</target>
 
