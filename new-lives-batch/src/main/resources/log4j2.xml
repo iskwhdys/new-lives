@@ -10,23 +10,23 @@
     </Properties>
     <appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}, %msg %n" />
+            <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}.%method, %msg %n" />
         </Console>
         <RollingFile name="File" fileName="logs/app.log" filePattern="${daily_gz}.gz">
-            <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}, %msg %n" />
+            <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}.%method, %msg %n" />
             <Policies>
                 <TimeBasedTriggeringPolicy />
             </Policies>
         </RollingFile>
         <RollingFile name="ErrorFile" fileName="logs/app_error.log" filePattern="${error_daily_log}.gz">
             <RegexFilter regex="\[ ERROR \]" />
-            <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}, %msg %n" />
+            <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}.%method, %msg %n" />
             <Policies>
                 <TimeBasedTriggeringPolicy />
             </Policies>
         </RollingFile>
         <RollingFile name="MonthlyFile" fileName="logs/app_monthly.log" filePattern="${monthly_log}.gz">
-            <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}, %msg %n" />
+            <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}.%method, %msg %n" />
             <Policies>
                 <TimeBasedTriggeringPolicy />
             </Policies>

@@ -1,6 +1,7 @@
 package com.iskwhdys.newlives.app.delivery;
 
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 import com.iskwhdys.newlives.domain.delivery.TopArchiveRepository;
 import com.iskwhdys.newlives.domain.delivery.TopLiveRepository;
@@ -37,9 +38,9 @@ public class TopVideoUpdateService {
     public void updateLive() {
         log.info("Start updateLive");
         topLiveRepository.deleteAll();
-        for (var v : youtubeVideoRepository.nativeTopLive()) {
-            topLiveRepository.save(VideoDeliveryLogic.createTopLive(v));
-        }
+        var list = youtubeVideoRepository.nativeTopLive().stream().map(VideoDeliveryLogic::createTopLive)
+                .collect(Collectors.toList());
+        topLiveRepository.saveAll(list);
     }
 
     @Transactional
@@ -50,37 +51,36 @@ public class TopVideoUpdateService {
         if (data.isEmpty()) {
             data = youtubeVideoRepository.nativeUpload(LocalDateTime.now(), 6);
         }
-        for (var v : data) {
-            topUploadRepository.save(VideoDeliveryLogic.createTopUpload(v));
-        }
-
+        var list = data.stream().map(VideoDeliveryLogic::createTopUpload).collect(Collectors.toList());
+        topUploadRepository.saveAll(list);
     }
 
     @Transactional
     public void updateArchive() {
         log.info("Start updateArchive");
         topArchiveRepository.deleteAll();
-        for (var v : youtubeVideoRepository.nativeTopArchive()) {
-            topArchiveRepository.save(VideoDeliveryLogic.createTopArchive(v));
-        }
+        var list = youtubeVideoRepository.nativeTopArchive().stream().map(VideoDeliveryLogic::createTopArchive)
+                .collect(Collectors.toList());
+        topArchiveRepository.saveAll(list);
     }
 
     @Transactional
     public void updatePremier() {
         log.info("Start updatePremier");
         topPremierRepository.deleteAll();
-        for (var v : youtubeVideoRepository.nativePremier(LocalDateTime.now().minusDays(1), 6)) {
-            topPremierRepository.save(VideoDeliveryLogic.createTopPremier(v));
-        }
+        var list = youtubeVideoRepository.nativePremier(LocalDateTime.now().minusDays(1), 6).stream()
+                .map(VideoDeliveryLogic::createTopPremier).collect(Collectors.toList());
+        topPremierRepository.saveAll(list);
     }
 
     @Transactional
     public void updateSchedule() {
         log.info("Start updateSchedule");
         topScheduleRepository.deleteAll();
-        for (var v : youtubeVideoRepository.nativeTopSchedule()) {
-            topScheduleRepository.save(VideoDeliveryLogic.createTopSchedule(v));
-        }
+        var list = youtubeVideoRepository.nativeTopSchedule().stream().map(VideoDeliveryLogic::createTopSchedule)
+                .collect(Collectors.toList());
+        topScheduleRepository.saveAll(list);
+
     }
 
 }

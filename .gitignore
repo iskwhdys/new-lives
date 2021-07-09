@@ -7,3 +7,4 @@ new-lives-admin/src/main/resources/application-local.properties
 .project
 /data
 sitemap.xml
+/logs

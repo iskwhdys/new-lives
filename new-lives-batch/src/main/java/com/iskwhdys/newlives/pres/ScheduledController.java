@@ -83,6 +83,7 @@ public class ScheduledController {
 
         // TODO Feed外の動画の更新タイミング
         // TODO 画像の再キャッシュ（都度ファイルのタイムスタンプ見るか
+        // TODO スケジュール系の読み込み連打
 
         youtubeFeedService.updateAllChannelVideo();
         if (min == 0) {

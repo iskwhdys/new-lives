@@ -39,23 +39,23 @@ public class VideoDeliveryService {
     TopScheduleRepository topScheduleRepository;
 
     public List<TopLiveEntity> getLive() {
-        return topLiveRepository.findAll();
+        return topLiveRepository.findAllOrderByLiveStartDescIdAsc();
     }
 
     public List<TopUploadEntity> getUpdate() {
-        return topUploadRepository.findAll();
+        return topUploadRepository.findAllOrderByPublishedtDescIdAsc();
     }
 
     public List<TopArchiveEntity> getArchive() {
-        return topArchiveRepository.findAll();
+        return topArchiveRepository.findAllOrderByLiveStartDescIdAsc();
     }
 
     public List<TopPremierEntity> getPremier() {
-        return topPremierRepository.findAll();
+        return topPremierRepository.findAllOrderByLiveScheduleAscIdAsc();
     }
 
     public List<TopScheduleEntity> getSchedule() {
-        return topScheduleRepository.findAll();
+        return topScheduleRepository.findAllOrderByLiveScheduleAscIdAsc();
     }
 
     public List<TopUploadEntity> getUpdate(String from, int count) {
