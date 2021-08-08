@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface TopUploadRepository
         extends JpaRepository<TopUploadEntity, String>, JpaSpecificationExecutor<TopUploadEntity> {
-    List<TopUploadEntity> findAllOrderByPublishedtDescIdAsc();
+    List<TopUploadEntity> findAllByOrderByUploadDateDescIdAsc();
 }

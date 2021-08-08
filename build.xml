@@ -16,7 +16,6 @@
 		</exec>
 	</target>
 
-
 	<target name="migrate">
 		<exec executable="${mvn.cmd}" failonerror="true">
 			<arg line="-f new-lives-entity -P reveng"/>
@@ -24,6 +23,10 @@
 	</target>
 
 	<target name="pack">
+		<exec executable="${mvn.cmd}" failonerror="true">
+			<arg line="install -Dmaven.test.skip=${maven.test.skip}" />
+		</exec>
+
 		<exec executable="${mvn.cmd}" failonerror="true">
 			<arg line="-f new-lives-api clean package spring-boot:repackage" />
 		</exec>

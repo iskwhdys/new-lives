@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface TopPremierRepository
         extends JpaRepository<TopPremierEntity, String>, JpaSpecificationExecutor<TopPremierEntity> {
-    List<TopPremierEntity> findAllOrderByLiveScheduleAscIdAsc();
+    List<TopPremierEntity> findAllByOrderByLiveScheduleAscIdAsc();
 
 }

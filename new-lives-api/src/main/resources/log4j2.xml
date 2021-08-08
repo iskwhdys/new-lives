@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="OFF">
     <Properties>
-        <Property name="app_name">new-lives-batch</Property>
+        <Property name="app_name">new-lives-api</Property>
         <Property name="date">%d{yyyy-MM-dd HH:mm:ss.SSS}</Property>
         <Property name="daily_log">logs/${app_name}_%d{yyyy-MM-dd}.log</Property>
         <Property name="daily_gz">logs/%d{yyyyMM}/${app_name}_%d{yyyy-MM-dd}.log</Property>

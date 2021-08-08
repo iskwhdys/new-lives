@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface TopScheduleRepository
         extends JpaRepository<TopScheduleEntity, String>, JpaSpecificationExecutor<TopScheduleEntity> {
-    List<TopScheduleEntity> findAllOrderByLiveScheduleAscIdAsc();
+    List<TopScheduleEntity> findAllByOrderByLiveScheduleAscIdAsc();
 
 }

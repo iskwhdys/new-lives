@@ -53,7 +53,7 @@ CREATE TABLE liver (
     end_date date,
 
     official varchar(200),
-    icon varchar(200),
+    icon varchar(400),
     wiki varchar(200)
 );
 CREATE TABLE liver_tag (
