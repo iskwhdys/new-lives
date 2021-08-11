@@ -19,7 +19,7 @@
             </Policies>
         </RollingFile>
         <RollingFile name="ErrorFile" fileName="logs/${app_name}_error.log" filePattern="${error_daily_log}.gz">
-            <RegexFilter regex="\[ ERROR \]" />
+            <ThresholdFilter level="error" />
             <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}, %msg %n" />
             <Policies>
                 <TimeBasedTriggeringPolicy />

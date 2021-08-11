@@ -37,6 +37,15 @@
 	</target>
 
 
+	<target name="pack-batch">
+		<exec executable="${mvn.cmd}" failonerror="true">
+			<arg line="install -Dmaven.test.skip=${maven.test.skip}" />
+		</exec>
+		<exec executable="${mvn.cmd}" failonerror="true">
+			<arg line="-f new-lives-batch clean package spring-boot:repackage" />
+		</exec>
+	</target>
+
 
 
 </project>

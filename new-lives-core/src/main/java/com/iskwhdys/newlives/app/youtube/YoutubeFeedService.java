@@ -1,6 +1,7 @@
 package com.iskwhdys.newlives.app.youtube;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +45,9 @@ public class YoutubeFeedService {
 
     public void updateAllChannelVideo() {
 
-        channelRepository.findByEnabledTrue().stream().forEach(channel -> {
+        var enabledChannels = channelRepository.findByEnabledTrueAndEndDateIsNullOrEndDateAfter(LocalDate.now());
+        log.info("通常チャンネル更新:" + enabledChannels.size());
+        for (YoutubeChannelEntity channel : enabledChannels) {
             try {
                 update(channel);
             } catch (Exception e) {
@@ -53,8 +56,11 @@ public class YoutubeFeedService {
                 channel.setEnabled(false);
                 channelRepository.save(channel);
             }
-        });
-        channelRepository.findByEnabledFalse().stream().forEach(channel -> {
+        }
+
+        var disabledChannels = channelRepository.findByEnabledFalseAndEndDateIsNullOrEndDateAfter(LocalDate.now());
+        log.info("無効チャンネル更新:" + disabledChannels.size());
+        for (YoutubeChannelEntity channel : disabledChannels) {
             try {
                 update(channel);
                 channel.setEnabled(true);
@@ -62,7 +68,7 @@ public class YoutubeFeedService {
             } catch (Exception e) {
                 // BAN解除確認用
             }
-        });
+        }
     }
 
     private YoutubeFeedEntity getFeed(YoutubeChannelEntity channel) throws JDOMException, IOException {

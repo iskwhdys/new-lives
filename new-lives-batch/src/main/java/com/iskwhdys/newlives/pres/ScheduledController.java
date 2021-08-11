@@ -68,10 +68,17 @@ public class ScheduledController {
         updateJob(16, 45);
         log.info("startup end:" + LocalDateTime.now());
 
-        if (!Arrays.stream(environment.getActiveProfiles()).anyMatch(e -> e.equals("local"))) {
+        if (Arrays.stream(environment.getActiveProfiles()).noneMatch(e -> e.equals("local"))) {
             lock = false;
         }
     }
+
+    // TODO Feed外の動画の更新タイミング
+    // TODO 画像の再キャッシュ（都度ファイルのタイムスタンプ見るか
+    // TODO スケジュール系の読み込み連打
+    // TODO 公式サイトの長方形ライバー画像サイズへの対応
+    // TODO xmlの403対応（毎分だとなりやすい？）
+    // TODO マスタへの追加の即時反映（チャンネル追加とか）
 
     private void updateJob(int hour, int min) {
         if (hour == 16 && min == 45) {
@@ -81,11 +88,10 @@ public class ScheduledController {
             youtubeVideoService.updateReserveVideo();
         }
 
-        // TODO Feed外の動画の更新タイミング
-        // TODO 画像の再キャッシュ（都度ファイルのタイムスタンプ見るか
-        // TODO スケジュール系の読み込み連打
+        if (min % 3 == 0) {
+            youtubeFeedService.updateAllChannelVideo();
+        }
 
-        youtubeFeedService.updateAllChannelVideo();
         if (min == 0) {
             // 60分間隔
             youtubeVideoService.updateStreamVideo();

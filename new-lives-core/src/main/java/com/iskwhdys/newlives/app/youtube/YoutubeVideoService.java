@@ -1,5 +1,6 @@
 package com.iskwhdys.newlives.app.youtube;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -71,8 +72,8 @@ public class YoutubeVideoService {
     }
 
     private void updateVideos(List<YoutubeVideoEntity> list, Function<String, Map<String, Object>> dataApiGetFunction) {
-        var bannedId = channelRepository.findByEnabledFalse().stream().map(YoutubeChannelEntity::getId)
-                .collect(Collectors.toList());
+        var bannedId = channelRepository.findByEnabledFalseAndEndDateIsNullOrEndDateAfter(LocalDate.now()).stream()
+                .map(YoutubeChannelEntity::getId).collect(Collectors.toList());
 
         list.stream().forEach(v -> {
             if (!bannedId.contains(v.getChannel())) {

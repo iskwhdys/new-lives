@@ -1,5 +1,6 @@
 package com.iskwhdys.newlives.pres;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelEntity;
@@ -21,7 +22,7 @@ public class ChannelController {
 
   @GetMapping("")
   public List<YoutubeChannelEntity> getChannel() {
-    return youtubeChannelRepository.findByEnabledTrue();
+    return youtubeChannelRepository.findByEndDateIsNullOrEndDateAfter(LocalDate.now());
   }
 
   @GetMapping("/{id}")

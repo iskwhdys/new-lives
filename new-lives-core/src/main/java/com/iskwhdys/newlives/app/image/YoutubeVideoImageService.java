@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.iskwhdys.newlives.app.Constants;
@@ -63,7 +64,7 @@ public class YoutubeVideoImageService {
     }
 
     public void downloadFeedThumbnail() {
-        for (var channel : channelRepository.findByEnabledTrue()) {
+        for (var channel : channelRepository.findByEnabledTrueAndEndDateIsNullOrEndDateAfter(LocalDate.now())) {
             youtubeFeedService.getFeedVideoIdList(channel).parallelStream()
                     .forEach(id -> videoRepository.findById(id).ifPresent(this::downloadThumbnail));
         }

@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
 
 import com.iskwhdys.newlives.app.Constants;
 import com.iskwhdys.newlives.domain.youtube.YoutubeChannelEntity;
@@ -29,7 +30,8 @@ public class YoutubeChannelImageService {
     private static RestTemplate restTemplate = new RestTemplate();
 
     public void downloadAll() {
-        channelRepository.findByEnabledTrue().parallelStream().forEach(this::download);
+        channelRepository.findByEnabledTrueAndEndDateIsNullOrEndDateAfter(LocalDate.now()).parallelStream()
+                .forEach(this::download);
     }
 
     public Path getOriginIconPath() {

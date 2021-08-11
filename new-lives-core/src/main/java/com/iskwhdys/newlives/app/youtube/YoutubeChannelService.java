@@ -1,5 +1,6 @@
 package com.iskwhdys.newlives.app.youtube;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -30,7 +31,7 @@ public class YoutubeChannelService {
     }
 
     public void updateAllChannelInfo() {
-        channelRepository.findAll().parallelStream().forEach(channel -> {
+        for (var channel : channelRepository.findByEndDateIsNullOrEndDateAfter(LocalDate.now())) {
             try {
                 log.info(channel.getId() + ":" + channel.getTitle());
                 Map<String, Object> items = dataApi.channels(channel.getId(), "snippet", "statistics");
@@ -39,6 +40,6 @@ public class YoutubeChannelService {
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
-        });
+        }
     }
 }
