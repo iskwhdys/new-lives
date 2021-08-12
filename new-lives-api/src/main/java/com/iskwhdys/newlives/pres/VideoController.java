@@ -20,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/video")
+@Slf4j
 public class VideoController {
   @Autowired
   VideoDeliveryService videoDeloveryService;
@@ -35,6 +38,7 @@ public class VideoController {
   @GetMapping("/upload")
   public List<TopUploadEntity> getUpload(@RequestParam(required = false) String from,
       @RequestParam(required = false) Integer count) {
+    log.debug("getUpload from:{}, count:{}", from, count);
     if (StringUtils.isEmpty(from)) {
       return videoDeloveryService.getUpdate();
     }
@@ -47,6 +51,7 @@ public class VideoController {
   @GetMapping("/archive")
   public List<TopArchiveEntity> getArchive(@RequestParam(required = false) String from,
       @RequestParam(required = false) Integer count) {
+    log.debug("getArchive from:{}, count:{}", from, count);
     if (StringUtils.isEmpty(from)) {
       return videoDeloveryService.getArchive();
     }
@@ -59,6 +64,8 @@ public class VideoController {
   @GetMapping("/premier")
   public List<TopPremierEntity> getPremier(@RequestParam(required = false) String from,
       @RequestParam(required = false) Integer count) {
+    log.debug("getPremier from:{}, count:{}", from, count);
+
     if (StringUtils.isEmpty(from)) {
       return videoDeloveryService.getPremier();
     }
@@ -71,6 +78,8 @@ public class VideoController {
   @GetMapping("/schedule")
   public List<TopScheduleEntity> getSchedule(@RequestParam(required = false) String from,
       @RequestParam(required = false) Integer count) {
+    log.debug("getSchedule from:{}, count:{}", from, count);
+
     if (StringUtils.isEmpty(from)) {
       return videoDeloveryService.getSchedule();
     }
@@ -83,6 +92,8 @@ public class VideoController {
   @GetMapping("/channel/{id}")
   public List<YoutubeVideoEntity> getSchedule(@PathVariable String id, @RequestParam(required = false) String from,
       @RequestParam(required = false) Integer count) {
+    log.debug("getSchedule id:{}, from:{}, count:{}", id, from, count);
+
     if (StringUtils.isEmpty(from)) {
       return videoDeloveryService.nativeChannelVideo(id);
     }

@@ -75,9 +75,7 @@ public class ScheduledController {
 
     // TODO Feed外の動画の更新タイミング
     // TODO 画像の再キャッシュ（都度ファイルのタイムスタンプ見るか
-    // TODO スケジュール系の読み込み連打
     // TODO 公式サイトの長方形ライバー画像サイズへの対応
-    // TODO xmlの403対応（毎分だとなりやすい？）
     // TODO マスタへの追加の即時反映（チャンネル追加とか）
 
     private void updateJob(int hour, int min) {

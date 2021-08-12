@@ -5,8 +5,8 @@
         <Property name="date">%d{yyyy-MM-dd HH:mm:ss.SSS}</Property>
         <Property name="daily_log">logs/${app_name}_%d{yyyy-MM-dd}.log</Property>
         <Property name="daily_gz">logs/%d{yyyyMM}/${app_name}_%d{yyyy-MM-dd}.log</Property>
-        <Property name="monthly_log">logs/${app_name}_monthly_%d{yyyy-MM}.log</Property>
-        <Property name="error_daily_log">logs/${app_name}_error_%d{yyyy-MM-dd}.log</Property>
+        <Property name="monthly_gz">logs/%d{yyyyMM}/${app_name}_monthly_%d{yyyy-MM}.log</Property>
+        <Property name="error_daily_gz">logs/%d{yyyyMM}/${app_name}_error_%d{yyyy-MM-dd}.log</Property>
     </Properties>
     <appenders>
         <Console name="Console" target="SYSTEM_OUT">
@@ -18,14 +18,14 @@
                 <TimeBasedTriggeringPolicy />
             </Policies>
         </RollingFile>
-        <RollingFile name="ErrorFile" fileName="logs/${app_name}_error.log" filePattern="${error_daily_log}.gz">
-            <RegexFilter regex="\[ ERROR \]" />
+        <RollingFile name="ErrorFile" fileName="logs/${app_name}_error.log" filePattern="${error_daily_gz}.gz">
+            <ThresholdFilter level="error" />
             <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}, %msg %n" />
             <Policies>
                 <TimeBasedTriggeringPolicy />
             </Policies>
         </RollingFile>
-        <RollingFile name="MonthlyFile" fileName="logs/${app_name}_monthly.log" filePattern="${monthly_log}.gz">
+        <RollingFile name="MonthlyFile" fileName="logs/${app_name}_monthly.log" filePattern="${monthly_gz}.gz">
             <PatternLayout pattern="${date}, [${app_name}], [ %-5level ], %logger{10}, %msg %n" />
             <Policies>
                 <TimeBasedTriggeringPolicy />
