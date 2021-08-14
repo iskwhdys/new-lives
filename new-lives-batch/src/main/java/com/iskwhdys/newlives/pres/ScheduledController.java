@@ -75,7 +75,6 @@ public class ScheduledController {
 
     // TODO Feed外の動画の更新タイミング
     // TODO 画像の再キャッシュ（都度ファイルのタイムスタンプ見るか→batchからapiにrestで通知はどうか)
-    // TODO 公式サイトの長方形ライバー画像サイズへの対応
     // TODO マスタへの追加の即時反映（チャンネル追加とか）
     // TODO 攻撃？の対処 2021-08-12 15:09:35.829, [new-lives-api], [ WARN ],
     // org.springframework.context.support.DefaultLifecycleProcessor, Failed to stop

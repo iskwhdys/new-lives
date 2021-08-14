@@ -87,7 +87,7 @@ public class YoutubeVideoImageService {
 
             Path resize = getThumnailPath().resolve(v.getId() + Constants.IMAGE_EXT);
             bytes = ImageEditor.resize(bytes, 176, 132, 1.0f);
-            bytes = ImageEditor.trim(bytes, 176, 98, 1.0f);
+            bytes = ImageEditor.trim(bytes, 176, 98, 1.0f, true);
             Files.createDirectories(resize.getParent());
             Files.write(resize, bytes, StandardOpenOption.CREATE);
         } catch (Exception e) {

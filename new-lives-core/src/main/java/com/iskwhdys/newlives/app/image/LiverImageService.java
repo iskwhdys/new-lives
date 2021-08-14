@@ -56,12 +56,14 @@ public class LiverImageService {
 
             Path resize = getWhiteIconPath().resolve(l.getId() + Constants.IMAGE_EXT);
             Files.createDirectories(resize.getParent());
-            Files.write(resize, ImageEditor.resize(ImageEditor.png2jpg(bytes, Color.WHITE), 64, 64, 1.0f),
+            Files.write(resize, ImageEditor
+                    .resize(ImageEditor.trimSquare(ImageEditor.png2jpg(bytes, Color.WHITE), 1.0f, false), 64, 64, 1.0f),
                     StandardOpenOption.CREATE);
 
             resize = getBlackIconPath().resolve(l.getId() + Constants.IMAGE_EXT);
             Files.createDirectories(resize.getParent());
-            Files.write(resize, ImageEditor.resize(ImageEditor.png2jpg(bytes, Color.BLACK), 64, 64, 1.0f),
+            Files.write(resize, ImageEditor
+                    .resize(ImageEditor.trimSquare(ImageEditor.png2jpg(bytes, Color.BLACK), 1.0f, false), 64, 64, 1.0f),
                     StandardOpenOption.CREATE);
 
         } catch (Exception e) {
