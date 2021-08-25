@@ -90,7 +90,13 @@ public class YoutubeVideoLogic {
             return STATUS_ARCHIVE;
         }
         if (v.getLiveEnd() == null && v.getLiveStart() != null) {
-            return STATUS_STREAM;
+            if (TYPE_PREMIER.equals(v.getType())
+                    && LocalDateTime.now().isAfter(v.getLiveStart().plusSeconds(v.getDuration()))) {
+                // 稀にliveEndが設定されないプレミア公開がある。それらは開始予定+動画時間経過後アーカイブとする。
+                return STATUS_ARCHIVE;
+            } else {
+                return STATUS_STREAM;
+            }
         }
         return STATUS_RESERVE;
     }

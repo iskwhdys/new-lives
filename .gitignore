@@ -8,3 +8,5 @@ new-lives-admin/src/main/resources/application-local.properties
 /data
 sitemap.xml
 /logs
+new-lives-batch/data
+new-lives-batch/logs

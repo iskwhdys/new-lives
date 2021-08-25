@@ -19,8 +19,8 @@ public interface YoutubeVideoRepository
         List<YoutubeVideoEntity> findByEnabledTrueAndStatusEqualsAndLiveScheduleBetween(String status,
                         LocalDateTime since, LocalDateTime until);
 
-        static final String NATIVE_TOP_BASE = "select * from youtube_video yv where yv.enabled = true and yv.privacy_status = 'public' and yv.channel in (select youtube from liver where \"group\" = 'にじさんじ') ";
-        static final String NATIVE_TOP_LIVE = "    and yv.type = 'live' and yv.status = 'stream' order by live_start desc, id";
+        static final String NATIVE_TOP_BASE = "select * from youtube_video yv where yv.enabled = true and yv.privacy_status = 'public' ";
+        static final String NATIVE_TOP_LIVE = "    and yv.status = 'stream' order by live_start desc, id";
         static final String NATIVE_TOP_UPLOAD = "  and (yv.type = 'upload' or (yv.type = 'premier' and yv.status = 'archive')) and published > current_timestamp - interval '1 day' order by published desc, id";
         static final String NATIVE_UPLOAD = "      and (yv.type = 'upload' or (yv.type = 'premier' and yv.status = 'archive')) and published < ?1 order by published desc, id limit ?2";
         static final String NATIVE_TOP_ARCHIVE = " and yv.type = 'live' and yv.status = 'archive'                     order by live_start desc, id limit 30";

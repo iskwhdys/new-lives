@@ -1,5 +1,10 @@
 package com.iskwhdys.newlives.app.image;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -65,7 +70,7 @@ public class YoutubeVideoImageService {
 
     public void downloadFeedThumbnail() {
         for (var channel : channelRepository.findByEnabledTrueAndEndDateIsNullOrEndDateAfter(LocalDate.now())) {
-            youtubeFeedService.getFeedVideoIdList(channel).parallelStream()
+            youtubeFeedService.getFeedVideoIdList(channel)
                     .forEach(id -> videoRepository.findById(id).ifPresent(this::downloadThumbnail));
         }
     }
@@ -95,6 +100,28 @@ public class YoutubeVideoImageService {
             v.setEnabled(false);
             videoRepository.save(v);
         }
+    }
+
+    private boolean isUpdated(String url) {
+
+        HttpClient cli = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
+        // ②HttpRequestを生成
+        HttpRequest req = HttpRequest.newBuilder().uri(URI.create(url)).build();
+
+        // ③リクエストを送信
+        try {
+            var res = cli.send(req, HttpResponse.BodyHandlers.ofString());
+
+            log.info(res.headers().toString());
+        } catch (IOException | InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        // restTemplate.getForObject(url, byte[].class, );
+
+        return true;
+
     }
 
 }

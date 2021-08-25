@@ -20,6 +20,7 @@ import com.iskwhdys.newlives.infra.youtube.YoutubeFeedEntity.Video;
 import org.jdom2.JDOMException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,9 +35,25 @@ public class YoutubeFeedService {
 
     Map<String, YoutubeFeedEntity> feedCache = new HashMap<>();
 
+    LocalDateTime skipStartDate = LocalDateTime.MIN;
+
     public List<String> getFeedVideoIdList(YoutubeChannelEntity channel) {
         try {
+            if (skipStartDate.isAfter(LocalDateTime.now())) {
+                log.info(skipStartDate + "までFeedの更新を停止してます。");
+                return List.of();
+            }
             return getFeed(channel).getVideos().stream().map(Video::getId).collect(Collectors.toList());
+        } catch (HttpClientErrorException e) {
+            if (e.getRawStatusCode() == 403) {
+                log.warn("403 " + channel.getId() + " " + channel.getTitle());
+                skipStartDate = LocalDateTime.now().plusMinutes(30);
+                log.warn("処理を中断し、" + skipStartDate + "までFeedの更新を停止します。");
+                return List.of();
+            } else {
+                log.error(e.getMessage(), e);
+                return List.of();
+            }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return List.of();
@@ -44,12 +61,27 @@ public class YoutubeFeedService {
     }
 
     public void updateAllChannelVideo() {
-
+        if (skipStartDate.isAfter(LocalDateTime.now())) {
+            log.info(skipStartDate + "までFeedの更新を停止してます。");
+            return;
+        }
         var enabledChannels = channelRepository.findByEnabledTrueAndEndDateIsNullOrEndDateAfter(LocalDate.now());
         log.info("通常チャンネル更新:" + enabledChannels.size());
         for (YoutubeChannelEntity channel : enabledChannels) {
             try {
                 update(channel);
+            } catch (HttpClientErrorException e) {
+                if (e.getRawStatusCode() == 403) {
+                    log.warn("403 " + channel.getId() + " " + channel.getTitle());
+                    skipStartDate = LocalDateTime.now().plusMinutes(30);
+                    log.warn("処理を中断し、" + skipStartDate + "までFeedの更新を停止します。");
+                    return;
+                } else {
+                    log.error(channel.getId() + " " + channel.getTitle());
+                    log.error(e.getMessage(), e);
+                    channel.setEnabled(false);
+                    channelRepository.save(channel);
+                }
             } catch (Exception e) {
                 log.error(channel.getId() + " " + channel.getTitle());
                 log.error(e.getMessage(), e);
@@ -82,9 +114,10 @@ public class YoutubeFeedService {
 
     private void update(YoutubeChannelEntity channel) throws JDOMException, IOException {
         YoutubeFeedEntity feed = getFeed(channel);
-        log.info(channel.getId() + ":expire:" + feed.getFormattedLocalDateTimeExpires());
+        // log.info(channel.getId() + ":expire:" +
+        // feed.getFormattedLocalDateTimeExpires());
 
-        feed.getVideos().parallelStream().forEach(feedVideo -> {
+        feed.getVideos().forEach(feedVideo -> {
             updateVideo(channel, feedVideo);
         });
         feedCache.put(channel.getId(), feed);
