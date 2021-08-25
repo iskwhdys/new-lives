@@ -64,6 +64,9 @@ public class ScheduledController {
     @PostConstruct
     private void startup() {
         lock = true;
+        if (Arrays.stream(environment.getActiveProfiles()).anyMatch(e -> e.equals("test"))) {
+            return;
+        }
         log.info("startup Start:" + LocalDateTime.now());
         updateJob(16, 45);
         log.info("startup end:" + LocalDateTime.now());
@@ -73,7 +76,8 @@ public class ScheduledController {
         }
     }
 
-    // TODO Feed外の動画の更新タイミング
+    // TODO Feed外の動画の更新タイミング（videoAPI）
+    // TODO 既存のFeed外＆過去に取得していない動画の更新（searchAPI）
     // TODO 画像の再キャッシュ（都度ファイルのタイムスタンプ見るか→batchからapiにrestで通知はどうか)
     // TODO マスタへの追加の即時反映（チャンネル追加とか）
     // TODO 攻撃？の対処 2021-08-12 15:09:35.829, [new-lives-api], [ WARN ],
@@ -89,7 +93,7 @@ public class ScheduledController {
             youtubeVideoService.updateReserveVideo();
         }
 
-        if (min % 3 == 0) {
+        if (min % 5 == 0) {
             youtubeFeedService.updateAllChannelVideo();
         }
 
