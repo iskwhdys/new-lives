@@ -14,5 +14,6 @@ public class LiverResponse extends LiverEntity {
     private static final long serialVersionUID = -9126434746762443929L;
     private String twitter2;
     private String youtube2;
+    private Integer subscriberCount;
 
 }

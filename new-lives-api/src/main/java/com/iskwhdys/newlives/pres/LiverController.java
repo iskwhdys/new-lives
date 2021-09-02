@@ -5,7 +5,10 @@ import java.util.stream.Collectors;
 
 import com.iskwhdys.newlives.domain.liver.LiverEntity;
 import com.iskwhdys.newlives.domain.liver.LiverRepository;
+import com.iskwhdys.newlives.domain.liver.LiverTagEntity;
 import com.iskwhdys.newlives.domain.liver.LiverTagRepository;
+import com.iskwhdys.newlives.domain.youtube.YoutubeChannelEntity;
+import com.iskwhdys.newlives.domain.youtube.YoutubeChannelRepository;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +27,18 @@ public class LiverController {
   LiverRepository liverRepository;
   @Autowired
   LiverTagRepository liverTagRepository;
+  @Autowired
+  YoutubeChannelRepository youtubeChannelRepository;
 
   @GetMapping("")
   public List<LiverEntity> getLiver(@RequestParam(required = false) String channelId) {
     if (StringUtils.isEmpty(channelId)) {
-      return liverRepository.findAll().stream().map(this::getLiverData).collect(Collectors.toList());
+      var channels = youtubeChannelRepository.findAll();
+      var tags = liverTagRepository.findAll();
+      return liverRepository.findAll().stream()
+          .map(l -> getLiverData(l,
+              channels.stream().filter(c -> c.getId().equals(l.getYoutube())).findFirst().orElse(null), tags))
+          .collect(Collectors.toList());
     } else {
       return List.of(getLiverDataForChannelId(channelId));
     }
@@ -43,18 +53,19 @@ public class LiverController {
     var l = liverRepository.findByYoutube(channelId);
     if (l.isEmpty())
       return null;
-    return getLiverData(l.get());
+    return getLiverData(l.get(), youtubeChannelRepository.findById(l.get().getYoutube()).orElse(null),
+        liverTagRepository.findAll());
   }
 
   private LiverResponse getLiverDataForId(String id) {
     var l = liverRepository.findById(id);
     if (l.isEmpty())
       return null;
-    return getLiverData(l.get());
+    return getLiverData(l.get(), youtubeChannelRepository.findById(l.get().getYoutube()).orElse(null),
+        liverTagRepository.findAll());
   }
 
-  private LiverResponse getLiverData(LiverEntity l) {
-    var tags = liverTagRepository.findByIdId(l.getId());
+  private LiverResponse getLiverData(LiverEntity l, YoutubeChannelEntity y, List<LiverTagEntity> tags) {
     var r = new LiverResponse();
     r.setCompany(l.getCompany());
     r.setDebut(l.getDebut());
@@ -69,6 +80,7 @@ public class LiverController {
     r.setTwitter(l.getTwitter());
     r.setWiki(l.getWiki());
     r.setYoutube(l.getYoutube());
+    r.setSubscriberCount(y.getSubscriberCount());
 
     var liverTag = tags.stream().filter(t -> t.getId().getId().equals(r.getId())).collect(Collectors.toList());
     for (var tag : liverTag) {

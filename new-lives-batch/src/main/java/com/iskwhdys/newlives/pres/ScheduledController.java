@@ -93,9 +93,7 @@ public class ScheduledController {
             youtubeVideoService.updateReserveVideo();
         }
 
-        if (min % 5 == 0) {
-            youtubeFeedService.updateAllChannelVideo();
-        }
+        youtubeFeedService.updateAllChannelVideo();
 
         if (min == 0) {
             // 60分間隔
