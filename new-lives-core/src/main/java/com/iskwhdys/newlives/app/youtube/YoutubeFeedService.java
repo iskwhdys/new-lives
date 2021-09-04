@@ -109,12 +109,21 @@ public class YoutubeFeedService {
                 && System.currentTimeMillis() < feed.getExpires()) {
             return feed;
         }
-        return YoutubeFeedApi.download(channel.getId());
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage(), e);
+        }
+
+        String expires = (feed == null ? "" : feed.getFormattedLocalDateTimeExpires() + " - ");
+        feed = YoutubeFeedApi.download(channel.getId());
+        log.info("Feed download " + channel.getId() + ":expire:" + expires + feed.getFormattedLocalDateTimeExpires());
+        return feed;
     }
 
     private void update(YoutubeChannelEntity channel) throws JDOMException, IOException {
         YoutubeFeedEntity feed = getFeed(channel);
-        log.info(channel.getId() + ":expire:" + feed.getFormattedLocalDateTimeExpires());
 
         feed.getVideos().forEach(feedVideo -> {
             updateVideo(channel, feedVideo);

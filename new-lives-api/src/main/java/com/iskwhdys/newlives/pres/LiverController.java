@@ -33,12 +33,8 @@ public class LiverController {
   @GetMapping("")
   public List<LiverEntity> getLiver(@RequestParam(required = false) String channelId) {
     if (StringUtils.isEmpty(channelId)) {
-      var channels = youtubeChannelRepository.findAll();
       var tags = liverTagRepository.findAll();
-      return liverRepository.findAll().stream()
-          .map(l -> getLiverData(l,
-              channels.stream().filter(c -> c.getId().equals(l.getYoutube())).findFirst().orElse(null), tags))
-          .collect(Collectors.toList());
+      return liverRepository.findAll().stream().map(l -> getLiverData(l, tags)).collect(Collectors.toList());
     } else {
       return List.of(getLiverDataForChannelId(channelId));
     }
@@ -53,19 +49,17 @@ public class LiverController {
     var l = liverRepository.findByYoutube(channelId);
     if (l.isEmpty())
       return null;
-    return getLiverData(l.get(), youtubeChannelRepository.findById(l.get().getYoutube()).orElse(null),
-        liverTagRepository.findAll());
+    return getLiverData(l.get(), liverTagRepository.findAll());
   }
 
   private LiverResponse getLiverDataForId(String id) {
     var l = liverRepository.findById(id);
     if (l.isEmpty())
       return null;
-    return getLiverData(l.get(), youtubeChannelRepository.findById(l.get().getYoutube()).orElse(null),
-        liverTagRepository.findAll());
+    return getLiverData(l.get(), liverTagRepository.findAll());
   }
 
-  private LiverResponse getLiverData(LiverEntity l, YoutubeChannelEntity y, List<LiverTagEntity> tags) {
+  private LiverResponse getLiverData(LiverEntity l, List<LiverTagEntity> tags) {
     var r = new LiverResponse();
     r.setCompany(l.getCompany());
     r.setDebut(l.getDebut());
@@ -80,7 +74,6 @@ public class LiverController {
     r.setTwitter(l.getTwitter());
     r.setWiki(l.getWiki());
     r.setYoutube(l.getYoutube());
-    r.setSubscriberCount(y.getSubscriberCount());
 
     var liverTag = tags.stream().filter(t -> t.getId().getId().equals(r.getId())).collect(Collectors.toList());
     for (var tag : liverTag) {
